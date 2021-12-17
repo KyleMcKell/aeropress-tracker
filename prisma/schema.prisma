@@ -40,13 +40,14 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime?
-  image         String?
-  accounts      Account[]
-  sessions      Session[]
+  id              String      @id @default(cuid())
+  name            String?
+  email           String?     @unique
+  emailVerified   DateTime?
+  image           String?
+  accounts        Account[]
+  sessions        Session[]
+  aeropressBrews  AeropressBrew[]
 }
 
 model VerificationToken {
@@ -55,4 +56,23 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model AeropressBrew {
+  id            String   @id @default(cuid())
+  name          String
+  brewTime      Int
+  waterTemp     Int
+  coffeeWeight  Int
+  waterWeight   Int
+  grindSize     String
+  roastType     String
+  inverted      Boolean
+  instructions  String?
+  description   String?
+  createdAt     DateTime
+  updatedAt     DateTime
+  favorite      Boolean
+  userId        String
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
