@@ -11,8 +11,8 @@ datasource db {
 }
 
 model Account {
-  id                 String  @id @default(cuid())
-  userId             String
+  id                 Int      @id @default(autoincrement())
+  userId             Int
   type               String
   provider           String
   providerAccountId  String
@@ -32,15 +32,15 @@ model Account {
 }
 
 model Session {
-  id           String   @id @default(cuid())
+  id           Int      @id @default(autoincrement())
   sessionToken String   @unique
-  userId       String
+  userId       Int
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model User {
-  id              String      @id @default(cuid())
+  id              Int         @id @default(autoincrement())
   name            String?
   email           String?     @unique
   emailVerified   DateTime?
@@ -59,7 +59,7 @@ model VerificationToken {
 }
 
 model AeropressBrew {
-  id            String   @id @default(cuid())
+  id            Int      @id @default(autoincrement())
   name          String
   brewTime      Int
   waterTemp     Int
@@ -70,9 +70,10 @@ model AeropressBrew {
   inverted      Boolean
   instructions  String?
   description   String?
-  createdAt     DateTime
-  updatedAt     DateTime
   favorite      Boolean
-  userId        String
+  userId        Int
   user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([name], name: "nameIndex")
+  @@index([favorite], name: "favoriteIndex")
 }
