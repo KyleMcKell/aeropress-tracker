@@ -25,9 +25,7 @@ model Account {
   session_state      String?
   oauth_token_secret String?
   oauth_token        String?
-
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
   @@unique([provider, providerAccountId])
 }
 
@@ -54,7 +52,6 @@ model VerificationToken {
   identifier String
   token      String   @unique
   expires    DateTime
-
   @@unique([identifier, token])
 }
 
@@ -73,7 +70,6 @@ model AeropressBrew {
   favorite      Boolean
   userId        Int
   user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
   @@index([name], name: "nameIndex")
   @@index([favorite], name: "favoriteIndex")
 }
