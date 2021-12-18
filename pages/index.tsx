@@ -1,20 +1,13 @@
-import type { GetServerSideProps, NextPage } from 'next';
-import { getSession, useSession, signIn, signOut } from 'next-auth/react';
-
-export const getServerSideProps: GetServerSideProps = async (context) => {
-	return {
-		props: {
-			session: await getSession(context),
-		},
-	};
-};
+import type { NextPage } from 'next';
+import { useSession, signIn, signOut } from 'next-auth/react';
 
 const Home: NextPage = () => {
 	const { data: session, status } = useSession();
-	if (status === 'authenticated') {
+	if (status === 'authenticated' && session) {
 		return (
 			<div style={{ backgroundColor: 'slateblue' }}>
-				Signed in as {session?.user?.email} <br />
+				{console.log('hello')}
+				Signed in as {session.user?.email} <br />
 				<button onClick={() => signOut()}>Sign out</button>
 			</div>
 		);

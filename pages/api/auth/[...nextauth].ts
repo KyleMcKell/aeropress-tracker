@@ -11,5 +11,10 @@ export default NextAuth({
 			clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
 		}),
 	],
+	callbacks: {
+		session({ session, token, user }) {
+			return session; // The return type will match the one returned in `useSession()`
+		},
+	},
 	secret: process.env.SECRET!,
 });
