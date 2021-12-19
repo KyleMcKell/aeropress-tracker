@@ -1,23 +1,23 @@
-import type { User } from '@prisma/client';
+import type { AeropressBrew } from '@prisma/client';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import prisma from '~/lib/prisma';
 
 type Data = {
-	user: User;
+	brew: AeropressBrew;
 };
 
 const userActions = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
-	const { userId } = req.query;
+	const { brewId } = req.query;
 
 	switch (req.method) {
 		case 'GET': {
-			const user = await prisma.user.findUnique({
-				where: { id: parseInt(String(userId)) },
+			const brew = await prisma.aeropressBrew.findUnique({
+				where: { id: parseInt(String(brewId)) },
 			});
-			if (!user) {
+			if (!brew) {
 				return res.status(400);
 			}
-			res.status(200).json({ user });
+			res.status(200).json({ brew });
 		}
 		default: {
 			res.status(405).end();

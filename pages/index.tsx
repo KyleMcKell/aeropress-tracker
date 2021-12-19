@@ -5,7 +5,7 @@ const Home: NextPage = () => {
 	const { data: session, status } = useSession();
 	if (status === 'authenticated' && session) {
 		return (
-			<div style={{ backgroundColor: 'slateblue' }}>
+			<div>
 				{console.log('hello')}
 				Signed in as {session.user?.email} <br />
 				<button onClick={() => signOut()}>Sign out</button>
