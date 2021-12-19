@@ -22,11 +22,11 @@ const Brew: NextPage<Props> = ({ brew }: Props) => {
 	);
 };
 
-interface IParams extends ParsedUrlQuery {
+interface Params extends ParsedUrlQuery {
 	brewId: string;
 }
 
-export const getStaticProps: GetStaticProps<Props, IParams> = async ({
+export const getStaticProps: GetStaticProps<Props, Params> = async ({
 	params,
 }) => {
 	const { brewId } = params!;
@@ -41,9 +41,13 @@ export const getStaticProps: GetStaticProps<Props, IParams> = async ({
 	};
 };
 
-export const getStaticPaths: GetStaticPaths<IParams> = async () => {
+type BrewPayload = {
+	brews: AeropressBrew[];
+};
+
+export const getStaticPaths: GetStaticPaths<Params> = async () => {
 	const data = await axios
-		.get('http://localhost:3000/api/brew')
+		.get<BrewPayload>('http://localhost:3000/api/brew')
 		.then((res) => res.data);
 
 	const { brews } = data;
