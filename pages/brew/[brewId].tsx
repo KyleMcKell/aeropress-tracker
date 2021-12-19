@@ -5,6 +5,7 @@ import axios from 'axios';
 import prisma from '~/lib/prisma';
 import { ParsedUrlQuery } from 'querystring';
 import { useUser } from '~/lib/hooks';
+import invariant from 'tiny-invariant';
 
 interface Props {
 	brew: AeropressBrew;
@@ -31,9 +32,11 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
 }) => {
 	const { brewId } = params!;
 
-	const brew = (await prisma.aeropressBrew.findUnique({
+	const brew = await prisma.aeropressBrew.findUnique({
 		where: { id: parseInt(brewId) },
-	})) as AeropressBrew;
+	});
+
+	invariant(brew, 'Expected value to be a brew');
 
 	return {
 		props: { brew },
