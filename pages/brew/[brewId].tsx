@@ -49,11 +49,9 @@ type BrewPayload = {
 };
 
 export const getStaticPaths: GetStaticPaths<Params> = async () => {
-	const data = await axios
+	const { brews } = await axios
 		.get<BrewPayload>('http://localhost:3000/api/brew')
 		.then((res) => res.data);
-
-	const { brews } = data;
 
 	const paths = brews.map((brew: AeropressBrew) => ({
 		params: { brewId: String(brew.id) },
