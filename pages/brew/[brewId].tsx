@@ -38,7 +38,7 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
 		where: { id: parseInt(brewId) },
 	});
 
-	invariant(brew, 'Expected value to be a brew');
+	if (!brew) return { notFound: true };
 
 	return {
 		props: { brew },
