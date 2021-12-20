@@ -1,13 +1,10 @@
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import type { AeropressBrew } from '@prisma/client';
 
-import invariant from 'tiny-invariant';
-
 import { ParsedUrlQuery } from 'querystring';
 import { useUser } from '~/lib/hooks';
 
 import prisma from '~/lib/prisma';
-import axios from '~/lib/axios';
 
 interface Props {
 	brew: AeropressBrew;
@@ -46,14 +43,8 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
 	};
 };
 
-type BrewPayload = {
-	brews: AeropressBrew[];
-};
-
 export const getStaticPaths: GetStaticPaths<Params> = async () => {
-	const { brews } = await axios
-		.get<BrewPayload>('/api/brew')
-		.then((res) => res.data);
+	const brews = await prisma.aeropressBrew.findMany();
 
 	const paths = brews.map((brew: AeropressBrew) => ({
 		params: { brewId: String(brew.id) },

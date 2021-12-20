@@ -1,7 +1,7 @@
 import useSWR from 'swr';
 import { User } from '@prisma/client';
 
-import fetcher from '~/lib/fetcher';
+import { fetcher } from '~/lib/utils';
 
 type UserHookData = {
 	user?: User;
