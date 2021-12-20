@@ -59,7 +59,7 @@ export const getStaticPaths: GetStaticPaths<Params> = async () => {
 		params: { brewId: String(brew.id) },
 	}));
 
-	return { paths, fallback: false };
+	return { paths, fallback: 'blocking' };
 };
 
 export default Brew;
