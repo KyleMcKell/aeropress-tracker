@@ -25,7 +25,7 @@ model Account {
   session_state      String?
   oauth_token_secret String?
   oauth_token        String?
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user               User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   @@unique([provider, providerAccountId])
 }
 
