@@ -1,6 +1,6 @@
 import { Session } from 'next-auth';
 import { useSession, signIn, signOut } from 'next-auth/react';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Icon from '../Icon';
 import Logo from '../Logo';
 import VisuallyHidden from '../VisuallyHidden';
@@ -29,23 +29,15 @@ const UserData = ({ status, session }: SignInProps) => {
 			<div className="">
 				{status === 'authenticated' ? (
 					<>Hello {session?.user?.name.split(' ')[0]}!</>
-				) : status === 'unauthenticated' ? (
-					<>Not signed in</>
 				) : (
-					<>Loading...</>
+					<>Hello Barista!</>
 				)}
 			</div>
 			<button
 				className="bg-stone-500 rounded-full px-5 py-2 font-semibold text-stone-100"
 				onClick={handleClick}
 			>
-				{status === 'authenticated' ? (
-					<>Log Out</>
-				) : status === 'unauthenticated' ? (
-					<>Log In</>
-				) : (
-					<>Loading...</>
-				)}
+				{status === 'authenticated' ? <>Log Out</> : <>Log In</>}
 			</button>
 		</div>
 	);
@@ -53,12 +45,19 @@ const UserData = ({ status, session }: SignInProps) => {
 
 const Header = (props: Props) => {
 	const { data: session, status } = useSession();
+	const [mounted, setMounted] = useState(false);
+
+	useEffect(() => {
+		setMounted(true);
+	}, []);
+
 	return (
 		<div className="grid place-items-center">
 			<div className="border-t-4" />
 			<div className="flex justify-between items-baseline w-full px-8 pt-5 pb-5 text-stone-700 border-b-2 border-stone-200 sm:px-12 md:w-10/12">
 				<Logo />
 				<UserData status={status} session={session} />
+				{/* mobile menu button */}
 				<button className="sm:hidden self-center">
 					<Icon id={'menu'} strokeWidth={2} />
 					<VisuallyHidden>Menu</VisuallyHidden>
