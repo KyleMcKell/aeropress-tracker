@@ -13,6 +13,17 @@ interface SignInProps {
 }
 
 const UserData = ({ status, session }: SignInProps) => {
+	const handleClick = () => {
+		switch (status) {
+			case 'authenticated': {
+				return signOut();
+			}
+			case 'unauthenticated': {
+				return signIn();
+			}
+		}
+	};
+
 	return (
 		<div className="hidden sm:flex flex-row gap-8 font-semibold items-baseline">
 			<div className="">
@@ -26,7 +37,7 @@ const UserData = ({ status, session }: SignInProps) => {
 			</div>
 			<button
 				className="bg-stone-500 rounded-full px-5 py-2 font-semibold text-stone-100"
-				onClick={() => signIn()}
+				onClick={handleClick}
 			>
 				{status === 'authenticated' ? (
 					<>Log Out</>
