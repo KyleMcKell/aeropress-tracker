@@ -13,7 +13,7 @@ interface SignInProps {
 	session: Session | null;
 }
 
-const UserData = ({ status, session }: SignInProps) => {
+const HeaderUserData = ({ status, session }: SignInProps) => {
 	const handleClick = () => {
 		switch (status) {
 			case 'authenticated': {
@@ -62,7 +62,7 @@ const Header = (props: Props) => {
 						<Logo />
 					</a>
 				</Link>
-				<UserData status={status} session={session} />
+				<HeaderUserData status={status} session={session} />
 				{/* mobile menu button */}
 				<button className="sm:hidden self-center">
 					<Icon id={'menu'} strokeWidth={2} />
