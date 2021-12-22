@@ -1,5 +1,6 @@
 import { Session } from 'next-auth';
 import { useSession, signIn, signOut } from 'next-auth/react';
+import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 import Icon from '../Icon';
 import Logo from '../Logo';
@@ -34,7 +35,7 @@ const UserData = ({ status, session }: SignInProps) => {
 				)}
 			</div>
 			<button
-				className="bg-stone-600 rounded-full px-5 py-2 font-semibold text-stone-50"
+				className="w-24 h-10 font-semibold rounded-full bg-stone-500 text-white"
 				onClick={handleClick}
 			>
 				{status === 'authenticated' ? <>Log Out</> : <>Log In</>}
@@ -53,9 +54,14 @@ const Header = (props: Props) => {
 
 	return (
 		<div className="grid place-items-center">
-			<div className="border-t-4" />
-			<div className="flex justify-between items-baseline w-full px-8 pt-5 pb-5 text-stone-700 border-b-2 border-stone-200 sm:px-12 md:w-10/12">
-				<Logo />
+			{/* <div className="bg-gradient-to-r from-purple-500 to-cyan-500 h-2 w-full" /> */}
+			<div className="bg-stone-500 h-2 w-full" />
+			<div className="text-stone-700 flex justify-between items-baseline w-full px-8 pt-8 pb-4 border-b-2 border-stone-200 sm:px-12 md:w-10/12">
+				<Link href="/" passHref>
+					<a>
+						<Logo />
+					</a>
+				</Link>
 				<UserData status={status} session={session} />
 				{/* mobile menu button */}
 				<button className="sm:hidden self-center">
