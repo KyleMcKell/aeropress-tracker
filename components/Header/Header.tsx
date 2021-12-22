@@ -34,7 +34,7 @@ const UserData = ({ status, session }: SignInProps) => {
 				)}
 			</div>
 			<button
-				className="bg-stone-500 rounded-full px-5 py-2 font-semibold text-stone-100"
+				className="bg-stone-600 rounded-full px-5 py-2 font-semibold text-stone-50"
 				onClick={handleClick}
 			>
 				{status === 'authenticated' ? <>Log Out</> : <>Log In</>}

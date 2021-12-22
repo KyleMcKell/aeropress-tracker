@@ -5,20 +5,28 @@ import { ParsedUrlQuery } from 'querystring';
 import { useUser } from '~/lib/hooks';
 
 import prisma from '~/lib/prisma';
+import Layout from '~/components/Layout';
+import Head from 'next/head';
 
 interface Props {
 	brew: AeropressBrew;
 }
 
 const Brew: NextPage<Props> = ({ brew }: Props) => {
-	const { user, isLoading, isError } = useUser(brew.userId);
+	const { user } = useUser(brew.userId);
 
 	return (
-		<div>
-			<h1>{brew.name}</h1>
-			{brew.description && <h2>{brew.description}</h2>}
-			{user && <p>This brew was made by {user.name}</p>}
-		</div>
+		<>
+			<Head>
+				<title>{`${brew.name} - AeroPress Tracker`}</title>
+				<link rel="icon" href="/favicon.ico" />
+			</Head>
+			<Layout>
+				<h1>{brew.name}</h1>
+				{brew.description && <h2>{brew.description}</h2>}
+				{user && <p>This brew was made by {user.name}</p>}
+			</Layout>
+		</>
 	);
 };
 
