@@ -2,6 +2,7 @@ import { Session } from 'next-auth';
 import { useSession, signIn, signOut } from 'next-auth/react';
 import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
+import Button from '../Button';
 import Icon from '../Icon';
 import Logo from '../Logo';
 import VisuallyHidden from '../VisuallyHidden';
@@ -17,16 +18,16 @@ const HeaderUserData = ({ status, session }: SignInProps) => {
 	const handleClick = () => {
 		switch (status) {
 			case 'authenticated': {
-				return signOut();
+				signOut();
 			}
 			case 'unauthenticated': {
-				return signIn();
+				signIn();
 			}
 		}
 	};
 
 	return (
-		<div className="hidden sm:flex flex-row gap-8 font-semibold items-baseline">
+		<div className="hidden sm:flex flex-row gap-8 font-ui font-medium items-baseline">
 			<div className="">
 				{status === 'authenticated' ? (
 					<>Hello {session?.user?.name.split(' ')[0]}!</>
@@ -34,29 +35,21 @@ const HeaderUserData = ({ status, session }: SignInProps) => {
 					<>Hello Barista!</>
 				)}
 			</div>
-			<button
-				className="w-24 h-10 font-semibold rounded-full bg-stone-500 text-white"
-				onClick={handleClick}
-			>
+			<Button onClick={handleClick} variant="boring">
 				{status === 'authenticated' ? <>Log Out</> : <>Log In</>}
-			</button>
+			</Button>
 		</div>
 	);
 };
 
 const Header = (props: Props) => {
 	const { data: session, status } = useSession();
-	const [mounted, setMounted] = useState(false);
-
-	useEffect(() => {
-		setMounted(true);
-	}, []);
 
 	return (
-		<div className="grid place-items-center">
+		<div className="grid place-items-center bg-stone-100">
 			{/* <div className="bg-gradient-to-r from-purple-500 to-cyan-500 h-2 w-full" /> */}
 			<div className="bg-stone-500 h-2 w-full" />
-			<div className="text-stone-700 flex justify-between items-baseline w-full px-8 pt-8 pb-4 border-b-2 border-stone-200 sm:px-12 md:w-10/12">
+			<div className="text-stone-700 flex justify-between items-baseline w-full px-8 pt-8 pb-4 border-b-4 border-stone-200 sm:px-12 md:w-10/12">
 				<Link href="/" passHref>
 					<a>
 						<Logo />
