@@ -24,10 +24,10 @@ const Header = (props: Props) => {
 	};
 
 	return (
-		<div className="grid place-items-center bg-gray-50">
-			<div className="bg-gradient-to-r from-primary-300 to-secondary-300 h-2 w-full" />
-			{/* <div className="bg-gray-500 h-2 w-full" /> */}
-			<div className="text-gray-700 flex justify-between items-baseline w-full px-8 pt-8 pb-4 border-b-4 border-gray-200 md:w-10/12">
+		<div className="grid place-items-center">
+			{/* <div className="bg-gradient-to-r from-primary-300 to-secondary-300 h-2 w-full" /> */}
+			<div className="bg-neutral-500 h-2 w-full" />
+			<div className="text-neutral-700 flex justify-between items-baseline w-full px-8 pt-8 pb-4 border-b-4 border-neutral-200 md:w-10/12">
 				<Link href="/" passHref>
 					<a>
 						<Logo />
@@ -42,7 +42,7 @@ const Header = (props: Props) => {
 							<>Hello Barista!</>
 						)}
 					</div>
-					<Button onClick={handleClick} variant="nifty">
+					<Button onClick={handleClick} variant="boring">
 						{status === 'authenticated' ? <>Log Out</> : <>Log In</>}
 					</Button>
 				</div>

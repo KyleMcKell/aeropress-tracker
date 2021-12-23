@@ -4,7 +4,7 @@ interface Props {}
 
 const Logo = (props: Props) => {
 	return (
-		<div className="text-3xl font-bold font-headline text-gray-800">
+		<div className="text-3xl font-bold font-headline text-neutral-800">
 			Aeropress Tracker
 		</div>
 	);

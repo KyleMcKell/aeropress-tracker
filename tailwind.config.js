@@ -83,7 +83,7 @@ module.exports = {
 				800: '#0A6C74',
 				900: '#044E54',
 			},
-			gray: {
+			neutral: {
 				50: '#FAF9F7',
 				100: '#E8E6E1',
 				200: '#D3CEC4',
