@@ -11,30 +11,30 @@ const Button = ({ onClick, children, variant, ...delegated }: Props) => {
 	switch (variant) {
 		case 'boring':
 			variantClasses =
-				'bg-stone-500 text-white transition-colors hover:bg-stone-600';
+				'bg-gray-500 text-white transition-colors hover:bg-gray-600';
 			break;
 		case 'nifty':
 			variantClasses =
-				'bg-gradient-to-tr text-white text-opacity-100 from-purple-700 to-cyan-500 opacity-80 transition-opacity hover:opacity-100';
+				'bg-gradient-to-tr text-white text-opacity-100 from-primary-600 to-secondary-500 opacity-90 transition-opacity hover:opacity-100';
 			break;
 		case 'primary':
 			variantClasses =
-				'bg-purple-600 text-white transition-colors hover:bg-purple-700';
+				'bg-primary-600 text-white transition-colors hover:bg-primary-700';
 			break;
 		case 'secondary':
 			variantClasses =
-				'bg-cyan-700 text-white transition-colors ease-in hover:bg-cyan-800';
+				'bg-secondary-700 text-white transition-colors ease-in hover:bg-secondary-800';
 			break;
 		default:
 			variantClasses =
-				'bg-stone-500 text-white transition-colors hover:bg-stone-600';
+				'bg-gray-500 text-white transition-colors hover:bg-gray-600';
 			break;
 	}
 
 	return (
 		<>
 			<button
-				className={`px-6 py-2 font-medium font-ui rounded-2xl duration-200 ease-in motion-reduce:transition-none ${variantClasses}`}
+				className={`px-6 py-2 font-semibold font-ui text-base rounded-full duration-200 ease-in motion-reduce:transition-none ${variantClasses}`}
 				onClick={onClick}
 				{...delegated}
 			>

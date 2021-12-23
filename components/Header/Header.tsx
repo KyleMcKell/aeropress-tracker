@@ -9,12 +9,9 @@ import VisuallyHidden from '../VisuallyHidden';
 
 interface Props {}
 
-interface SignInProps {
-	status: 'authenticated' | 'loading' | 'unauthenticated';
-	session: Session | null;
-}
+const Header = (props: Props) => {
+	const { data: session, status } = useSession();
 
-const HeaderUserData = ({ status, session }: SignInProps) => {
 	const handleClick = () => {
 		switch (status) {
 			case 'authenticated': {
@@ -27,35 +24,28 @@ const HeaderUserData = ({ status, session }: SignInProps) => {
 	};
 
 	return (
-		<div className="hidden sm:flex flex-row gap-8 font-ui font-medium items-baseline">
-			<div className="">
-				{status === 'authenticated' ? (
-					<>Hello {session?.user?.name.split(' ')[0]}!</>
-				) : (
-					<>Hello Barista!</>
-				)}
-			</div>
-			<Button onClick={handleClick} variant="boring">
-				{status === 'authenticated' ? <>Log Out</> : <>Log In</>}
-			</Button>
-		</div>
-	);
-};
-
-const Header = (props: Props) => {
-	const { data: session, status } = useSession();
-
-	return (
-		<div className="grid place-items-center bg-stone-100">
-			{/* <div className="bg-gradient-to-r from-purple-500 to-cyan-500 h-2 w-full" /> */}
-			<div className="bg-stone-500 h-2 w-full" />
-			<div className="text-stone-700 flex justify-between items-baseline w-full px-8 pt-8 pb-4 border-b-4 border-stone-200 sm:px-12 md:w-10/12">
+		<div className="grid place-items-center bg-gray-50">
+			<div className="bg-gradient-to-r from-primary-300 to-secondary-300 h-2 w-full" />
+			{/* <div className="bg-gray-500 h-2 w-full" /> */}
+			<div className="text-gray-700 flex justify-between items-baseline w-full px-8 pt-8 pb-4 border-b-4 border-gray-200 md:w-10/12">
 				<Link href="/" passHref>
 					<a>
 						<Logo />
 					</a>
 				</Link>
-				<HeaderUserData status={status} session={session} />
+				{/* desktop log in info */}
+				<div className="hidden sm:flex flex-row gap-8 font-ui font-semibold items-baseline">
+					<div className="text-lg">
+						{status === 'authenticated' ? (
+							<>Hello {session?.user?.name.split(' ')[0]}!</>
+						) : (
+							<>Hello Barista!</>
+						)}
+					</div>
+					<Button onClick={handleClick} variant="nifty">
+						{status === 'authenticated' ? <>Log Out</> : <>Log In</>}
+					</Button>
+				</div>
 				{/* mobile menu button */}
 				<button className="sm:hidden self-center">
 					<Icon id={'menu'} strokeWidth={2} />
