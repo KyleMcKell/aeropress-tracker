@@ -9,12 +9,12 @@ interface Props {
 
 const Layout = ({ children }: Props) => {
 	return (
-		<>
+		<div className="font-ui">
 			<SessionMounter>
 				<Header />
 				{children}
 			</SessionMounter>
-		</>
+		</div>
 	);
 };
 

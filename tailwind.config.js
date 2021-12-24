@@ -95,7 +95,7 @@ module.exports = {
 				800: '#423D33',
 				900: '#27241D',
 			},
-			error: {
+			danger: {
 				50: '#FFE3E3',
 				100: '#FFBDBD',
 				200: '#FF9B9B',

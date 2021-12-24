@@ -57,7 +57,7 @@ CREATE TABLE "AeropressBrew" (
     "grindSize" TEXT NOT NULL,
     "roastType" TEXT NOT NULL,
     "inverted" BOOLEAN NOT NULL,
-    "instructions" TEXT,
+    "steps" JSONB[],
     "description" TEXT,
     "favorite" BOOLEAN NOT NULL,
     "userId" INTEGER NOT NULL,

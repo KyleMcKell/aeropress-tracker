@@ -5,6 +5,7 @@ import prisma from '~/lib/prisma';
 type Data = {
 	brews?: AeropressBrew[];
 	brew?: AeropressBrew;
+	error?: string;
 };
 
 const userActions = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
@@ -20,16 +21,16 @@ const userActions = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 		case 'POST': {
 			const {
 				name,
+				description,
+				inverted,
 				brewTime,
-				waterTemp,
 				coffeeWeight,
 				waterWeight,
+				waterTemp,
+				favorite,
 				grindSize,
 				roastType,
-				inverted,
-				favorite,
 				instructions,
-				description,
 				userId,
 			}: AeropressBrew = req.body;
 			const brew = await prisma.aeropressBrew.create({
@@ -49,7 +50,7 @@ const userActions = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 				},
 			});
 			if (!brew) {
-				return res.status(400);
+				return res.status(400).json({ error: 'Could not create brew' });
 			}
 			res.status(200).json({ brew });
 		}

@@ -1,12 +1,15 @@
 import React from 'react';
 
-interface Props {
-	onClick: () => void;
-	children: React.ReactNode;
-	variant: 'boring' | 'nifty' | 'primary' | 'secondary';
+interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+	variant?: 'boring' | 'nifty' | 'primary' | 'secondary';
 }
 
-const Button = ({ onClick, children, variant, ...delegated }: Props) => {
+const Button = ({
+	onClick,
+	children,
+	variant = 'boring',
+	...delegated
+}: Props) => {
 	let variantStyles: string;
 	switch (variant) {
 		case 'boring':
@@ -25,21 +28,16 @@ const Button = ({ onClick, children, variant, ...delegated }: Props) => {
 			variantStyles =
 				'bg-secondary-700 text-white transition-colors ease-in hover:bg-secondary-900';
 			break;
-		default:
-			variantStyles = '';
-			break;
 	}
 
 	return (
-		<>
-			<button
-				className={`px-6 py-2 font-semibold font-ui text-base rounded-full duration-200 ease-in motion-reduce:transition-none ${variantStyles}`}
-				onClick={onClick}
-				{...delegated}
-			>
-				{children}
-			</button>
-		</>
+		<button
+			className={`px-6 py-2 font-semibold font-ui text-base rounded-full duration-200 ease-in motion-reduce:transition-none ${variantStyles}`}
+			onClick={onClick}
+			{...delegated}
+		>
+			{children}
+		</button>
 	);
 };
 
