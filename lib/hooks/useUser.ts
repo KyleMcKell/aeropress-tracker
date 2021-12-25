@@ -6,7 +6,7 @@ import { fetcher } from '~/lib/utils';
 type UserHookData = {
 	user?: User;
 	isLoading: boolean;
-	isError: any;
+	isError: boolean;
 };
 
 type UserPayload = {
@@ -22,7 +22,7 @@ const useUser = (id: number): UserHookData => {
 	return {
 		user,
 		isLoading: !error && !data,
-		isError: error,
+		isError: Boolean(error),
 	};
 };
 
