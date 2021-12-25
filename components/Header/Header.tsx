@@ -1,9 +1,8 @@
-import { Session } from 'next-auth';
-import { useSession, signIn, signOut } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import Link from 'next/link';
-import React, { useState, useEffect } from 'react';
-import Button from '../Button';
+import React from 'react';
 import Icon from '../Icon';
+import LogInButton from '../LogInButton';
 import Logo from '../Logo';
 import VisuallyHidden from '../VisuallyHidden';
 
@@ -11,17 +10,6 @@ interface Props {}
 
 const Header = (props: Props) => {
 	const { data: session, status } = useSession();
-
-	const handleClick = () => {
-		switch (status) {
-			case 'authenticated': {
-				signOut();
-			}
-			case 'unauthenticated': {
-				signIn();
-			}
-		}
-	};
 
 	return (
 		<div className="grid place-items-center">
@@ -42,9 +30,7 @@ const Header = (props: Props) => {
 							<>Hello Barista!</>
 						)}
 					</div>
-					<Button onClick={handleClick} variant="boring">
-						{status === 'authenticated' ? <>Log Out</> : <>Log In</>}
-					</Button>
+					<LogInButton />
 				</div>
 				{/* mobile menu button */}
 				<button className="sm:hidden self-center">

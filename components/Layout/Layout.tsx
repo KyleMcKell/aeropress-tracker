@@ -12,7 +12,7 @@ const Layout = ({ children }: Props) => {
 		<div className="font-ui">
 			<SessionMounter>
 				<Header />
-				{children}
+				<div className="flex justify-center pt-6">{children}</div>
 			</SessionMounter>
 		</div>
 	);
