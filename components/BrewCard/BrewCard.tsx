@@ -1,5 +1,6 @@
 import { AeropressBrew, User } from '@prisma/client';
 import React from 'react';
+import Timer from '../Timer';
 
 interface Props {
 	brew: AeropressBrew;
@@ -13,8 +14,8 @@ const dataToUse = {
 	waterTemp: 100,
 	coffeeWeight: 15,
 	waterWeight: 200,
-	grindSize: 'Any',
-	roastType: 'Any',
+	grindSize: 'Coarse',
+	roastType: 'Medium Light',
 	inverted: false,
 	description: 'This brew is very very tasty',
 	favorite: false,
@@ -25,12 +26,122 @@ const dataToUse = {
 const BrewCard = ({ brew, user }: Props) => {
 	brew = dataToUse;
 
+	const {
+		name: brewName,
+		brewTime,
+		waterTemp,
+		coffeeWeight,
+		waterWeight,
+		grindSize,
+		roastType,
+		inverted,
+		description,
+	} = brew;
+
 	return (
-		<div className="border-4 border-neutral-600 bg-neutral-50 rounded-xl p-4 grid w-full">
-			<h1 className="text-3xl font-bold text-neutral-900">{brew.name}</h1>
-			{user && <h3 className="text-sm font-thin">Brewed by {user.name}</h3>}
-			{brew.description && <h2>{brew.description}</h2>}
-			{brew.instructions && <p>{brew.instructions}</p>}
+		<div className="border-4 border-neutral-600 bg-neutral-50 rounded-xl p-4 max-w-2xl w-full gap-4 grid grid-cols-2">
+			<div className="col-span-2">
+				<h1 className="text-3xl font-extrabold text-primary-500">{brewName}</h1>
+				{user && (
+					<h3 className="text-sm text-secondary-900">Brewed by {user.name}</h3>
+				)}
+			</div>
+
+			{description && (
+				<h2 className="font-semibold col-span-2">{description}</h2>
+			)}
+
+			<p className="col-span-2">
+				{inverted ? (
+					<>
+						Flip it over! We&apos;re{' '}
+						<span className="font-semibold text-secondary-700">Inverting</span>{' '}
+						this one
+					</>
+				) : (
+					<>
+						Keepin it classic,{' '}
+						<span className="font-semibold text-secondary-700">
+							no Inverting
+						</span>{' '}
+						today
+					</>
+				)}
+			</p>
+
+			<p className="col-span-2">
+				Heat your water to{' '}
+				<span className="font-semibold text-secondary-700">
+					{waterTemp}
+					<sup>C</sup>
+				</span>
+			</p>
+
+			<p className="col-span-2">
+				...which You&apos;ll need{' '}
+				<span className="font-semibold text-secondary-700">
+					{waterWeight}
+					<sub>g</sub>
+				</span>{' '}
+				of
+			</p>
+
+			<p className="col-span-2">
+				...and{' '}
+				<span className="font-semibold text-secondary-700">
+					{coffeeWeight}
+					<sub>g</sub>
+				</span>{' '}
+				of coffee
+			</p>
+
+			<p className="col-span-2">
+				{grindSize === 'Any' ? (
+					<>
+						Feel free to use{' '}
+						<span className="font-semibold text-secondary-700">ANY</span> grind
+						size!
+					</>
+				) : grindSize === 'Extra Fine' ? (
+					<>
+						Grind to about an{' '}
+						<span className="font-semibold text-secondary-700">
+							{grindSize}
+						</span>{' '}
+						level
+					</>
+				) : (
+					<>
+						Grind to about a{' '}
+						<span className="font-semibold text-secondary-700">
+							{grindSize}
+						</span>{' '}
+						level
+					</>
+				)}
+			</p>
+
+			<p className="col-span-2">
+				{roastType === 'Any' ? (
+					<>
+						For this one{' '}
+						<span className="font-semibold text-secondary-700">ANY</span> roast
+						of coffee will do!
+					</>
+				) : (
+					<>
+						Find your best{' '}
+						<span className="font-semibold text-secondary-700">
+							{roastType}
+						</span>{' '}
+						roast
+					</>
+				)}
+			</p>
+
+			<div className="col-span-2 place-self-center">
+				<Timer time={brewTime} />
+			</div>
 		</div>
 	);
 };
