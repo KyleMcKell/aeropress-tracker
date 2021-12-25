@@ -8,14 +8,14 @@ import VisuallyHidden from '../VisuallyHidden';
 
 interface Props {}
 
-const Header = (props: Props) => {
+const Header = ({}: Props) => {
 	const { data: session, status } = useSession();
 
 	return (
 		<div className="grid place-items-center">
 			{/* <div className="bg-gradient-to-r from-primary-300 to-secondary-300 h-2 w-full" /> */}
 			<div className="bg-neutral-500 h-2 w-full" />
-			<div className="text-neutral-700 flex justify-between items-baseline w-full px-8 pt-8 pb-4 border-b-4 border-neutral-200 md:w-10/12">
+			<div className="text-neutral-700 flex justify-between items-baseline w-full p-4 border-b-4 border-neutral-200 sm:p-8 sm:pb-4 md:w-10/12">
 				<Link href="/" passHref>
 					<a>
 						<Logo />

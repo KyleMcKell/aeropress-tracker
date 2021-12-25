@@ -6,7 +6,7 @@ import { useUser } from '~/lib/hooks';
 
 import prisma from '~/lib/prisma';
 import Layout from '~/components/Layout';
-import Head from 'next/head';
+import BrewCard from '~/components/BrewCard';
 
 interface Props {
 	brew: AeropressBrew;
@@ -16,17 +16,9 @@ const Brew: NextPage<Props> = ({ brew }: Props) => {
 	const { user } = useUser(brew.userId);
 
 	return (
-		<>
-			<Head>
-				<title>{`${brew.name} - AeroPress Tracker`}</title>
-				<link rel="icon" href="/favicon.ico" />
-			</Head>
-			<Layout>
-				<h1>{brew.name}</h1>
-				{brew.description && <h2>{brew.description}</h2>}
-				{user && <p>This brew was made by {user.name}</p>}
-			</Layout>
-		</>
+		<Layout title={`${brew.name} - AeroPress Tracker`} description="">
+			<BrewCard brew={brew} user={user} />
+		</Layout>
 	);
 };
 

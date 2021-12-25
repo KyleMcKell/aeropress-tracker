@@ -27,9 +27,7 @@ const FormField = ({ children }: FormFieldProps) => {
 	return <div className="flex flex-col">{children}</div>;
 };
 
-const RequiredSpan = () => (
-	<span className="text-secondary-800 font-semibold text-xl">*</span>
-);
+const RequiredSpan = () => <span className="font-bold">*</span>;
 
 const defaultValues: FormData = {
 	name: '',
@@ -81,7 +79,7 @@ const CreateBrew: NextPage = () => {
 	});
 
 	return (
-		<Layout>
+		<Layout title="Create a Brew" description="Create Brew">
 			{status === 'unauthenticated' && (
 				<div className="flex flex-col items-center">
 					<p className="text-neutral-500 text-sm">
