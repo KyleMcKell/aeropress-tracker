@@ -1,11 +1,7 @@
 import React from 'react';
 
 interface Props {
-	/** I hate reaching for this here,
-	 * but I couldn't find how to type
-	 * children correctly without having
-	 * to use a React Fragment*/
-	children: any;
+	children: React.ReactNode;
 }
 
 const VisuallyHidden = ({ children, ...delegated }: Props) => {
@@ -35,7 +31,7 @@ const VisuallyHidden = ({ children, ...delegated }: Props) => {
 	}, []);
 
 	if (forceShow) {
-		return children;
+		return <>{children}</>;
 	}
 
 	return (
