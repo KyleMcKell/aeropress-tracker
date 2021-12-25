@@ -31,6 +31,7 @@ const VisuallyHidden = ({ children, ...delegated }: Props) => {
 				window.removeEventListener('keydown', handleKeyUp);
 			};
 		}
+		return;
 	}, []);
 
 	if (forceShow) {

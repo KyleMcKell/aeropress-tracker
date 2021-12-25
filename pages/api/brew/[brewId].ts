@@ -17,10 +17,10 @@ const userActions = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 			if (!brew) {
 				return res.status(400);
 			}
-			res.status(200).json({ brew });
+			return res.status(200).json({ brew });
 		}
 		default: {
-			res.status(405).end();
+			return res.status(405).end();
 		}
 	}
 };

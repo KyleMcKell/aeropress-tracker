@@ -8,15 +8,18 @@ interface Props {
 }
 
 const LogInButton = ({ variant = 'boring' }: Props) => {
-	const { data: session, status } = useSession();
+	const { status } = useSession();
 
 	const handleClick = () => {
 		switch (status) {
 			case 'authenticated': {
-				signOut();
+				return signOut();
 			}
 			case 'unauthenticated': {
-				signIn();
+				return signIn();
+			}
+			case 'loading': {
+				return;
 			}
 		}
 	};
