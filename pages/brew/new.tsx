@@ -79,7 +79,10 @@ const CreateBrew: NextPage = () => {
 	});
 
 	return (
-		<Layout title="Create a Brew" description="Create Brew">
+		<Layout
+			title="Create a Brew"
+			description="Add another brew to your list of created brews"
+		>
 			{status === 'unauthenticated' && (
 				<div className="flex flex-col items-center">
 					<p className="text-neutral-500 text-sm">
