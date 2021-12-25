@@ -26,8 +26,8 @@ const BrewCard = ({ brew, user }: Props) => {
 	brew = dataToUse;
 
 	return (
-		<div className="grid">
-			<h1 className="text-3xl font-bold">{brew.name}</h1>
+		<div className="border-4 border-neutral-600 bg-neutral-50 rounded-xl p-4 grid w-full">
+			<h1 className="text-3xl font-bold text-neutral-900">{brew.name}</h1>
 			{user && <h3 className="text-sm font-thin">Brewed by {user.name}</h3>}
 			{brew.description && <h2>{brew.description}</h2>}
 			{brew.instructions && <p>{brew.instructions}</p>}

@@ -24,7 +24,7 @@ const Layout = ({
 			</Head>
 			<SessionMounter>
 				<Header />
-				<div className="flex flex-col items-center pt-6">{children}</div>
+				<div className="flex flex-col items-center p-4 pt-6">{children}</div>
 			</SessionMounter>
 		</div>
 	);
