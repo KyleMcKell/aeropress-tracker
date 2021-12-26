@@ -1,6 +1,6 @@
 import type { AeropressBrew } from '@prisma/client';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import prisma from '~/lib/prisma';
+import prisma from '~/lib/db';
 import { getErrorMessage } from '~/lib/utils';
 
 export type Data = {

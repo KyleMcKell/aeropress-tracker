@@ -4,7 +4,7 @@ import type { AeropressBrew } from '@prisma/client';
 import { ParsedUrlQuery } from 'querystring';
 import { useUser } from '~/lib/hooks';
 
-import prisma from '~/lib/prisma';
+import prisma from '~/lib/db';
 import Layout from '~/components/Layout';
 import BrewCard from '~/components/BrewCard';
 
