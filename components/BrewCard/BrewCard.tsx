@@ -8,24 +8,24 @@ interface Props {
 	showTimer?: boolean;
 }
 
-const dataToUse = {
-	id: 1,
-	name: 'Test Brew',
-	brewTime: 120,
-	waterTemp: 100,
-	coffeeWeight: 15,
-	waterWeight: 200,
-	grindSize: 'Coarse',
-	roastType: 'Medium Light',
-	inverted: false,
-	description: 'This brew is very very tasty',
-	favorite: false,
-	instructions: 'asdfasdf asdfasdfa',
-	userId: 1,
-};
+// const dataToUse = {
+// 	id: 1,
+// 	name: 'Test Brew',
+// 	brewTime: 120,
+// 	waterTemp: 100,
+// 	coffeeWeight: 15,
+// 	waterWeight: 200,
+// 	grindSize: 'Coarse',
+// 	roastType: 'Medium Light',
+// 	inverted: false,
+// 	description: 'This brew is very very tasty',
+// 	favorite: false,
+// 	instructions: 'asdfasdf asdfasdfa',
+// 	userId: 1,
+// };
 
 const BrewCard = ({ brew, user, showTimer = true }: Props) => {
-	brew = dataToUse;
+	// brew = dataToUse;
 
 	const {
 		name: brewName,
