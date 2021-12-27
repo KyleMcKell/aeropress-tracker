@@ -1,8 +1,6 @@
 import useSWR from 'swr';
 import { User } from '@prisma/client';
 
-import { fetcher } from '~/lib/utils';
-
 type UserHookData = {
 	user?: User;
 	isLoading: boolean;
@@ -13,11 +11,17 @@ type UserPayload = {
 	user?: User;
 };
 
-const useUser = (id: number): UserHookData => {
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
+
+const useUser = (id: number | undefined): UserHookData => {
 	const userId = String(id);
 	const { data, error } = useSWR<UserPayload>(`/api/user/${userId}`, fetcher);
 
 	const user = data?.user;
+
+	if (!id) {
+		return { isLoading: false, isError: false, user: undefined };
+	}
 
 	return {
 		user,

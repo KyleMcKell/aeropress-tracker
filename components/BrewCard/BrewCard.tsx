@@ -5,6 +5,7 @@ import Timer from '../Timer';
 interface Props {
 	brew: AeropressBrew;
 	user?: User;
+	showTimer?: boolean;
 }
 
 const dataToUse = {
@@ -23,7 +24,7 @@ const dataToUse = {
 	userId: 1,
 };
 
-const BrewCard = ({ brew, user }: Props) => {
+const BrewCard = ({ brew, user, showTimer = true }: Props) => {
 	brew = dataToUse;
 
 	const {
@@ -41,9 +42,13 @@ const BrewCard = ({ brew, user }: Props) => {
 	return (
 		<div className="border-4 border-neutral-600 bg-neutral-50 rounded-xl p-4 max-w-2xl w-full gap-4 grid grid-cols-2">
 			<div className="col-span-2">
-				<h1 className="text-3xl font-extrabold text-neutral-900">{brewName}</h1>
+				<h1 className="text-3xl font-extrabold text-neutral-900 text-center">
+					{brewName}
+				</h1>
 				{user && (
-					<h3 className="text-sm text-neutral-900">Brewed by {user.name}</h3>
+					<h3 className="text-sm text-neutral-900 text-center">
+						Brewed by {user.name}
+					</h3>
 				)}
 			</div>
 
@@ -132,10 +137,11 @@ const BrewCard = ({ brew, user }: Props) => {
 					</>
 				)}
 			</p>
-
-			<div className="col-span-2 ">
-				<Timer time={brewTime} />
-			</div>
+			{showTimer && (
+				<div className="col-span-2">
+					<Timer time={brewTime} />
+				</div>
+			)}
 		</div>
 	);
 };
