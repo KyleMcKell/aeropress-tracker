@@ -41,29 +41,29 @@ const BrewCard = ({ brew, user }: Props) => {
 	return (
 		<div className="border-4 border-neutral-600 bg-neutral-50 rounded-xl p-4 max-w-2xl w-full gap-4 grid grid-cols-2">
 			<div className="col-span-2">
-				<h1 className="text-3xl font-extrabold text-primary-500">{brewName}</h1>
+				<h1 className="text-3xl font-extrabold text-neutral-900">{brewName}</h1>
 				{user && (
-					<h3 className="text-sm text-secondary-900">Brewed by {user.name}</h3>
+					<h3 className="text-sm text-neutral-900">Brewed by {user.name}</h3>
 				)}
 			</div>
 
 			{description && (
-				<h2 className="font-semibold col-span-2">{description}</h2>
+				<h2 className="font-semibold col-span-2 text-neutral-800">
+					{description}
+				</h2>
 			)}
 
 			<p className="col-span-2">
 				{inverted ? (
 					<>
 						Flip it over! We&apos;re{' '}
-						<span className="font-semibold text-secondary-700">Inverting</span>{' '}
+						<span className="font-semibold text-neutral-700">Inverting</span>{' '}
 						this one
 					</>
 				) : (
 					<>
 						Keepin it classic,{' '}
-						<span className="font-semibold text-secondary-700">
-							no Inverting
-						</span>{' '}
+						<span className="font-semibold text-neutral-700">no Inverting</span>{' '}
 						today
 					</>
 				)}
@@ -71,7 +71,7 @@ const BrewCard = ({ brew, user }: Props) => {
 
 			<p className="col-span-2">
 				Heat your water to{' '}
-				<span className="font-semibold text-secondary-700">
+				<span className="font-semibold text-neutral-700">
 					{waterTemp}
 					<sup>C</sup>
 				</span>
@@ -79,7 +79,7 @@ const BrewCard = ({ brew, user }: Props) => {
 
 			<p className="col-span-2">
 				...which You&apos;ll need{' '}
-				<span className="font-semibold text-secondary-700">
+				<span className="font-semibold text-neutral-700">
 					{waterWeight}
 					<sub>g</sub>
 				</span>{' '}
@@ -88,7 +88,7 @@ const BrewCard = ({ brew, user }: Props) => {
 
 			<p className="col-span-2">
 				...and{' '}
-				<span className="font-semibold text-secondary-700">
+				<span className="font-semibold text-neutral-700">
 					{coffeeWeight}
 					<sub>g</sub>
 				</span>{' '}
@@ -99,23 +99,19 @@ const BrewCard = ({ brew, user }: Props) => {
 				{grindSize === 'Any' ? (
 					<>
 						Feel free to use{' '}
-						<span className="font-semibold text-secondary-700">ANY</span> grind
+						<span className="font-semibold text-neutral-700">ANY</span> grind
 						size!
 					</>
 				) : grindSize === 'Extra Fine' ? (
 					<>
 						Grind to about an{' '}
-						<span className="font-semibold text-secondary-700">
-							{grindSize}
-						</span>{' '}
+						<span className="font-semibold text-neutral-700">{grindSize}</span>{' '}
 						level
 					</>
 				) : (
 					<>
 						Grind to about a{' '}
-						<span className="font-semibold text-secondary-700">
-							{grindSize}
-						</span>{' '}
+						<span className="font-semibold text-neutral-700">{grindSize}</span>{' '}
 						level
 					</>
 				)}
@@ -125,21 +121,19 @@ const BrewCard = ({ brew, user }: Props) => {
 				{roastType === 'Any' ? (
 					<>
 						For this one{' '}
-						<span className="font-semibold text-secondary-700">ANY</span> roast
-						of coffee will do!
+						<span className="font-semibold text-neutral-700">ANY</span> roast of
+						coffee will do!
 					</>
 				) : (
 					<>
 						Find your best{' '}
-						<span className="font-semibold text-secondary-700">
-							{roastType}
-						</span>{' '}
+						<span className="font-semibold text-neutral-700">{roastType}</span>{' '}
 						roast
 					</>
 				)}
 			</p>
 
-			<div className="col-span-2 place-self-center">
+			<div className="col-span-2 ">
 				<Timer time={brewTime} />
 			</div>
 		</div>

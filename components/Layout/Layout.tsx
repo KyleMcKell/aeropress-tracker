@@ -17,7 +17,7 @@ const Layout = ({
 	children,
 }: Props) => {
 	return (
-		<div className="font-ui h-full flex flex-col">
+		<div className="font-ui">
 			<Head>
 				<title>{title}</title>
 				<meta name="description" content={description} />
@@ -25,7 +25,7 @@ const Layout = ({
 			</Head>
 			<SessionMounter>
 				<Header />
-				<div className="flex flex-col justify-center items-center h-full">
+				<div className="pt-8 px-2 sm:px-4 flex flex-col justify-center items-center">
 					{children}
 				</div>
 				<Footer />
