@@ -3,7 +3,6 @@ import React from 'react';
 
 import Header from '~/components/Header';
 import SessionMounter from '~/components/SessionMounter';
-import Footer from '../Footer';
 
 interface Props {
 	title: string;
@@ -28,7 +27,6 @@ const Layout = ({
 				<div className="pt-8 px-2 sm:px-4 flex flex-col justify-center items-center">
 					{children}
 				</div>
-				<Footer />
 			</SessionMounter>
 		</div>
 	);
