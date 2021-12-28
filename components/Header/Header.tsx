@@ -15,7 +15,7 @@ const Header = ({}: Props) => {
 		<div className="grid place-items-center">
 			{/* <div className="bg-gradient-to-r from-primary-300 to-secondary-300 h-2 w-full" /> */}
 			<div className="bg-neutral-500 h-2 w-full" />
-			<div className="text-neutral-700 flex justify-between items-baseline w-full p-4 border-b-4 border-neutral-200 sm:p-8 sm:pb-4 md:w-10/12">
+			<div className="text-neutral-700 flex h-20 sm:h-24 justify-between items-center sm:items-baseline w-full p-4 px-8 border-b-4 border-neutral-200 sm:p-8 sm:pb-4 md:w-10/12">
 				<Link href="/" passHref>
 					<a>
 						<Logo />
@@ -23,14 +23,18 @@ const Header = ({}: Props) => {
 				</Link>
 				{/* desktop log in info */}
 				<div className="hidden sm:flex flex-row gap-8 font-ui font-semibold items-baseline">
-					<div className="text-lg">
+					<div className="text-lg flex items-center justify-center h-10">
 						{status === 'authenticated' ? (
 							<>Hello {session?.user?.name.split(' ')[0]}!</>
+						) : status === 'loading' ? (
+							<></>
 						) : (
 							<>Hello Barista!</>
 						)}
 					</div>
-					<LogInButton />
+					<div className="w-28 flex items-center justify-center h-10">
+						<LogInButton />
+					</div>
 				</div>
 				{/* mobile menu button */}
 				<button className="sm:hidden self-center">

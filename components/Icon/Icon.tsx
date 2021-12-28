@@ -1,8 +1,8 @@
 import React from 'react';
-import { Menu } from 'react-feather';
+import { Menu, Loader } from 'react-feather';
 
 interface Props {
-	id: 'menu';
+	id: 'menu' | 'loader';
 	color?: string;
 	size?: string | number;
 	strokeWidth?: string | number;
@@ -10,6 +10,7 @@ interface Props {
 
 const icons = {
 	menu: Menu,
+	loader: Loader,
 };
 
 const Icon = ({ id, color, size, strokeWidth, ...delegated }: Props) => {

@@ -132,7 +132,11 @@ module.exports = {
 				900: '#014807',
 			},
 		},
-		extend: {},
+		extend: {
+			animation: {
+				'spin-slow': 'spin 2s ease-in-out infinite',
+			},
+		},
 	},
 	plugins: [],
 };

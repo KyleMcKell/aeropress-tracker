@@ -24,6 +24,11 @@ const LogInButton = ({ variant = 'boring' }: Props) => {
 		}
 	};
 
+	if (status === 'loading') {
+		// return <Spinner />;
+		return <></>;
+	}
+
 	return (
 		<Button onClick={handleClick} variant={variant}>
 			{status === 'authenticated' ? <>Log Out</> : <>Log In</>}

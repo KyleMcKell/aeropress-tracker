@@ -84,7 +84,7 @@ const CreateBrew: NextPage = () => {
 			description="Add another brew to your list of created brews"
 		>
 			{status === 'unauthenticated' && (
-				<div className="flex flex-col items-center">
+				<div className="flex flex-col items-center gap-6">
 					<p className="text-neutral-500 text-sm">
 						You must be logged in to create a brew.
 					</p>

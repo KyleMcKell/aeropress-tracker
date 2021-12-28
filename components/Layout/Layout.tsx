@@ -22,12 +22,10 @@ const Layout = ({
 				<meta name="description" content={description} />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<SessionMounter>
-				<Header />
-				<div className="pt-8 px-2 sm:px-4 flex flex-col justify-center items-center">
-					{children}
-				</div>
-			</SessionMounter>
+			<Header />
+			<div className="py-8 px-2 sm:px-4 flex flex-col justify-center items-center">
+				{children}
+			</div>
 		</div>
 	);
 };
