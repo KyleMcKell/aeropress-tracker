@@ -6,7 +6,7 @@ import Layout from '~/components/Layout';
 import LogInButton from '~/components/LogInButton';
 
 const Home: NextPage = () => {
-	const { data: session, status } = useSession();
+	const { status } = useSession();
 
 	return (
 		<Layout title={'AeroPress Tracker'}>
