@@ -6,7 +6,7 @@ import Layout from '~/components/Layout';
 import LogInButton from '~/components/LogInButton';
 
 const Home: NextPage = () => {
-	const { data: session } = useSession();
+	const { data: session, status } = useSession();
 
 	return (
 		<Layout title={'AeroPress Tracker'}>
@@ -23,8 +23,9 @@ const Home: NextPage = () => {
 					</a>
 				</Link>
 
-				{!session && <LogInButton />}
-				{session && (
+				{status === 'loading' && <Button>Profile</Button>}
+				{status === 'unauthenticated' && <LogInButton />}
+				{status === 'authenticated' && (
 					<Link href="/profile" passHref>
 						<a>
 							<Button>Profile</Button>
