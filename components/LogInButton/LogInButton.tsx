@@ -25,7 +25,6 @@ const LogInButton = ({ variant = 'boring' }: Props) => {
 	};
 
 	if (status === 'loading') {
-		// return <Spinner />;
 		return <></>;
 	}
 
