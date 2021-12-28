@@ -2,7 +2,6 @@ import Head from 'next/head';
 import React from 'react';
 
 import Header from '~/components/Header';
-import SessionMounter from '~/components/SessionMounter';
 
 interface Props {
 	title: string;
