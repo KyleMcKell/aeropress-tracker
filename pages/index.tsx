@@ -23,8 +23,9 @@ const Home: NextPage = () => {
 					</a>
 				</Link>
 
-				{status === 'loading' && <Button>Profile</Button>}
-				{status === 'unauthenticated' && <LogInButton />}
+				{(status === 'unauthenticated' || status === 'loading') && (
+					<LogInButton />
+				)}
 				{status === 'authenticated' && (
 					<Link href="/profile" passHref>
 						<a>

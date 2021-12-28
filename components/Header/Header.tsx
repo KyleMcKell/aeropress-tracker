@@ -34,9 +34,11 @@ const Header = ({}: Props) => {
 							<>Hello Barista!</>
 						)}
 					</div>
-					<div className="w-28 flex items-center justify-center h-10">
-						<LogInButton />
-					</div>
+					{status !== 'loading' && (
+						<div className="w-28 flex items-center justify-center h-10">
+							<LogInButton />
+						</div>
+					)}
 				</div>
 				{/* mobile menu button */}
 				<button className="sm:hidden self-center">
