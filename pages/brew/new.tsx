@@ -24,7 +24,11 @@ interface FormFieldProps {
 }
 
 const FormField = ({ children }: FormFieldProps) => {
-	return <div className="flex flex-col">{children}</div>;
+	return (
+		<div className="flex flex-col border-b-2 border-neutral-300 pb-1">
+			{children}
+		</div>
+	);
 };
 
 const RequiredSpan = () => <span className="font-bold">*</span>;
@@ -32,7 +36,7 @@ const RequiredSpan = () => <span className="font-bold">*</span>;
 const defaultValues: FormData = {
 	name: '',
 	description: '',
-	brewTime: 120,
+	brewTime: 150,
 	waterTemp: 100,
 	coffeeWeight: 15,
 	waterWeight: 200,
@@ -92,9 +96,21 @@ const CreateBrew: NextPage = () => {
 				</div>
 			)}
 			{status === 'authenticated' && (
-				<div>
-					<h1 className="text-2xl font-bold">Create A New Brew</h1>
-					<form onSubmit={onSubmit} className="flex flex-col w-fit gap-4">
+				<div className="flex flex-col gap-4 items-center text-neutral-900">
+					<h1 className="text-2xl font-bold text-neutral-800">
+						Create A New Brew
+					</h1>
+					{newBrew?.brew && (
+						<div className="text-lg">
+							Congrats! Your brew has been created. You can find it here:{' '}
+							<Link href={`/brew/${newBrew.brew.id}`} passHref>
+								<a className="underline font-medium text-neutral-600">
+									{newBrew.brew.name}
+								</a>
+							</Link>
+						</div>
+					)}
+					<form onSubmit={onSubmit} className="grid grid-cols-2 w-fit gap-8">
 						<FormField>
 							<label htmlFor="name">
 								Give your Brew a Name
@@ -255,13 +271,19 @@ const CreateBrew: NextPage = () => {
 							/>
 						</FormField>
 
-						<Button type="submit">Submit</Button>
+						<div className="place-self-end">
+							<Button type="submit">Submit</Button>
+						</div>
 					</form>
 					{newBrew?.error && <div>{newBrew.error}</div>}
 					{newBrew?.brew && (
-						<div>
+						<div className="text-lg">
 							Congrats! Your brew has been created. You can find it here:{' '}
-							<Link href={`/brew/${newBrew.brew.id}`}>{newBrew.brew.name}</Link>
+							<Link href={`/brew/${newBrew.brew.id}`} passHref>
+								<a className="underline font-medium text-neutral-600">
+									{newBrew.brew.name}
+								</a>
+							</Link>
 						</div>
 					)}
 				</div>

@@ -25,7 +25,9 @@ const Header = ({}: Props) => {
 				<div className="hidden sm:flex flex-row gap-8 font-ui font-semibold items-baseline">
 					<div className="text-lg flex items-center justify-center h-10">
 						{status === 'authenticated' ? (
-							<>Hello {session?.user?.name.split(' ')[0]}!</>
+							<Link href="profile" passHref>
+								<a href="">Hello {session?.user?.name.split(' ')[0]}!</a>
+							</Link>
 						) : status === 'loading' ? (
 							<></>
 						) : (
