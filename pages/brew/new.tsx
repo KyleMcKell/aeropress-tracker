@@ -110,7 +110,7 @@ const CreateBrew: NextPage = () => {
 							</Link>
 						</div>
 					)}
-					<form onSubmit={onSubmit} className="grid grid-cols-2 w-fit gap-8">
+					<form onSubmit={onSubmit} className="grid sm:grid-cols-2 w-fit gap-8">
 						<FormField>
 							<label htmlFor="name">
 								Give your Brew a Name

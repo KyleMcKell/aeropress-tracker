@@ -1,14 +1,21 @@
 import { AeropressBrew, User } from '@prisma/client';
 import React from 'react';
+import Button from '../Button';
 import Timer from '../Timer';
 
 interface Props {
 	brew: AeropressBrew;
 	user?: User;
 	showTimer?: boolean;
+	showControls?: boolean;
 }
 
-const BrewCard = ({ brew, user, showTimer = true }: Props) => {
+const BrewCard = ({
+	brew,
+	user,
+	showTimer = true,
+	showControls = false,
+}: Props) => {
 	const {
 		name: brewName,
 		brewTime,
@@ -20,6 +27,8 @@ const BrewCard = ({ brew, user, showTimer = true }: Props) => {
 		inverted,
 		description,
 	} = brew;
+
+	const isOwner = user?.id === brew.userId;
 
 	return (
 		<div className="border-4 border-neutral-600 bg-neutral-50 rounded-xl p-4 max-w-2xl w-full gap-4 grid grid-cols-2 h-full">
@@ -122,6 +131,12 @@ const BrewCard = ({ brew, user, showTimer = true }: Props) => {
 			{showTimer && (
 				<div className="col-span-2">
 					<Timer time={brewTime} />
+				</div>
+			)}
+			{isOwner && showControls && (
+				<div className="col-span-2 flex gap-2">
+					<Button>Update Brew</Button>
+					<Button>Delete Brew</Button>
 				</div>
 			)}
 		</div>

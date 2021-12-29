@@ -15,7 +15,7 @@ const Header = ({}: Props) => {
 		<div className="grid place-items-center">
 			{/* <div className="bg-gradient-to-r from-primary-300 to-secondary-300 h-2 w-full" /> */}
 			<div className="bg-neutral-500 h-2 w-full" />
-			<div className="text-neutral-700 flex h-20 sm:h-24 justify-between items-center w-full p-4 px-8 border-b-4 border-neutral-200 sm:p-8 sm:pb-4 md:w-10/12">
+			<div className="text-neutral-700 flex h-20 sm:h-24 justify-between items-center w-full p-4 px-4 border-b-4 border-neutral-200 sm:p-8 sm:pb-4 md:w-10/12">
 				<Link href="/" passHref>
 					<a>
 						<Logo />
