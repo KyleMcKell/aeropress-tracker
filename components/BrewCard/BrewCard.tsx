@@ -92,7 +92,7 @@ const BrewCard = ({
 			</p>
 
 			<p className="col-span-2">
-				{grindSize === 'Any' ? (
+				{grindSize === 'Any' || !roastType ? (
 					<>
 						Feel free to use{' '}
 						<span className="font-semibold text-neutral-700">ANY</span> grind
@@ -114,7 +114,7 @@ const BrewCard = ({
 			</p>
 
 			<p className="col-span-2">
-				{roastType === 'Any' ? (
+				{roastType === 'Any' || !roastType ? (
 					<>
 						For this one{' '}
 						<span className="font-semibold text-neutral-700">ANY</span> roast of
