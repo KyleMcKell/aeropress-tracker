@@ -8,6 +8,7 @@ import prisma from '~/lib/db';
 import Button from '~/components/Button';
 import Layout from '~/components/Layout';
 import BrewCard from '~/components/BrewCard';
+import LinkButton from '~/components/LinkButton';
 interface Props {
 	brews: AeropressBrew[];
 }
@@ -31,11 +32,7 @@ const Brews: NextPage<Props> = ({ brews }: Props) => {
 					))}
 				</div>
 
-				<Link href="/brew/new" passHref>
-					<a href="href">
-						<Button>Create a New Brew</Button>
-					</a>
-				</Link>
+				<LinkButton href="/brew/new">Create a New Brew</LinkButton>
 			</div>
 		</Layout>
 	);

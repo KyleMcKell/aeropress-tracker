@@ -1,7 +1,8 @@
 import Head from 'next/head';
-import React from 'react';
+import React, { useState } from 'react';
 
 import Header from '~/components/Header';
+import MobileMenu from '../MobileMenu';
 
 interface Props {
 	title: string;
@@ -14,6 +15,8 @@ const Layout = ({
 	description = 'An app to help with making AeroPress Coffee',
 	children,
 }: Props) => {
+	const [showMobileMenu, setShowMobileMenu] = useState(false);
+
 	return (
 		<div className="font-ui">
 			<Head>
@@ -21,10 +24,14 @@ const Layout = ({
 				<meta name="description" content={description} />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<Header />
-			<div className="py-8 px-2 sm:px-4 flex flex-col justify-center items-center">
+			<Header openMobileMenu={() => setShowMobileMenu(true)} />
+			<main className="py-8 px-2 sm:px-4 flex flex-col justify-center items-center">
 				{children}
-			</div>
+			</main>
+			<MobileMenu
+				isOpen={showMobileMenu}
+				onDismiss={() => setShowMobileMenu(false)}
+			/>
 		</div>
 	);
 };

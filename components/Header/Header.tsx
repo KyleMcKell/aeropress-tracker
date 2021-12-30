@@ -6,13 +6,15 @@ import LogInButton from '../LogInButton';
 import Logo from '../Logo';
 import VisuallyHidden from '../VisuallyHidden';
 
-interface Props {}
+interface Props {
+	openMobileMenu: () => void;
+}
 
-const Header = ({}: Props) => {
+const Header = ({ openMobileMenu }: Props) => {
 	const { data: session, status } = useSession();
 
 	return (
-		<div className="grid place-items-center">
+		<header className="grid place-items-center">
 			{/* <div className="bg-gradient-to-r from-primary-300 to-secondary-300 h-2 w-full" /> */}
 			<div className="bg-neutral-500 h-2 w-full" />
 			<div className="text-neutral-700 flex h-20 sm:h-24 justify-between items-center w-full p-4 px-4 border-b-4 border-neutral-200 sm:p-8 sm:pb-4 md:w-10/12">
@@ -41,12 +43,12 @@ const Header = ({}: Props) => {
 					)}
 				</div>
 				{/* mobile menu button */}
-				<button className="sm:hidden self-center">
+				<button className="sm:hidden self-center" onClick={openMobileMenu}>
 					<Icon id={'menu'} strokeWidth={2} />
 					<VisuallyHidden>Menu</VisuallyHidden>
 				</button>
 			</div>
-		</div>
+		</header>
 	);
 };
 

@@ -3,6 +3,7 @@ import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import Button from '~/components/Button';
 import Layout from '~/components/Layout';
+import LinkButton from '~/components/LinkButton';
 import LogInButton from '~/components/LogInButton';
 
 const Home: NextPage = () => {
@@ -10,30 +11,18 @@ const Home: NextPage = () => {
 
 	return (
 		<Layout title={'AeroPress Tracker'}>
-			<div className="flex flex-col sm:flex-row gap-8 items-center">
-				<Link href="/brew" passHref>
-					<a>
-						<Button>All Brews</Button>
-					</a>
-				</Link>
+			<nav className="flex flex-col sm:flex-row gap-8 items-center">
+				<LinkButton href="/brew">All Brews</LinkButton>
 
-				<Link href="/brew/new" passHref>
-					<a>
-						<Button>Create a New Brew</Button>
-					</a>
-				</Link>
+				<LinkButton href="/brew/new">Create a New Brew</LinkButton>
 
 				{(status === 'unauthenticated' || status === 'loading') && (
 					<LogInButton />
 				)}
 				{status === 'authenticated' && (
-					<Link href="/profile" passHref>
-						<a>
-							<Button>Profile</Button>
-						</a>
-					</Link>
+					<LinkButton href="/profile">Profile</LinkButton>
 				)}
-			</div>
+			</nav>
 		</Layout>
 	);
 };
