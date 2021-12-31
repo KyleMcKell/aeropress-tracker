@@ -33,7 +33,7 @@ const BrewCard = ({
 	const isOwner = user?.id === brew.userId;
 
 	return (
-		<div className="border-4 border-neutral-600 bg-neutral-50 rounded-xl p-4 max-w-2xl w-full gap-4 grid grid-cols-2 h-full">
+		<article className="border-4 border-neutral-600 bg-neutral-50 rounded-xl p-4 max-w-2xl w-full gap-4 grid grid-cols-2 h-full">
 			<div className="col-span-2">
 				<h1 className="text-3xl font-extrabold text-neutral-900 text-center">
 					{brewName}
@@ -141,7 +141,7 @@ const BrewCard = ({
 					<Button>Delete Brew</Button>
 				</div>
 			)}
-		</div>
+		</article>
 	);
 };
 
