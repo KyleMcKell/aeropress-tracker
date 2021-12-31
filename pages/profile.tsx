@@ -59,9 +59,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
 
 	let brews: AeropressBrew[] = [];
 	if (!userId) {
-		brews = await prisma.aeropressBrew.findMany({
-			take: 0,
-		});
+		brews = [];
 		return {
 			props: {
 				brews,
