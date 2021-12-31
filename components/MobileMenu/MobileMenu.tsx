@@ -22,7 +22,10 @@ const MobileMenu = ({ isOpen, onDismiss }: Props) => {
 			onDismiss={onDismiss}
 			className="fixed inset-0 h-full w-full flex justify-end bg-neutral-800 bg-opacity-25"
 		>
-			<DialogContent className="relative flex justify-between bg-neutral-50 w-80 h-full flex-col p-8">
+			<DialogContent
+				aria-label="menu content"
+				className="relative flex justify-between bg-neutral-50 w-80 h-full flex-col p-8"
+			>
 				<button onClick={onDismiss} className="self-end -m-4 -mt-5 -mr-5">
 					<Icon id="close" />
 					<VisuallyHidden>Dismiss Menu</VisuallyHidden>

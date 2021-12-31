@@ -18,7 +18,7 @@ interface Props {
 
 const Profile: NextPage<Props> = ({ brews }: Props) => {
 	const [brewsToRender, _] = useState(brews);
-	const { user } = useUser(brews[0].userId);
+	const { user } = useUser(brews[0]?.userId);
 
 	return (
 		<Layout title={'Brews'}>
@@ -57,7 +57,20 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
 
 	const { userId } = session;
 
-	const brews = await prisma.aeropressBrew.findMany({
+	let brews: AeropressBrew[] = [];
+	if (!userId) {
+		brews = await prisma.aeropressBrew.findMany({
+			take: 0,
+		});
+		return {
+			props: {
+				brews,
+				session,
+			},
+		};
+	}
+
+	brews = await prisma.aeropressBrew.findMany({
 		where: {
 			userId,
 		},

@@ -2,6 +2,7 @@ import Head from 'next/head';
 import React, { useState } from 'react';
 
 import Header from '~/components/Header';
+import JumpToContent from '../JumpToContent';
 import MobileMenu from '../MobileMenu';
 
 interface Props {
@@ -18,14 +19,18 @@ const Layout = ({
 	const [showMobileMenu, setShowMobileMenu] = useState(false);
 
 	return (
-		<div className="font-ui">
+		<div className="font-ui relative">
 			<Head>
 				<title>{title}</title>
 				<meta name="description" content={description} />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
+			<JumpToContent />
 			<Header openMobileMenu={() => setShowMobileMenu(true)} />
-			<main className="py-8 px-2 sm:px-4 flex flex-col justify-center items-center">
+			<main
+				id="main-content"
+				className="py-8 px-2 sm:px-4 flex flex-col justify-center items-center"
+			>
 				{children}
 			</main>
 			<MobileMenu
