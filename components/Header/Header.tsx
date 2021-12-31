@@ -33,17 +33,15 @@ const Header = ({ openMobileMenu, toggleDarkMode, darkModeValue }: Props) => {
 							<Link href="profile" passHref>
 								<a href="">Hello {session?.user?.name.split(' ')[0]}!</a>
 							</Link>
-						) : status === 'loading' ? (
-							<></>
 						) : (
 							<>Hello Barista!</>
 						)}
 					</p>
-					{status !== 'loading' && (
-						<div className="w-28 flex items-center justify-center h-10">
-							<LogInButton />
-						</div>
-					)}
+
+					<div className="w-28 flex items-center justify-center h-10">
+						<LogInButton />
+					</div>
+
 					<ThemeSwitchButton
 						darkModeValue={darkModeValue}
 						toggleDarkMode={toggleDarkMode}
