@@ -1,15 +1,16 @@
-import { AeropressBrew } from '@prisma/client';
+import type { AeropressBrew } from '@prisma/client';
 import type { NextPage } from 'next';
-import { useSession } from 'next-auth/react';
+
 import Link from 'next/link';
+import { useSession } from 'next-auth/react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+
+import { Data as CreateBrewData } from '../api/brew';
 
 import Button from '~/components/Button';
 import Layout from '~/components/Layout';
 import LogInButton from '~/components/LogInButton';
-
-import { Data as CreateBrewData } from '../api/brew';
 
 type FormData = Omit<AeropressBrew, 'userId' | 'id'>;
 

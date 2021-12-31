@@ -1,5 +1,7 @@
 import type { NextPage } from 'next';
+
 import { useSession } from 'next-auth/react';
+
 import Layout from '~/components/Layout';
 import LinkButton from '~/components/LinkButton';
 import LogInButton from '~/components/LogInButton';

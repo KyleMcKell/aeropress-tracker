@@ -2,9 +2,10 @@ import type { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import type { AeropressBrew } from '@prisma/client';
 
 import { ParsedUrlQuery } from 'querystring';
-import { useUser } from '~/lib/hooks';
 
 import prisma from '~/lib/db';
+import { useUser } from '~/lib/hooks';
+
 import Layout from '~/components/Layout';
 import BrewCard from '~/components/BrewCard';
 

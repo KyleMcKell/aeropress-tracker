@@ -8,6 +8,7 @@ import prisma from '~/lib/db';
 import Layout from '~/components/Layout';
 import BrewCard from '~/components/BrewCard';
 import LinkButton from '~/components/LinkButton';
+
 interface Props {
 	brews: AeropressBrew[];
 }
