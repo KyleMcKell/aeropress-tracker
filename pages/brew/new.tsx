@@ -97,7 +97,7 @@ const CreateBrew: NextPage = () => {
 				</div>
 			)}
 			{status === 'authenticated' && (
-				<div className="flex flex-col gap-4 items-center text-neutral-900 dark:text-neutral-200">
+				<div className="flex flex-col gap-10 items-center text-neutral-900 dark:text-neutral-200">
 					<h1 className="text-3xl font-bold text-neutral-800 dark:text-neutral-200">
 						Create A New Brew
 					</h1>
@@ -111,7 +111,10 @@ const CreateBrew: NextPage = () => {
 							</Link>
 						</div>
 					)}
-					<form onSubmit={onSubmit} className="grid sm:grid-cols-2 w-fit gap-8">
+					<form
+						onSubmit={onSubmit}
+						className="grid sm:grid-cols-2 w-fit gap-8 border-4 font-medium border-neutral-600 bg-neutral-50 text-black p-8 rounded-lg dark:border-neutral-900 dark:bg-neutral-900 dark:text-neutral-200"
+					>
 						<FormField>
 							<label htmlFor="name">
 								Give your Brew a Name
@@ -126,7 +129,7 @@ const CreateBrew: NextPage = () => {
 									maxLength: 25,
 									minLength: 3,
 								})}
-								className="dark:bg-black"
+								className="bg-black bg-opacity-0"
 							/>
 							{errors.name && errors.name.type === 'required' && (
 								<ErrorText error="Name is Required" />
@@ -147,7 +150,7 @@ const CreateBrew: NextPage = () => {
 								id="description"
 								placeholder="A nice brew"
 								{...register('description', { maxLength: 255 })}
-								className="dark:bg-black"
+								className="bg-black bg-opacity-0"
 							/>
 							{errors.description &&
 								errors.description?.type === 'maxLength' && (
@@ -161,7 +164,7 @@ const CreateBrew: NextPage = () => {
 								type={'checkbox'}
 								id="inverted"
 								{...register('inverted')}
-								className="dark:bg-black checked:bg-neutral-500 indeterminate:bg-gray-300"
+								className="bg-black bg-opacity-0 checked:bg-neutral-500 indeterminate:bg-gray-300"
 							/>
 						</FormField>
 
@@ -174,7 +177,7 @@ const CreateBrew: NextPage = () => {
 								id="brewTime"
 								type="number"
 								{...register('brewTime', { required: true })}
-								className="dark:bg-black"
+								className="bg-black bg-opacity-0"
 							/>
 							{errors.brewTime && errors.brewTime.type === 'required' && (
 								<ErrorText error="Brew Time is Required" />
@@ -190,7 +193,7 @@ const CreateBrew: NextPage = () => {
 								id="coffeeWeight"
 								type="number"
 								{...register('coffeeWeight', { required: true })}
-								className="dark:bg-black"
+								className="bg-black bg-opacity-0"
 							/>
 							{errors.coffeeWeight &&
 								errors.coffeeWeight.type === 'required' && (
@@ -207,7 +210,7 @@ const CreateBrew: NextPage = () => {
 								id="waterWeight"
 								type="number"
 								{...register('waterWeight', { required: true })}
-								className="dark:bg-black"
+								className="bg-black bg-opacity-0"
 							/>
 							{errors.waterWeight && errors.waterWeight.type === 'required' && (
 								<ErrorText error="Water Weight is Required" />
@@ -223,7 +226,7 @@ const CreateBrew: NextPage = () => {
 								id="waterTemp"
 								type="number"
 								{...register('waterTemp', { required: true })}
-								className="dark:bg-black"
+								className="bg-black bg-opacity-0"
 							/>
 							{errors.waterTemp && errors.waterTemp.type === 'required' && (
 								<ErrorText error="Water Temperature is Required" />
@@ -238,7 +241,7 @@ const CreateBrew: NextPage = () => {
 								type={'checkbox'}
 								id="favorite"
 								{...register('favorite')}
-								className="dark:bg-black"
+								className="bg-black bg-opacity-0"
 							/>
 						</FormField>
 
@@ -250,7 +253,7 @@ const CreateBrew: NextPage = () => {
 							<select
 								id="grindSize"
 								{...register('grindSize')}
-								className="dark:bg-black"
+								className="bg-black bg-opacity-0"
 							>
 								<option value="Any">Any</option>
 								<option value="Extra Fine">Extra Fine</option>
@@ -272,7 +275,7 @@ const CreateBrew: NextPage = () => {
 							<select
 								id="roastType"
 								{...register('roastType')}
-								className="dark:bg-black"
+								className="bg-black bg-opacity-0"
 							>
 								<option value="Any">Any</option>
 								<option value="Light">Light</option>
@@ -292,12 +295,14 @@ const CreateBrew: NextPage = () => {
 								id="instructions"
 								placeholder="Add your instructions here"
 								{...register('instructions')}
-								className="dark:bg-black"
+								className="bg-black bg-opacity-0"
 							/>
 						</FormField>
 
 						<div className="place-self-end">
-							<Button type="submit">Submit</Button>
+							<Button type="submit" variant="boring">
+								Submit
+							</Button>
 						</div>
 					</form>
 					{newBrew?.error && <div>{newBrew.error}</div>}
