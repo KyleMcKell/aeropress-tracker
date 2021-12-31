@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import Header from '~/components/Header';
 import JumpToContent from '../JumpToContent';

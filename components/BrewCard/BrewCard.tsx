@@ -1,5 +1,7 @@
-import { AeropressBrew, User } from '@prisma/client';
+import type { AeropressBrew, User } from '@prisma/client';
+
 import React from 'react';
+
 import Button from '../Button';
 import Timer from '../Timer';
 

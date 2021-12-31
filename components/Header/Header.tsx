@@ -1,6 +1,7 @@
-import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import React from 'react';
+import { useSession } from 'next-auth/react';
+
 import Icon from '../Icon';
 import LogInButton from '../LogInButton';
 import Logo from '../Logo';

@@ -1,13 +1,15 @@
-import React from 'react';
+import type { ReactNode } from 'react';
+
+import { useState, useEffect } from 'react';
 
 interface Props {
-	children: React.ReactNode;
+	children: ReactNode;
 }
 
 const VisuallyHidden = ({ children, ...delegated }: Props) => {
-	const [forceShow, setForceShow] = React.useState(false);
+	const [forceShow, setForceShow] = useState(false);
 
-	React.useEffect(() => {
+	useEffect(() => {
 		if (process.env.NODE_ENV !== 'production') {
 			const handleKeyDown = (ev: KeyboardEvent) => {
 				if (ev.key === 'Alt') {

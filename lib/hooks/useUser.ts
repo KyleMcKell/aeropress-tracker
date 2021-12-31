@@ -1,5 +1,6 @@
+import type { User } from '@prisma/client';
+
 import useSWR from 'swr';
-import { User } from '@prisma/client';
 
 type UserHookData = {
 	user?: User;

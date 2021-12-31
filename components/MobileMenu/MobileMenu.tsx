@@ -1,7 +1,7 @@
+import Link from 'next/link';
 import { DialogContent, DialogOverlay } from '@reach/dialog';
 import { useSession } from 'next-auth/react';
-import Link from 'next/link';
-import React from 'react';
+
 import Icon from '../Icon';
 import LinkButton from '../LinkButton';
 import LogInButton from '../LogInButton';
