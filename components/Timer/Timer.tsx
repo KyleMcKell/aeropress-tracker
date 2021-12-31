@@ -1,4 +1,3 @@
-import React from 'react';
 import { useTimer } from 'react-timer-hook';
 
 import Button from '../Button';

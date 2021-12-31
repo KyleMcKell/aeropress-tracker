@@ -1,4 +1,3 @@
-import React from 'react';
 import { Menu, Loader, X } from 'react-feather';
 
 interface Props {

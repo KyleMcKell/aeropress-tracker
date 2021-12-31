@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	variant?: 'boring' | 'nifty' | 'primary' | 'secondary';
 }
