@@ -19,7 +19,7 @@ const Layout = ({
 	const [showMobileMenu, setShowMobileMenu] = useState(false);
 
 	return (
-		<div className="font-ui relative">
+		<div className="font-ui relative h-full bg-white dark:bg-black">
 			<Head>
 				<title>{title}</title>
 				<meta name="description" content={description} />

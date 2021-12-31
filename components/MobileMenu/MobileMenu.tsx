@@ -20,14 +20,17 @@ const MobileMenu = ({ isOpen, onDismiss }: Props) => {
 		<DialogOverlay
 			isOpen={isOpen}
 			onDismiss={onDismiss}
-			className="fixed inset-0 h-full w-full flex justify-end bg-neutral-800 bg-opacity-25"
+			className="fixed inset-0 h-full w-full flex justify-end bg-neutral-800 bg-opacity-40 dark:bg-black dark:bg-opacity-80"
 		>
 			<DialogContent
 				aria-label="menu content"
-				className="relative flex justify-between bg-neutral-50 w-80 h-full flex-col p-8"
+				className="relative flex justify-between bg-neutral-100 dark:bg-neutral-900 w-80 h-full flex-col p-8"
 			>
-				<button onClick={onDismiss} className="self-end -m-4 -mt-5 -mr-5">
-					<Icon id="close" />
+				<button
+					onClick={onDismiss}
+					className="self-end -mr-4 text-neutral-900 dark:text-white"
+				>
+					<Icon id="close" strokeWidth={4} />
 					<VisuallyHidden>Dismiss Menu</VisuallyHidden>
 				</button>
 

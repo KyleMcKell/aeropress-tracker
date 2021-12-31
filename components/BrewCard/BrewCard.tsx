@@ -33,20 +33,20 @@ const BrewCard = ({
 	const isOwner = user?.id === brew.userId;
 
 	return (
-		<article className="border-4 border-neutral-600 bg-neutral-50 rounded-xl p-4 max-w-2xl w-full gap-4 grid grid-cols-2 h-full">
-			<div className="col-span-2">
-				<h1 className="text-3xl font-extrabold text-neutral-900 text-center">
+		<article className="border-4 border-neutral-600 bg-neutral-50 dark:border-neutral-900 dark:bg-neutral-900 dark:text-neutral-50 rounded-xl p-4 max-w-2xl w-full gap-4 grid grid-cols-2 h-full">
+			<div className="col-span-2 flex flex-col gap-2">
+				<h1 className="text-3xl font-extrabold text-neutral-900 dark:text-neutral-200 text-center">
 					{brewName}
 				</h1>
 				{user && (
-					<h3 className="text-sm text-neutral-900 text-center">
+					<h3 className="text-neutral-900 dark:text-neutral-200 text-center">
 						Brewed by {user.name}
 					</h3>
 				)}
 			</div>
 
 			{description && (
-				<h2 className="font-semibold col-span-2 text-neutral-800">
+				<h2 className="font-semibold col-span-2 text-neutral-800 dark:text-neutral-100">
 					{description}
 				</h2>
 			)}
@@ -55,13 +55,17 @@ const BrewCard = ({
 				{inverted ? (
 					<>
 						Flip it over! We&apos;re{' '}
-						<span className="font-semibold text-neutral-700">Inverting</span>{' '}
+						<span className="font-semibold text-neutral-700 dark:text-neutral-300">
+							Inverting
+						</span>{' '}
 						this one
 					</>
 				) : (
 					<>
 						Keepin it classic,{' '}
-						<span className="font-semibold text-neutral-700">no Inverting</span>{' '}
+						<span className="font-semibold text-neutral-700 dark:text-neutral-300">
+							no Inverting
+						</span>{' '}
 						today
 					</>
 				)}
@@ -69,7 +73,7 @@ const BrewCard = ({
 
 			<p className="col-span-2">
 				Heat your water to{' '}
-				<span className="font-semibold text-neutral-700">
+				<span className="font-semibold text-neutral-700 dark:text-neutral-300">
 					{waterTemp}
 					<sup>C</sup>
 				</span>
@@ -77,7 +81,7 @@ const BrewCard = ({
 
 			<p className="col-span-2">
 				...which You&apos;ll need{' '}
-				<span className="font-semibold text-neutral-700">
+				<span className="font-semibold text-neutral-700 dark:text-neutral-300">
 					{waterWeight}
 					<sub>g</sub>
 				</span>{' '}
@@ -86,7 +90,7 @@ const BrewCard = ({
 
 			<p className="col-span-2">
 				...and{' '}
-				<span className="font-semibold text-neutral-700">
+				<span className="font-semibold text-neutral-700 dark:text-neutral-300">
 					{coffeeWeight}
 					<sub>g</sub>
 				</span>{' '}
@@ -97,19 +101,25 @@ const BrewCard = ({
 				{grindSize === 'Any' || !roastType ? (
 					<>
 						Feel free to use{' '}
-						<span className="font-semibold text-neutral-700">ANY</span> grind
-						size!
+						<span className="font-semibold text-neutral-700 dark:text-neutral-300">
+							ANY
+						</span>{' '}
+						grind size!
 					</>
 				) : grindSize === 'Extra Fine' ? (
 					<>
 						Grind to about an{' '}
-						<span className="font-semibold text-neutral-700">{grindSize}</span>{' '}
+						<span className="font-semibold text-neutral-700 dark:text-neutral-300">
+							{grindSize}
+						</span>{' '}
 						level
 					</>
 				) : (
 					<>
 						Grind to about a{' '}
-						<span className="font-semibold text-neutral-700">{grindSize}</span>{' '}
+						<span className="font-semibold text-neutral-700 dark:text-neutral-300">
+							{grindSize}
+						</span>{' '}
 						level
 					</>
 				)}
@@ -119,13 +129,17 @@ const BrewCard = ({
 				{roastType === 'Any' || !roastType ? (
 					<>
 						For this one{' '}
-						<span className="font-semibold text-neutral-700">ANY</span> roast of
-						coffee will do!
+						<span className="font-semibold text-neutral-700 dark:text-neutral-300">
+							ANY
+						</span>{' '}
+						roast of coffee will do!
 					</>
 				) : (
 					<>
 						Find your best{' '}
-						<span className="font-semibold text-neutral-700">{roastType}</span>{' '}
+						<span className="font-semibold text-neutral-700 dark:text-neutral-300">
+							{roastType}
+						</span>{' '}
 						roast
 					</>
 				)}

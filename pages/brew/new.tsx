@@ -26,7 +26,7 @@ interface FormFieldProps {
 
 const FormField = ({ children }: FormFieldProps) => {
 	return (
-		<div className="flex flex-col border-b-2 border-neutral-300 pb-1">
+		<div className="flex flex-col border-b-2 border-neutral-300 bg-none pb-1">
 			{children}
 		</div>
 	);
@@ -90,22 +90,22 @@ const CreateBrew: NextPage = () => {
 		>
 			{status === 'unauthenticated' && (
 				<div className="flex flex-col items-center gap-6">
-					<p className="text-neutral-500 text-sm">
+					<p className="text-neutral-500 dark:text-neutral-200 text-lg font-semibold">
 						You must be logged in to create a brew.
 					</p>
 					<LogInButton />
 				</div>
 			)}
 			{status === 'authenticated' && (
-				<div className="flex flex-col gap-4 items-center text-neutral-900">
-					<h1 className="text-2xl font-bold text-neutral-800">
+				<div className="flex flex-col gap-4 items-center text-neutral-900 dark:text-neutral-200">
+					<h1 className="text-3xl font-bold text-neutral-800 dark:text-neutral-200">
 						Create A New Brew
 					</h1>
 					{newBrew?.brew && (
 						<div className="text-lg">
 							Congrats! Your brew has been created. You can find it here:{' '}
 							<Link href={`/brew/${newBrew.brew.id}`} passHref>
-								<a className="underline font-medium text-neutral-600">
+								<a className="underline font-medium text-neutral-600 dark:text-neutral-200">
 									{newBrew.brew.name}
 								</a>
 							</Link>
@@ -121,13 +121,21 @@ const CreateBrew: NextPage = () => {
 								id="name"
 								placeholder="My Awesome Brew"
 								aria-invalid={errors.name ? 'true' : 'false'}
-								{...register('name', { required: true, maxLength: 255 })}
+								{...register('name', {
+									required: true,
+									maxLength: 25,
+									minLength: 3,
+								})}
+								className="dark:bg-black"
 							/>
 							{errors.name && errors.name.type === 'required' && (
 								<ErrorText error="Name is Required" />
 							)}
 							{errors.name && errors.name.type === 'maxLength' && (
-								<ErrorText error="Max length exceeded" />
+								<ErrorText error="Your name must be less than 25 characters" />
+							)}
+							{errors.name && errors.name.type === 'minLength' && (
+								<ErrorText error="Your name must be more than 3 characters" />
 							)}
 						</FormField>
 
@@ -139,6 +147,7 @@ const CreateBrew: NextPage = () => {
 								id="description"
 								placeholder="A nice brew"
 								{...register('description', { maxLength: 255 })}
+								className="dark:bg-black"
 							/>
 							{errors.description &&
 								errors.description?.type === 'maxLength' && (
@@ -152,6 +161,7 @@ const CreateBrew: NextPage = () => {
 								type={'checkbox'}
 								id="inverted"
 								{...register('inverted')}
+								className="dark:bg-black checked:bg-neutral-500 indeterminate:bg-gray-300"
 							/>
 						</FormField>
 
@@ -164,6 +174,7 @@ const CreateBrew: NextPage = () => {
 								id="brewTime"
 								type="number"
 								{...register('brewTime', { required: true })}
+								className="dark:bg-black"
 							/>
 							{errors.brewTime && errors.brewTime.type === 'required' && (
 								<ErrorText error="Brew Time is Required" />
@@ -179,6 +190,7 @@ const CreateBrew: NextPage = () => {
 								id="coffeeWeight"
 								type="number"
 								{...register('coffeeWeight', { required: true })}
+								className="dark:bg-black"
 							/>
 							{errors.coffeeWeight &&
 								errors.coffeeWeight.type === 'required' && (
@@ -195,6 +207,7 @@ const CreateBrew: NextPage = () => {
 								id="waterWeight"
 								type="number"
 								{...register('waterWeight', { required: true })}
+								className="dark:bg-black"
 							/>
 							{errors.waterWeight && errors.waterWeight.type === 'required' && (
 								<ErrorText error="Water Weight is Required" />
@@ -210,6 +223,7 @@ const CreateBrew: NextPage = () => {
 								id="waterTemp"
 								type="number"
 								{...register('waterTemp', { required: true })}
+								className="dark:bg-black"
 							/>
 							{errors.waterTemp && errors.waterTemp.type === 'required' && (
 								<ErrorText error="Water Temperature is Required" />
@@ -224,6 +238,7 @@ const CreateBrew: NextPage = () => {
 								type={'checkbox'}
 								id="favorite"
 								{...register('favorite')}
+								className="dark:bg-black"
 							/>
 						</FormField>
 
@@ -232,7 +247,11 @@ const CreateBrew: NextPage = () => {
 								What is the grind size?
 								<RequiredSpan />
 							</label>
-							<select id="grindSize" {...register('grindSize')}>
+							<select
+								id="grindSize"
+								{...register('grindSize')}
+								className="dark:bg-black"
+							>
 								<option value="Any">Any</option>
 								<option value="Extra Fine">Extra Fine</option>
 								<option value="Fine">Fine</option>
@@ -250,7 +269,11 @@ const CreateBrew: NextPage = () => {
 								What is the roast type?
 								<RequiredSpan />
 							</label>
-							<select id="roastType" {...register('roastType')}>
+							<select
+								id="roastType"
+								{...register('roastType')}
+								className="dark:bg-black"
+							>
 								<option value="Any">Any</option>
 								<option value="Light">Light</option>
 								<option value="Medium Light">Medium Light</option>
@@ -269,6 +292,7 @@ const CreateBrew: NextPage = () => {
 								id="instructions"
 								placeholder="Add your instructions here"
 								{...register('instructions')}
+								className="dark:bg-black"
 							/>
 						</FormField>
 
@@ -281,7 +305,7 @@ const CreateBrew: NextPage = () => {
 						<div className="text-lg">
 							Congrats! Your brew has been created. You can find it here:{' '}
 							<Link href={`/brew/${newBrew.brew.id}`} passHref>
-								<a className="underline font-medium text-neutral-600">
+								<a className="underline font-medium text-neutral-600 dark:text-neutral-200">
 									{newBrew.brew.name}
 								</a>
 							</Link>

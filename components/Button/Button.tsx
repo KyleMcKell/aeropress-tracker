@@ -14,7 +14,7 @@ const Button = ({
 	switch (variant) {
 		case 'boring':
 			variantStyles =
-				'bg-neutral-600 text-white transition-colors hover:bg-neutral-700';
+				'bg-neutral-600 text-white transition-colors hover:bg-neutral-700 dark:bg-neutral-300 dark:text-black dark:hover:bg-neutral-500';
 			break;
 		case 'nifty':
 			variantStyles =

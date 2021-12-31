@@ -15,7 +15,9 @@ const Brews: NextPage<Props> = ({ brews }: Props) => {
 	return (
 		<Layout title={'Brews'}>
 			<div className="w-full md:w-5/6 flex flex-col justify-center items-center gap-8">
-				<h1 className="text-4xl font-semibold text-neutral-900">Brews</h1>
+				<h1 className="text-4xl font-semibold text-neutral-900 dark:text-neutral-300">
+					Brews
+				</h1>
 				<BrewCardGrid brews={brews} />
 				<LinkButton href="/brew/new">Create a New Brew</LinkButton>
 			</div>

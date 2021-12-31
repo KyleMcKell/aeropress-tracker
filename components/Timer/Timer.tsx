@@ -20,11 +20,15 @@ const Timer = ({ time }: Props) => {
 	});
 
 	return (
-		<div className="flex flex-row justify-between gap-4 items-center border-4 border-neutral-600 rounded-2xl p-4 sm:px-8 bg-neutral-100 -mx-2 -mb-2 sm:m-0">
+		<div className="flex flex-row justify-between gap-4 items-center border-4 border-neutral-600 dark:border-neutral-800 rounded-2xl p-4 sm:px-8 bg-neutral-100 dark:bg-neutral-700 -mx-2 -mb-2 sm:m-0">
 			<div className="flex justify-start gap-1 items-baseline font-medium">
-				<span className="text-6xl text-neutral-800">{minutes}</span>
-				<span className="text-4xl text-neutral-800">:</span>
-				<span className="text-5xl text-neutral-800">{`${
+				<span className="text-6xl text-neutral-800 dark:text-neutral-100">
+					{minutes}
+				</span>
+				<span className="text-4xl text-neutral-800 dark:text-neutral-100">
+					:
+				</span>
+				<span className="text-5xl text-neutral-800 dark:text-neutral-100">{`${
 					seconds < 10 ? '0' : ''
 				}${seconds}`}</span>
 			</div>
