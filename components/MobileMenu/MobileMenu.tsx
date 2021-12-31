@@ -7,13 +7,21 @@ import LinkButton from '../LinkButton';
 import LogInButton from '../LogInButton';
 import Logo from '../Logo';
 import VisuallyHidden from '../VisuallyHidden';
+import ThemeSwitchButton from '../ThemeSwitchButton';
 
 interface Props {
 	isOpen: boolean;
 	onDismiss: () => void;
+	darkModeValue: boolean;
+	toggleDarkMode: () => void;
 }
 
-const MobileMenu = ({ isOpen, onDismiss }: Props) => {
+const MobileMenu = ({
+	isOpen,
+	onDismiss,
+	darkModeValue,
+	toggleDarkMode,
+}: Props) => {
 	const { status } = useSession();
 
 	return (
@@ -26,13 +34,19 @@ const MobileMenu = ({ isOpen, onDismiss }: Props) => {
 				aria-label="menu content"
 				className="relative flex justify-between bg-neutral-100 dark:bg-neutral-900 w-80 h-full flex-col p-8"
 			>
-				<button
-					onClick={onDismiss}
-					className="self-end -mr-4 text-neutral-900 dark:text-white"
-				>
-					<Icon id="close" strokeWidth={4} />
-					<VisuallyHidden>Dismiss Menu</VisuallyHidden>
-				</button>
+				<div className="flex flex-row-reverse justify-between">
+					<button
+						onClick={onDismiss}
+						className="self-end -mr-4 text-neutral-900 dark:text-white"
+					>
+						<Icon id="close" strokeWidth={4} />
+						<VisuallyHidden>Dismiss Menu</VisuallyHidden>
+					</button>
+					<ThemeSwitchButton
+						darkModeValue={darkModeValue}
+						toggleDarkMode={toggleDarkMode}
+					/>
+				</div>
 
 				<Link href="/">
 					<a className="self-center" tabIndex={-1}>

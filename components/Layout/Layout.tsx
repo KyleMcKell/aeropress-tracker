@@ -19,7 +19,7 @@ const Layout = ({
 	children,
 }: Props) => {
 	const [showMobileMenu, setShowMobileMenu] = useState(false);
-	const { value: darkModeValue, toggle } = useDarkMode(false, {
+	const { value: darkModeValue, toggle: toggleDarkMode } = useDarkMode(false, {
 		classNameDark: 'dark',
 		classNameLight: 'light',
 	});
@@ -36,7 +36,11 @@ const Layout = ({
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<JumpToContent />
-			<Header openMobileMenu={() => setShowMobileMenu(true)} />
+			<Header
+				openMobileMenu={() => setShowMobileMenu(true)}
+				toggleDarkMode={toggleDarkMode}
+				darkModeValue={darkModeValue}
+			/>
 			<main
 				id="main-content"
 				className="py-8 px-2 sm:px-4 flex flex-col justify-center items-center"
@@ -54,6 +58,8 @@ const Layout = ({
 			<MobileMenu
 				isOpen={showMobileMenu}
 				onDismiss={() => setShowMobileMenu(false)}
+				toggleDarkMode={toggleDarkMode}
+				darkModeValue={darkModeValue}
 			/>
 		</div>
 	);

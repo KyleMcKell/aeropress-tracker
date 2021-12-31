@@ -5,12 +5,15 @@ import Icon from '../Icon';
 import LogInButton from '../LogInButton';
 import Logo from '../Logo';
 import VisuallyHidden from '../VisuallyHidden';
+import ThemeSwitchButton from '../ThemeSwitchButton';
 
 interface Props {
 	openMobileMenu: () => void;
+	toggleDarkMode: () => void;
+	darkModeValue: boolean;
 }
 
-const Header = ({ openMobileMenu }: Props) => {
+const Header = ({ openMobileMenu, toggleDarkMode, darkModeValue }: Props) => {
 	const { data: session, status } = useSession();
 
 	return (
@@ -41,6 +44,10 @@ const Header = ({ openMobileMenu }: Props) => {
 							<LogInButton />
 						</div>
 					)}
+					<ThemeSwitchButton
+						darkModeValue={darkModeValue}
+						toggleDarkMode={toggleDarkMode}
+					/>
 				</div>
 				{/* mobile menu button */}
 				<button
