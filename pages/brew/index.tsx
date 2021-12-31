@@ -5,7 +5,6 @@ import Link from 'next/link';
 
 import prisma from '~/lib/db';
 
-import Button from '~/components/Button';
 import Layout from '~/components/Layout';
 import BrewCard from '~/components/BrewCard';
 import LinkButton from '~/components/LinkButton';
