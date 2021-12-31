@@ -9,7 +9,6 @@ import prisma from '~/lib/db';
 
 import Layout from '~/components/Layout';
 import BrewCard from '~/components/BrewCard';
-import { useUser } from '~/lib/hooks';
 import LinkButton from '~/components/LinkButton';
 
 interface Props {
@@ -18,7 +17,6 @@ interface Props {
 
 const Profile: NextPage<Props> = ({ brews }: Props) => {
 	const [brewsToRender, _] = useState(brews);
-	const { user } = useUser(brews[0]?.userId);
 
 	return (
 		<Layout title={'Brews'}>
@@ -33,7 +31,7 @@ const Profile: NextPage<Props> = ({ brews }: Props) => {
 						<div key={brew.id} className="h-full">
 							<Link href={`/brew/${brew.id}`} passHref>
 								<a>
-									<BrewCard brew={brew} user={user} showTimer={false} />
+									<BrewCard brew={brew} showTimer={false} />
 								</a>
 							</Link>
 						</div>
@@ -51,24 +49,13 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
 ) => {
 	const session = await getSession(context);
 
-	if (!session || !session.user) {
+	if (!session || !session.user || !session.userId) {
 		return { props: { brews: [], session } };
 	}
 
 	const { userId } = session;
 
-	let brews: AeropressBrew[] = [];
-	if (!userId) {
-		brews = [];
-		return {
-			props: {
-				brews,
-				session,
-			},
-		};
-	}
-
-	brews = await prisma.aeropressBrew.findMany({
+	const brews = await prisma.aeropressBrew.findMany({
 		where: {
 			userId,
 		},
