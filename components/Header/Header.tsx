@@ -43,7 +43,10 @@ const Header = ({ openMobileMenu }: Props) => {
 					)}
 				</div>
 				{/* mobile menu button */}
-				<button className="sm:hidden self-center" onClick={openMobileMenu}>
+				<button
+					className="sm:hidden self-end text-neutral-700 dark:text-neutral-200"
+					onClick={openMobileMenu}
+				>
 					<Icon id={'menu'} strokeWidth={2} />
 					<VisuallyHidden>Menu</VisuallyHidden>
 				</button>
