@@ -306,16 +306,6 @@ const CreateBrew: NextPage = () => {
 						</div>
 					</form>
 					{newBrew?.error && <div>{newBrew.error}</div>}
-					{newBrew?.brew && (
-						<div className="text-lg">
-							Congrats! Your brew has been created. You can find it here:{' '}
-							<Link href={`/brew/${newBrew.brew.id}`} passHref>
-								<a className="underline font-medium text-neutral-600 dark:text-neutral-200">
-									{newBrew.brew.name}
-								</a>
-							</Link>
-						</div>
-					)}
 				</div>
 			)}
 		</Layout>

@@ -4,7 +4,6 @@ import type { AeropressBrew } from '@prisma/client';
 import { ParsedUrlQuery } from 'querystring';
 
 import prisma from '~/lib/db';
-import { useUser } from '~/lib/hooks';
 
 import Layout from '~/components/Layout';
 import BrewCard from '~/components/BrewCard';
@@ -14,11 +13,9 @@ interface Props {
 }
 
 const Brew: NextPage<Props> = ({ brew }: Props) => {
-	const { user } = useUser(brew.userId);
-
 	return (
 		<Layout title={`${brew.name} - AeroPress Tracker`} description="">
-			<BrewCard brew={brew} user={user} />
+			<BrewCard brew={brew} />
 		</Layout>
 	);
 };
