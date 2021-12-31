@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/router';
 
 import { Data as CreateBrewData } from '../api/brew';
 
@@ -26,7 +27,7 @@ interface FormFieldProps {
 
 const FormField = ({ children }: FormFieldProps) => {
 	return (
-		<div className="flex flex-col border-b-2 border-neutral-300 bg-none pb-1">
+		<div className="flex flex-col border-b-2 border-neutral-300 bg-none pb-1 gap-1">
 			{children}
 		</div>
 	);
@@ -56,6 +57,7 @@ const CreateBrew: NextPage = () => {
 		formState: { errors },
 	} = useForm<FormData>({ defaultValues });
 	const [newBrew, setNewBrew] = useState<Omit<CreateBrewData, 'brews'>>();
+	const router = useRouter();
 
 	// render data
 	const onSubmit = handleSubmit(async (data: AeropressBrew) => {
@@ -80,6 +82,8 @@ const CreateBrew: NextPage = () => {
 
 		setNewBrew(newBrew);
 
+		router.push('/brew/[id]', `/brew/${newBrew.brew?.id}`);
+
 		return newBrew;
 	});
 
@@ -101,16 +105,6 @@ const CreateBrew: NextPage = () => {
 					<h1 className="text-3xl font-bold text-neutral-800 dark:text-neutral-200">
 						Create A New Brew
 					</h1>
-					{newBrew?.brew && (
-						<div className="text-lg">
-							Congrats! Your brew has been created. You can find it here:{' '}
-							<Link href={`/brew/${newBrew.brew.id}`} passHref>
-								<a className="underline font-medium text-neutral-600 dark:text-neutral-200">
-									{newBrew.brew.name}
-								</a>
-							</Link>
-						</div>
-					)}
 					<form
 						onSubmit={onSubmit}
 						className="grid sm:grid-cols-2 w-fit gap-8 border-4 font-medium border-neutral-600 bg-neutral-50 text-black p-8 rounded-lg dark:border-neutral-900 dark:bg-neutral-900 dark:text-neutral-200"
@@ -164,7 +158,7 @@ const CreateBrew: NextPage = () => {
 								type={'checkbox'}
 								id="inverted"
 								{...register('inverted')}
-								className="bg-black bg-opacity-0 checked:bg-neutral-500 indeterminate:bg-gray-300"
+								className="bg-black bg-opacity-0  checked:bg-neutral-500 indeterminate:bg-gray-300"
 							/>
 						</FormField>
 
@@ -234,18 +228,6 @@ const CreateBrew: NextPage = () => {
 						</FormField>
 
 						<FormField>
-							<label htmlFor="favorite">
-								Is this one of your favorite brews?
-							</label>
-							<input
-								type={'checkbox'}
-								id="favorite"
-								{...register('favorite')}
-								className="bg-black bg-opacity-0"
-							/>
-						</FormField>
-
-						<FormField>
 							<label htmlFor="grindSize">
 								What is the grind size?
 								<RequiredSpan />
@@ -253,7 +235,7 @@ const CreateBrew: NextPage = () => {
 							<select
 								id="grindSize"
 								{...register('grindSize')}
-								className="bg-black bg-opacity-0"
+								className="bg-neutral-50 dark:bg-neutral-900"
 							>
 								<option value="Any">Any</option>
 								<option value="Extra Fine">Extra Fine</option>
@@ -275,7 +257,7 @@ const CreateBrew: NextPage = () => {
 							<select
 								id="roastType"
 								{...register('roastType')}
-								className="bg-black bg-opacity-0"
+								className="bg-neutral-50 dark:bg-neutral-900"
 							>
 								<option value="Any">Any</option>
 								<option value="Light">Light</option>
@@ -287,16 +269,6 @@ const CreateBrew: NextPage = () => {
 							{errors.roastType && errors.roastType.type === 'required' && (
 								<ErrorText error="Roast Type is Required (put any if you don't have a preferance)" />
 							)}
-						</FormField>
-
-						<FormField>
-							<label htmlFor="instructions">What are the instructions?</label>
-							<textarea
-								id="instructions"
-								placeholder="Add your instructions here"
-								{...register('instructions')}
-								className="bg-black bg-opacity-0"
-							/>
 						</FormField>
 
 						<div className="place-self-end">

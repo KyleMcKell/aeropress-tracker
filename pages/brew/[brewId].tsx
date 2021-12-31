@@ -15,7 +15,7 @@ interface Props {
 const Brew: NextPage<Props> = ({ brew }: Props) => {
 	return (
 		<Layout title={`${brew.name} - AeroPress Tracker`} description="">
-			<BrewCard brew={brew} />
+			<BrewCard brew={brew} showControls={true} showTimer={true} />
 		</Layout>
 	);
 };
