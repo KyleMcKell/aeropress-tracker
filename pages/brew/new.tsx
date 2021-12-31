@@ -1,7 +1,6 @@
 import type { AeropressBrew } from '@prisma/client';
 import type { NextPage } from 'next';
 
-import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
