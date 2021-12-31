@@ -27,7 +27,7 @@ const Header = ({ openMobileMenu, toggleDarkMode, darkModeValue }: Props) => {
 					</a>
 				</Link>
 				{/* desktop log in info */}
-				<div className="hidden sm:flex flex-row gap-8 font-ui font-semibold items-baseline">
+				<div className="hidden sm:flex flex-row gap-6 font-ui font-semibold items-baseline">
 					<p className="text-lg flex items-center justify-center h-10 text-neutral-700 dark:text-neutral-200">
 						{status === 'authenticated' ? (
 							<Link href="profile" passHref>

@@ -23,6 +23,10 @@ const LogInButton = ({ variant = 'boring' }: Props) => {
 		}
 	};
 
+	if (status === 'loading') {
+		<Button variant={variant}>Loading</Button>;
+	}
+
 	return (
 		<Button onClick={handleClick} variant={variant}>
 			{status === 'authenticated' ? <>Log Out</> : <>Log In</>}
