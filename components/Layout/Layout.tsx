@@ -19,13 +19,17 @@ const Layout = ({
 	children,
 }: Props) => {
 	const [showMobileMenu, setShowMobileMenu] = useState(false);
-	const { value: darkModeValue } = useDarkMode(true, {
+	const { value: darkModeValue, toggle } = useDarkMode(false, {
 		classNameDark: 'dark',
 		classNameLight: 'light',
 	});
 
 	return (
-		<div className="font-ui relative h-full bg-white dark:bg-black isolate">
+		<div
+			className={`font-ui relative h-full bg-white dark:bg-black isolate ${
+				darkModeValue ? 'dark' : 'light'
+			}`}
+		>
 			<Head>
 				<title>{title}</title>
 				<meta name="description" content={description} />
