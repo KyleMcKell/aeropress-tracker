@@ -17,7 +17,7 @@ const Header = ({ openMobileMenu }: Props) => {
 		<header className="grid place-items-center">
 			{/* <div className="bg-gradient-to-r from-primary-300 to-secondary-300 h-2 w-full" /> */}
 			<div className="bg-neutral-500 dark:bg-neutral-800 h-2 w-full" />
-			<div className="text-neutral-700 dark:text-neutral-300 flex h-20 sm:h-24 justify-between items-center w-full p-4 px-4 border-b-4 border-neutral-200 sm:p-8 sm:pb-4 md:w-10/12">
+			<div className="flex justify-between items-baseline w-full p-4 px-4 border-b-4 border-neutral-200 sm:p-8 sm:pb-6 md:w-10/12">
 				<Link href="/" passHref>
 					<a>
 						<Logo />
@@ -25,7 +25,7 @@ const Header = ({ openMobileMenu }: Props) => {
 				</Link>
 				{/* desktop log in info */}
 				<div className="hidden sm:flex flex-row gap-8 font-ui font-semibold items-baseline">
-					<div className="text-lg flex items-center justify-center h-10">
+					<p className="text-lg flex items-center justify-center h-10 text-neutral-700 dark:text-neutral-200">
 						{status === 'authenticated' ? (
 							<Link href="profile" passHref>
 								<a href="">Hello {session?.user?.name.split(' ')[0]}!</a>
@@ -35,7 +35,7 @@ const Header = ({ openMobileMenu }: Props) => {
 						) : (
 							<>Hello Barista!</>
 						)}
-					</div>
+					</p>
 					{status !== 'loading' && (
 						<div className="w-28 flex items-center justify-center h-10">
 							<LogInButton />
