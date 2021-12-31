@@ -18,7 +18,8 @@
 		"react-feather": "^2.0.9",
 		"react-hook-form": "^7.22.3",
 		"react-timer-hook": "^3.0.5",
-		"swr": "^1.1.2-beta.0"
+		"swr": "^1.1.2-beta.0",
+		"use-dark-mode": "^2.3.1"
 	},
 	"devDependencies": {
 		"@types/axios": "^0.14.0",

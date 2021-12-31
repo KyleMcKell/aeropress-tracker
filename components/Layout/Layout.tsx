@@ -1,4 +1,6 @@
 import Head from 'next/head';
+import Image from 'next/image';
+import useDarkMode from 'use-dark-mode';
 import { useState } from 'react';
 
 import Header from '~/components/Header';
@@ -17,9 +19,13 @@ const Layout = ({
 	children,
 }: Props) => {
 	const [showMobileMenu, setShowMobileMenu] = useState(false);
+	const { value: darkModeValue } = useDarkMode(true, {
+		classNameDark: 'dark',
+		classNameLight: 'light',
+	});
 
 	return (
-		<div className="font-ui relative h-full bg-white dark:bg-black">
+		<div className="font-ui relative h-full bg-white dark:bg-black isolate">
 			<Head>
 				<title>{title}</title>
 				<meta name="description" content={description} />
@@ -33,6 +39,14 @@ const Layout = ({
 			>
 				{children}
 			</main>
+			<footer className="w-full h-full -z-10 fixed bottom-0 left-0 right-0">
+				<Image
+					src={`/footer-waves-${darkModeValue ? 'dark' : 'light'}.svg`}
+					objectFit={'cover'}
+					layout="fill"
+					alt=""
+				/>
+			</footer>
 			<MobileMenu
 				isOpen={showMobileMenu}
 				onDismiss={() => setShowMobileMenu(false)}
