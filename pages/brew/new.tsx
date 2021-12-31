@@ -44,8 +44,6 @@ const defaultValues: FormData = {
 	grindSize: 'Any',
 	roastType: 'Any',
 	inverted: false,
-	favorite: false,
-	instructions: '',
 };
 
 const CreateBrew: NextPage = () => {

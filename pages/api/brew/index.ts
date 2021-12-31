@@ -29,10 +29,8 @@ const brewActions = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 				coffeeWeight,
 				waterWeight,
 				waterTemp,
-				favorite,
 				roastType: grindSize,
 				roastType,
-				instructions,
 				userId,
 			}: AeropressBrew = req.body;
 			try {
@@ -49,8 +47,6 @@ const brewActions = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 						grindSize,
 						roastType,
 						inverted,
-						favorite,
-						instructions,
 						description,
 						userId,
 					},
