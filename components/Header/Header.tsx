@@ -49,7 +49,7 @@ const Header = ({ openMobileMenu, toggleDarkMode, darkModeValue }: Props) => {
 				</div>
 				{/* mobile menu button */}
 				<button
-					className="sm:hidden text-neutral-700 dark:text-neutral-200"
+					className="sm:hidden self-center text-neutral-700 dark:text-neutral-200"
 					onClick={openMobileMenu}
 				>
 					<Icon id={'menu'} strokeWidth={2} />
