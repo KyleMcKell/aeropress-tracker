@@ -113,7 +113,7 @@ const BrewCard = ({ brew, showTimer = true, showControls = false }: Props) => {
 			</p>
 
 			<p className="col-span-2">
-				{grindSize === 'any' || !roastType ? (
+				{grindSize === 'any' || grindSize === 'Any' || !grindSize ? (
 					<>
 						Feel free to use{' '}
 						<span className="font-semibold text-neutral-700 dark:text-neutral-300">
@@ -141,7 +141,7 @@ const BrewCard = ({ brew, showTimer = true, showControls = false }: Props) => {
 			</p>
 
 			<p className="col-span-2">
-				{roastType === 'any' || !roastType ? (
+				{roastType === 'any' || roastType === 'Any' || !roastType ? (
 					<>
 						For this one{' '}
 						<span className="font-semibold text-neutral-700 dark:text-neutral-300">
