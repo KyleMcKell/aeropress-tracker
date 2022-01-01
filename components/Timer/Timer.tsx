@@ -1,4 +1,5 @@
 import { useTimer } from 'react-timer-hook';
+import useSound from 'use-sound';
 
 import Button from '../Button';
 
@@ -13,9 +14,14 @@ const getExpiryTimestamp = (time: number) => {
 };
 
 const Timer = ({ time }: Props) => {
+	const [playTimerEnd] = useSound('/sounds/synth-dong.mp3');
+
 	const { seconds, minutes, pause, resume, isRunning, restart } = useTimer({
 		expiryTimestamp: getExpiryTimestamp(time),
 		autoStart: false,
+		onExpire: () => {
+			playTimerEnd();
+		},
 	});
 
 	return (
