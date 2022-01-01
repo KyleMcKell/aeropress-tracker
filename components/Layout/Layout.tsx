@@ -6,6 +6,7 @@ import Header from '~/components/Header';
 import JumpToContent from '../JumpToContent';
 import MobileMenu from '../MobileMenu';
 import Footer from '../Footer';
+import BackgroundImage from '../BackgroundImage';
 
 interface Props {
 	title: string;
@@ -47,13 +48,14 @@ const Layout = ({
 			>
 				{children}
 			</main>
-			<Footer darkModeValue={darkModeValue} />
+			<Footer />
 			<MobileMenu
 				isOpen={showMobileMenu}
 				onDismiss={() => setShowMobileMenu(false)}
 				toggleDarkMode={toggleDarkMode}
 				darkModeValue={darkModeValue}
 			/>
+			<BackgroundImage darkModeValue={darkModeValue} />
 		</div>
 	);
 };
