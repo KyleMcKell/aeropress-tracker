@@ -31,7 +31,7 @@ const MobileMenu = ({
 			className="fixed inset-0 h-full w-full flex justify-end bg-neutral-800 bg-opacity-40 dark:bg-black dark:bg-opacity-80"
 		>
 			<DialogContent
-				aria-label="menu content"
+				aria-label="site navigation tools"
 				className="relative flex justify-between bg-neutral-100 dark:bg-neutral-900 w-80 h-full flex-col p-8"
 			>
 				<div className="flex flex-row-reverse justify-between">

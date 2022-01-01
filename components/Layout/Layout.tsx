@@ -1,11 +1,11 @@
 import Head from 'next/head';
-import Image from 'next/image';
 import useDarkMode from 'use-dark-mode';
 import { useState } from 'react';
 
 import Header from '~/components/Header';
 import JumpToContent from '../JumpToContent';
 import MobileMenu from '../MobileMenu';
+import Footer from '../Footer';
 
 interface Props {
 	title: string;
@@ -47,14 +47,7 @@ const Layout = ({
 			>
 				{children}
 			</main>
-			<footer className="w-full h-full -z-10 fixed bottom-0 left-0 right-0">
-				<Image
-					src={`/footer-waves-${darkModeValue ? 'dark' : 'light'}.svg`}
-					objectFit={'cover'}
-					layout="fill"
-					alt=""
-				/>
-			</footer>
+			<Footer darkModeValue={darkModeValue} />
 			<MobileMenu
 				isOpen={showMobileMenu}
 				onDismiss={() => setShowMobileMenu(false)}

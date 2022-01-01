@@ -43,8 +43,8 @@ const BrewCard = ({ brew, showTimer = true, showControls = false }: Props) => {
 		const deletedBrew = fetch(`/api/brew/${brew.id}`, {
 			method: 'DELETE',
 		}).then((res) => res.json());
-		console.log(deletedBrew);
 		router.push('/profile');
+		return deletedBrew;
 	};
 
 	return (
