@@ -1,5 +1,6 @@
 import type { AeropressBrew, User } from '@prisma/client';
 import { DialogContent, DialogOverlay } from '@reach/dialog';
+import { useSession } from 'next-auth/react';
 
 import { useRouter } from 'next/router';
 import { useState } from 'react';
@@ -32,10 +33,11 @@ const BrewCard = ({ brew, showTimer = true, showControls = false }: Props) => {
 	} = brew;
 
 	const { user } = useUser(brew.userId);
+	const { data: session } = useSession();
 	const router = useRouter();
 	const [showDeleteWarning, setShowDeleteWarning] = useState(false);
 
-	const isOwner = user?.id === brew.userId;
+	const isOwner = session?.userId === brew.userId;
 
 	const handleDelete = () => {
 		const deletedBrew = fetch(`/api/brew/${brew.id}`, {
@@ -174,7 +176,10 @@ const BrewCard = ({ brew, showTimer = true, showControls = false }: Props) => {
 						onDismiss={() => setShowDeleteWarning(false)}
 						className="fixed inset-0 h-full w-full flex justify-center items-center bg-neutral-800 bg-opacity-40 dark:bg-black dark:bg-opacity-80"
 					>
-						<DialogContent className="flex justify-between gap-4 bg-neutral-100 dark:bg-neutral-900 flex-col py-4 px-8 rounded-lg">
+						<DialogContent
+							className="flex justify-between gap-4 bg-neutral-100 dark:bg-neutral-900 flex-col py-4 px-8 rounded-lg"
+							aria-label="brew delete warning"
+						>
 							<button
 								onClick={() => setShowDeleteWarning(false)}
 								className="self-end -mr-4 text-neutral-900 dark:text-white"
