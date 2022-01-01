@@ -29,15 +29,23 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
 }) => {
 	const { brewId } = params!;
 
+	const numBrewId = parseInt(brewId);
+
+	if (Number.isNaN(numBrewId)) {
+		return {
+			notFound: true,
+		};
+	}
+
 	const brew = await prisma.aeropressBrew.findUnique({
-		where: { id: parseInt(brewId) },
+		where: { id: numBrewId },
 	});
 
 	if (!brew) return { notFound: true };
 
 	return {
 		props: { brew },
-		revalidate: 1,
+		revalidate: 30,
 	};
 };
 
