@@ -15,13 +15,16 @@ const BrewCardGrid = ({ brews }: Props) => {
 					No Brews, sorry!
 				</p>
 			)}
-			{brews?.map((brew) => (
-				<Link href={`/brew/${brew.id}`} passHref key={brew.id}>
-					<a>
-						<BrewCard brew={brew} showTimer={false} />
-					</a>
-				</Link>
-			))}
+			{brews
+				?.slice(0)
+				.reverse()
+				.map((brew) => (
+					<Link href={`/brew/${brew.id}`} passHref key={brew.id}>
+						<a>
+							<BrewCard brew={brew} showTimer={false} />
+						</a>
+					</Link>
+				))}
 		</section>
 	);
 };

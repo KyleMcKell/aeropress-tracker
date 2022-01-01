@@ -67,23 +67,13 @@ const BrewCard = ({ brew, showTimer = true, showControls = false }: Props) => {
 			)}
 
 			<p className="col-span-2">
-				{inverted ? (
-					<>
-						Flip it over! We&apos;re{' '}
-						<span className="font-semibold text-neutral-700 dark:text-neutral-300">
-							Inverting
-						</span>{' '}
-						this one
-					</>
-				) : (
-					<>
-						Keepin it classic,{' '}
-						<span className="font-semibold text-neutral-700 dark:text-neutral-300">
-							no Inverting
-						</span>{' '}
-						today
-					</>
-				)}
+				<div
+					className={`${
+						inverted ? '-scale-y-100' : ''
+					} text-neutral-800 dark:text-neutral-100`}
+				>
+					<Icon id="coffee" strokeWidth={3} size={28} />
+				</div>
 			</p>
 
 			<p className="col-span-2">
