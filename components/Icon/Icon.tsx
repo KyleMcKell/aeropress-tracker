@@ -5,6 +5,7 @@ interface Props {
 	color?: string;
 	size?: string | number;
 	strokeWidth?: string | number;
+	fill?: string;
 }
 
 const icons = {
@@ -16,7 +17,14 @@ const icons = {
 	coffee: Coffee,
 };
 
-const Icon = ({ id, color, size, strokeWidth, ...delegated }: Props) => {
+const Icon = ({
+	id,
+	color,
+	size,
+	strokeWidth,
+	fill = 'none',
+	...delegated
+}: Props) => {
 	const Component = icons[id];
 
 	if (!Component) {
@@ -30,6 +38,7 @@ const Icon = ({ id, color, size, strokeWidth, ...delegated }: Props) => {
 				color={color}
 				size={size}
 				strokeWidth={strokeWidth}
+				fill={fill}
 			/>
 		</div>
 	);
