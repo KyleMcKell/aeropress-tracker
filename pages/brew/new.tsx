@@ -2,7 +2,7 @@ import type { AeropressBrew } from '@prisma/client';
 import type { NextPage } from 'next';
 
 import { useSession } from 'next-auth/react';
-import { useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
 
@@ -11,8 +11,12 @@ import { Data as CreateBrewData } from '../api/brew';
 import Button from '~/components/Button';
 import Layout from '~/components/Layout';
 import LogInButton from '~/components/LogInButton';
+import VisuallyHidden from '~/components/VisuallyHidden';
 
-type FormData = Omit<AeropressBrew, 'userId' | 'id'>;
+type FormData = Omit<AeropressBrew, 'userId' | 'id' | 'brewTime'> & {
+	brewMinutes: number;
+	brewSeconds: number;
+};
 
 const ErrorText = ({ error }: { error: string }) => (
 	<span role="alert" className="text-danger-500 text-sm font-semibold">
@@ -37,13 +41,16 @@ const RequiredSpan = () => <span className="font-bold">*</span>;
 const defaultValues: FormData = {
 	name: '',
 	description: '',
-	brewTime: 150,
+	brewMinutes: 1,
+	brewSeconds: 30,
 	waterTemp: 100,
 	coffeeWeight: 15,
 	waterWeight: 200,
 	grindSize: 'Any',
 	roastType: 'Any',
 	inverted: false,
+	favorite: false,
+	comments: '',
 };
 
 const CreateBrew: NextPage = () => {
@@ -51,37 +58,33 @@ const CreateBrew: NextPage = () => {
 	const {
 		register,
 		handleSubmit,
-		formState: { errors },
+		formState: { errors, isSubmitting },
 	} = useForm<FormData>({ defaultValues });
-	const [newBrew, setNewBrew] = useState<Omit<CreateBrewData, 'brews'>>();
+	const [newBrew, setNewBrew] = React.useState<Omit<CreateBrewData, 'brews'>>();
 	const router = useRouter();
 
 	// render data
-	const onSubmit = handleSubmit(async (data: AeropressBrew) => {
-		if (session) {
-			data.userId = session.userId;
-		}
-
-		data.brewTime = parseInt(String(data.brewTime));
-		data.waterTemp = parseInt(String(data.waterTemp));
-		data.coffeeWeight = parseInt(String(data.coffeeWeight));
-		data.waterWeight = parseInt(String(data.waterWeight));
+	const onSubmit = handleSubmit(async (data: FormData) => {
+		let brewToCreate: Omit<AeropressBrew, 'id'> = {
+			...data,
+			userId: session!.userId,
+			brewTime: Number(data.brewMinutes) * 60 + Number(data.brewSeconds),
+		};
 
 		const response = await fetch('/api/brew', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
+				accept: 'application/json',
 			},
-			body: JSON.stringify(data),
+			body: JSON.stringify(brewToCreate),
 		});
 
-		const newBrew: Omit<CreateBrewData, 'brews'> = await response.json();
+		const newBrew: CreateBrewData = await response.json();
 
 		setNewBrew(newBrew);
 
 		router.push('/brew/[id]', `/brew/${newBrew.brew?.id}`);
-
-		return newBrew;
 	});
 
 	return (
@@ -140,12 +143,12 @@ const CreateBrew: NextPage = () => {
 							<input
 								id="description"
 								placeholder="A nice brew"
-								{...register('description', { maxLength: 255 })}
+								{...register('description', { maxLength: 250 })}
 								className="bg-black bg-opacity-0"
 							/>
 							{errors.description &&
 								errors.description?.type === 'maxLength' && (
-									<ErrorText error="Max length exceeded" />
+									<ErrorText error="Max length of 250 exceeded" />
 								)}
 						</FormField>
 
@@ -160,19 +163,42 @@ const CreateBrew: NextPage = () => {
 						</FormField>
 
 						<FormField>
-							<label htmlFor="brewTime">
-								How long does your brew take? (seconds)
-								<RequiredSpan />
-							</label>
-							<input
-								id="brewTime"
-								type="number"
-								{...register('brewTime', { required: true })}
-								className="bg-black bg-opacity-0"
-							/>
-							{errors.brewTime && errors.brewTime.type === 'required' && (
-								<ErrorText error="Brew Time is Required" />
-							)}
+							<label htmlFor="brewMinutes">How long does your brew take?</label>
+							<div>
+								<VisuallyHidden>
+									<label htmlFor="brewMinutes">How many minutes?</label>
+								</VisuallyHidden>
+								<input
+									id="brewMinutes"
+									type="number"
+									min={0}
+									max={99}
+									{...register('brewMinutes', { required: true, max: 99 })}
+									className="bg-black bg-opacity-0"
+									onChange={(e) => {
+										e.target.value = String(
+											Math.min(99, Math.max(0, Number(e.target.value)))
+										);
+									}}
+								/>
+								<span className="mx-1">:</span>
+								<VisuallyHidden>
+									<label htmlFor="brewSeconds">How many seconds?</label>
+								</VisuallyHidden>
+								<input
+									id="brewSeconds"
+									type="number"
+									min={0}
+									max={59}
+									{...register('brewSeconds', { required: true, max: 59 })}
+									className="bg-black bg-opacity-0"
+									onChange={(e) => {
+										e.target.value = String(
+											Math.min(59, Math.max(0, Number(e.target.value)))
+										);
+									}}
+								/>
+							</div>
 						</FormField>
 
 						<FormField>
@@ -200,6 +226,8 @@ const CreateBrew: NextPage = () => {
 							<input
 								id="waterWeight"
 								type="number"
+								min={0}
+								max={999}
 								{...register('waterWeight', { required: true })}
 								className="bg-black bg-opacity-0"
 							/>
@@ -269,8 +297,12 @@ const CreateBrew: NextPage = () => {
 						</FormField>
 
 						<div className="place-self-end">
-							<Button type="submit" variant="boring">
-								Submit
+							<Button
+								type="submit"
+								variant="boring"
+								disabled={isSubmitting ? true : false}
+							>
+								{isSubmitting ? 'Loading' : 'Submit'}
 							</Button>
 						</div>
 					</form>

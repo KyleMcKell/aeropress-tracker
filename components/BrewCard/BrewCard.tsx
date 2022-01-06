@@ -39,10 +39,13 @@ const BrewCard = ({ brew, showTimer = true, showControls = false }: Props) => {
 
 	const isOwner = session?.userId === brew.userId;
 
-	const handleDelete = () => {
-		const deletedBrew = fetch(`/api/brew/${brew.id}`, {
+	const handleDelete = async () => {
+		const res = await fetch(`/api/brew/${brew.id}`, {
 			method: 'DELETE',
-		}).then((res) => res.json());
+		});
+
+		const deletedBrew = await res.json();
+
 		router.push('/profile');
 		return deletedBrew;
 	};
@@ -66,15 +69,13 @@ const BrewCard = ({ brew, showTimer = true, showControls = false }: Props) => {
 				</h2>
 			)}
 
-			<p className="col-span-2">
-				<div
-					className={`${
-						inverted ? '-scale-y-100' : ''
-					} text-neutral-800 dark:text-neutral-100`}
-				>
-					<Icon id="coffee" strokeWidth={3} size={28} />
-				</div>
-			</p>
+			<div
+				className={`${
+					inverted ? '-scale-y-100' : ''
+				} text-neutral-800 dark:text-neutral-100 block`}
+			>
+				<Icon id="coffee" strokeWidth={3} size={28} />
+			</div>
 
 			<p className="col-span-2">
 				Heat your water to{' '}

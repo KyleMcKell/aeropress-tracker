@@ -73,3 +73,17 @@ h6 {
 #__next {
 	isolation: isolate;
 }
+
+/* debating putting these in to remove the little arrows that come with number inputs */
+
+/* input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+	width: 0;
+} */
+
+/* Firefox */
+/* input[type='number'] {
+	-moz-appearance: textfield;
+} */
