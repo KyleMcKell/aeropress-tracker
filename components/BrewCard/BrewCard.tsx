@@ -1,7 +1,6 @@
 import type { AeropressBrew, User } from '@prisma/client';
-import { DialogContent, DialogOverlay } from '@reach/dialog';
-import { useSession } from 'next-auth/react';
 
+import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
@@ -10,7 +9,7 @@ import { useUser } from '~/lib/hooks';
 import Button from '../Button';
 import Icon from '../Icon';
 import Timer from '../Timer';
-import VisuallyHidden from '../VisuallyHidden';
+import WarningModal from '../WarningModal';
 
 interface Props {
 	brew: AeropressBrew;
@@ -162,33 +161,21 @@ const BrewCard = ({ brew, showTimer = true, showControls = false }: Props) => {
 							Delete Brew
 						</Button>
 					</div>
-					<DialogOverlay
-						isOpen={showDeleteWarning}
-						onDismiss={() => setShowDeleteWarning(false)}
-						className="fixed inset-0 h-full w-full flex justify-center items-center bg-neutral-800 bg-opacity-40 dark:bg-black dark:bg-opacity-80"
+					<WarningModal
+						ariaLabel="Delete Brew"
+						setShowWarning={setShowDeleteWarning}
+						showWarning={showDeleteWarning}
 					>
-						<DialogContent
-							className="flex justify-between gap-4 bg-neutral-100 dark:bg-neutral-900 flex-col py-4 px-8 rounded-lg"
-							aria-label="brew delete warning"
-						>
-							<button
-								onClick={() => setShowDeleteWarning(false)}
-								className="self-end -mr-4 text-neutral-900 dark:text-white"
-							>
-								<Icon id="close" strokeWidth={4} />
-								<VisuallyHidden>Dismiss Menu</VisuallyHidden>
-							</button>
-							<p className="text-neutral-700 dark:text-neutral-100 font-semibold text-lg">
-								Are you sure you want to delete this brew?
-							</p>
-							<div className="flex justify-end gap-4">
-								<Button onClick={() => setShowDeleteWarning(false)}>
-									Cancel
-								</Button>
-								<Button onClick={handleDelete}>Delete</Button>
-							</div>
-						</DialogContent>
-					</DialogOverlay>
+						<p className="text-neutral-700 dark:text-neutral-100 font-semibold text-lg">
+							Are you sure you want to delete this brew?
+						</p>
+						<div className="flex justify-end gap-4">
+							<Button onClick={() => setShowDeleteWarning(false)}>
+								Cancel
+							</Button>
+							<Button onClick={handleDelete}>Delete</Button>
+						</div>
+					</WarningModal>
 				</>
 			)}
 		</article>
