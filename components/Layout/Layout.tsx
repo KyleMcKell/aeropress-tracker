@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react';
+
 import Head from 'next/head';
 import useDarkMode from 'use-dark-mode';
 import { useState } from 'react';
@@ -11,7 +13,7 @@ import BackgroundImage from '../BackgroundImage';
 interface Props {
 	title: string;
 	description?: string;
-	children: React.ReactNode;
+	children: ReactNode;
 }
 
 const Layout = ({

@@ -1,10 +1,12 @@
+import type { ReactNode } from 'react';
+
 import Link from 'next/link';
 
 import Button from '../Button';
 
 interface Props {
 	href: string;
-	children: React.ReactNode;
+	children: ReactNode;
 	onClick?: () => void;
 	variant?: 'boring' | 'nifty' | 'primary' | 'secondary';
 }

@@ -1,8 +1,9 @@
 import type { AeropressBrew } from '@prisma/client';
 import type { NextPage } from 'next';
+import type { ReactNode } from 'react';
 
 import { useSession } from 'next-auth/react';
-import React from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
 
@@ -25,7 +26,7 @@ const ErrorText = ({ error }: { error: string }) => (
 );
 
 interface FormFieldProps {
-	children: React.ReactNode;
+	children: ReactNode;
 }
 
 const FormField = ({ children }: FormFieldProps) => {
@@ -60,7 +61,7 @@ const CreateBrew: NextPage = () => {
 		handleSubmit,
 		formState: { errors, isSubmitting },
 	} = useForm<FormData>({ defaultValues });
-	const [newBrew, setNewBrew] = React.useState<Omit<CreateBrewData, 'brews'>>();
+	const [newBrew, setNewBrew] = useState<Omit<CreateBrewData, 'brews'>>();
 	const router = useRouter();
 
 	// render data

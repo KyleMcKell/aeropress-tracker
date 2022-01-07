@@ -1,4 +1,6 @@
-interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+import type { ButtonHTMLAttributes } from 'react';
+
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 	variant?: 'boring' | 'nifty' | 'primary' | 'secondary';
 }
 
