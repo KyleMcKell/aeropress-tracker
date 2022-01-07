@@ -32,7 +32,7 @@ const brewIdActions = async (
 			}
 			return res.status(200).json({ brew });
 		}
-		case 'PUT': {
+		case 'PATCH': {
 			const brewPayload: AeropressBrew = req.body;
 			const brew = await prisma.aeropressBrew.update({
 				where: { id: parseInt(String(brewId)) },
