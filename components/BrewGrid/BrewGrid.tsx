@@ -1,7 +1,7 @@
 import type { AeropressBrew } from '@prisma/client';
 import Link from 'next/link';
 
-import BrewGridElement from '../BrewGridElement';
+import BrewGridElement from '../BrewGridCard';
 
 interface Props {
 	brews: AeropressBrew[];

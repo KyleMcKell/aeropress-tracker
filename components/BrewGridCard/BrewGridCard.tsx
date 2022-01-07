@@ -8,7 +8,7 @@ interface Props {
 	brew: AeropressBrew;
 }
 
-const BrewGridElement = ({ brew }: Props) => {
+const BrewGridCard = ({ brew }: Props) => {
 	const {
 		name: brewName,
 		waterTemp,
@@ -126,4 +126,4 @@ const BrewGridElement = ({ brew }: Props) => {
 	);
 };
 
-export default BrewGridElement;
+export default BrewGridCard;

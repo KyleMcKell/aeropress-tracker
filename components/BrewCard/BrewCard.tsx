@@ -13,11 +13,9 @@ import WarningModal from '../WarningModal';
 
 interface Props {
 	brew: AeropressBrew;
-	showTimer?: boolean;
-	showControls?: boolean;
 }
 
-const BrewCard = ({ brew, showTimer = true, showControls = false }: Props) => {
+const BrewCard = ({ brew }: Props) => {
 	const {
 		name: brewName,
 		brewTime,
@@ -148,12 +146,12 @@ const BrewCard = ({ brew, showTimer = true, showControls = false }: Props) => {
 					</>
 				)}
 			</p>
-			{showTimer && (
-				<div className="col-span-2">
-					<Timer time={brewTime} />
-				</div>
-			)}
-			{isOwner && showControls && (
+
+			<div className="col-span-2">
+				<Timer time={brewTime} />
+			</div>
+
+			{isOwner && (
 				<>
 					<div className="col-span-2 flex gap-2">
 						<Button onClick={() => setShowDeleteWarning(true)}>
