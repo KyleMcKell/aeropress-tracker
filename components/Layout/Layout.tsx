@@ -20,7 +20,7 @@ const Layout = ({
 	children,
 }: Props) => {
 	const [showMobileMenu, setShowMobileMenu] = useState(false);
-	const { value: darkModeValue, toggle: toggleDarkMode } = useDarkMode(false, {
+	const { value: isDarkMode, toggle: toggleDarkMode } = useDarkMode(true, {
 		classNameDark: 'dark',
 		classNameLight: 'light',
 	});
@@ -28,7 +28,7 @@ const Layout = ({
 	return (
 		<div
 			className={`font-ui relative h-full bg-white dark:bg-black isolate ${
-				darkModeValue ? 'dark' : 'light'
+				isDarkMode ? 'dark' : 'light'
 			}`}
 		>
 			<Head>
@@ -40,7 +40,7 @@ const Layout = ({
 			<Header
 				openMobileMenu={() => setShowMobileMenu(true)}
 				toggleDarkMode={toggleDarkMode}
-				darkModeValue={darkModeValue}
+				isDarkMode={isDarkMode}
 			/>
 			<main
 				id="main-content"
@@ -53,9 +53,9 @@ const Layout = ({
 				isOpen={showMobileMenu}
 				onDismiss={() => setShowMobileMenu(false)}
 				toggleDarkMode={toggleDarkMode}
-				darkModeValue={darkModeValue}
+				isDarkMode={isDarkMode}
 			/>
-			<BackgroundImage darkModeValue={darkModeValue} />
+			<BackgroundImage isDarkMode={isDarkMode} />
 		</div>
 	);
 };

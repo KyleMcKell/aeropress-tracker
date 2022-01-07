@@ -10,10 +10,10 @@ import ThemeSwitchButton from '../ThemeSwitchButton';
 interface Props {
 	openMobileMenu: () => void;
 	toggleDarkMode: () => void;
-	darkModeValue: boolean;
+	isDarkMode: boolean;
 }
 
-const Header = ({ openMobileMenu, toggleDarkMode, darkModeValue }: Props) => {
+const Header = ({ openMobileMenu, toggleDarkMode, isDarkMode }: Props) => {
 	const { data: session, status } = useSession();
 
 	return (
@@ -43,7 +43,7 @@ const Header = ({ openMobileMenu, toggleDarkMode, darkModeValue }: Props) => {
 					</div>
 
 					<ThemeSwitchButton
-						darkModeValue={darkModeValue}
+						isDarkMode={isDarkMode}
 						toggleDarkMode={toggleDarkMode}
 					/>
 				</div>

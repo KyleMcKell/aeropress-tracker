@@ -1,15 +1,15 @@
 import Image from 'next/image';
 
 interface Props {
-	darkModeValue: boolean;
+	isDarkMode: boolean;
 }
 
-const BackgroundImage = ({ darkModeValue }: Props) => {
+const BackgroundImage = ({ isDarkMode }: Props) => {
 	return (
 		<div className="w-full h-full -z-10 fixed bottom-0 left-0 right-0">
 			<Image
 				draggable={false}
-				src={`/svg/footer-waves-${darkModeValue ? 'dark' : 'light'}.svg`}
+				src={`/svg/footer-waves-${isDarkMode ? 'dark' : 'light'}.svg`}
 				objectFit={'cover'}
 				layout="fill"
 				alt=""

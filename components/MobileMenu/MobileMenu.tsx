@@ -12,14 +12,14 @@ import ThemeSwitchButton from '../ThemeSwitchButton';
 interface Props {
 	isOpen: boolean;
 	onDismiss: () => void;
-	darkModeValue: boolean;
+	isDarkMode: boolean;
 	toggleDarkMode: () => void;
 }
 
 const MobileMenu = ({
 	isOpen,
 	onDismiss,
-	darkModeValue,
+	isDarkMode,
 	toggleDarkMode,
 }: Props) => {
 	const { status } = useSession();
@@ -43,7 +43,7 @@ const MobileMenu = ({
 						<VisuallyHidden>Dismiss Menu</VisuallyHidden>
 					</button>
 					<ThemeSwitchButton
-						darkModeValue={darkModeValue}
+						isDarkMode={isDarkMode}
 						toggleDarkMode={toggleDarkMode}
 					/>
 				</div>
