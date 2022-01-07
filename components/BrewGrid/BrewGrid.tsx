@@ -9,7 +9,7 @@ interface Props {
 
 const BrewGrid = ({ brews }: Props) => {
 	return (
-		<section className="w-full grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8 justify-items-stretch items-stretch">
+		<section className="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 justify-items-stretch items-stretch">
 			{(!brews || brews?.length === 0) && (
 				<p className="col-span-full place-self-center text-lg font-medium text-neutral-900 dark:text-neutral-200">
 					No Brews, sorry!

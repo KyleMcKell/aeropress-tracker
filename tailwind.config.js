@@ -136,6 +136,9 @@ module.exports = {
 			animation: {
 				'spin-slow': 'spin 2s ease-in-out infinite',
 			},
+			minWidth: {
+				28: '7rem',
+			},
 		},
 	},
 	darkMode: 'class',

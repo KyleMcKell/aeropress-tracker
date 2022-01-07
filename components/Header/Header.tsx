@@ -38,7 +38,7 @@ const Header = ({ openMobileMenu, toggleDarkMode, isDarkMode }: Props) => {
 						)}
 					</p>
 
-					<div className="w-28 flex items-center justify-center h-10">
+					<div className="min-w-28 flex items-center justify-center h-10">
 						<LogInButton />
 					</div>
 
