@@ -1,13 +1,13 @@
 import type { AeropressBrew } from '@prisma/client';
 import Link from 'next/link';
 
-import BrewCard from '../BrewCard';
+import BrewGridElement from '../BrewGridElement';
 
 interface Props {
 	brews: AeropressBrew[];
 }
 
-const BrewCardGrid = ({ brews }: Props) => {
+const BrewGrid = ({ brews }: Props) => {
 	return (
 		<section className="w-full grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8 justify-items-stretch items-stretch">
 			{(!brews || brews?.length === 0) && (
@@ -21,7 +21,7 @@ const BrewCardGrid = ({ brews }: Props) => {
 				.map((brew) => (
 					<Link href={`/brew/${brew.id}`} passHref key={brew.id}>
 						<a>
-							<BrewCard brew={brew} showTimer={false} />
+							<BrewGridElement brew={brew} />
 						</a>
 					</Link>
 				))}
@@ -29,4 +29,4 @@ const BrewCardGrid = ({ brews }: Props) => {
 	);
 };
 
-export default BrewCardGrid;
+export default BrewGrid;

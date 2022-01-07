@@ -1,26 +1,16 @@
-import type { AeropressBrew, User } from '@prisma/client';
-
-import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/router';
-import { useState } from 'react';
+import type { AeropressBrew } from '@prisma/client';
 
 import { useUser } from '~/lib/hooks';
 
-import Button from '../Button';
 import Icon from '../Icon';
-import Timer from '../Timer';
-import WarningModal from '../WarningModal';
 
 interface Props {
 	brew: AeropressBrew;
-	showTimer?: boolean;
-	showControls?: boolean;
 }
 
-const BrewCard = ({ brew, showTimer = true, showControls = false }: Props) => {
+const BrewGridElement = ({ brew }: Props) => {
 	const {
 		name: brewName,
-		brewTime,
 		waterTemp,
 		coffeeWeight,
 		waterWeight,
@@ -31,22 +21,6 @@ const BrewCard = ({ brew, showTimer = true, showControls = false }: Props) => {
 	} = brew;
 
 	const { user } = useUser(brew.userId);
-	const { data: session } = useSession();
-	const router = useRouter();
-	const [showDeleteWarning, setShowDeleteWarning] = useState(false);
-
-	const isOwner = session?.userId === brew.userId;
-
-	const handleDelete = async () => {
-		const res = await fetch(`/api/brew/${brew.id}`, {
-			method: 'DELETE',
-		});
-
-		const deletedBrew = await res.json();
-
-		router.push('/profile');
-		return deletedBrew;
-	};
 
 	return (
 		<article className="border-4 border-neutral-600 bg-neutral-50 dark:border-neutral-900 dark:bg-neutral-900 dark:text-neutral-50 rounded-xl p-4 max-w-2xl w-full gap-4 grid grid-cols-2 h-full">
@@ -148,37 +122,8 @@ const BrewCard = ({ brew, showTimer = true, showControls = false }: Props) => {
 					</>
 				)}
 			</p>
-			{showTimer && (
-				<div className="col-span-2">
-					<Timer time={brewTime} />
-				</div>
-			)}
-			{isOwner && showControls && (
-				<>
-					<div className="col-span-2 flex gap-2">
-						<Button onClick={() => setShowDeleteWarning(true)}>
-							Delete Brew
-						</Button>
-					</div>
-					<WarningModal
-						ariaLabel="Delete Brew"
-						setShowWarning={setShowDeleteWarning}
-						showWarning={showDeleteWarning}
-					>
-						<p className="text-neutral-700 dark:text-neutral-100 font-semibold text-lg">
-							Are you sure you want to delete this brew?
-						</p>
-						<div className="flex justify-end gap-4">
-							<Button onClick={() => setShowDeleteWarning(false)}>
-								Cancel
-							</Button>
-							<Button onClick={handleDelete}>Delete</Button>
-						</div>
-					</WarningModal>
-				</>
-			)}
 		</article>
 	);
 };
 
-export default BrewCard;
+export default BrewGridElement;

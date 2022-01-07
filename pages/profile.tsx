@@ -5,7 +5,7 @@ import { getSession } from 'next-auth/react';
 
 import prisma from '~/lib/db';
 
-import BrewCardGrid from '~/components/BrewCardGrid';
+import BrewCardGrid from '~/components/BrewGrid';
 import Layout from '~/components/Layout';
 import LinkButton from '~/components/LinkButton';
 
