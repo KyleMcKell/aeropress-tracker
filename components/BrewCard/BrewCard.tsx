@@ -63,7 +63,7 @@ const BrewCard = ({ brew }: Props) => {
 
 				<section className="overflow-auto text-center">
 					<h1 className="font-bold text-3xl text-neutral-900 dark:text-neutral-200">
-						loremloremloremloremloremlorem
+						{brewName}
 					</h1>
 					{user && (
 						<h2 className="mt-1 font-medium text-sm text-neutral-900 dark:text-neutral-200">
@@ -74,9 +74,7 @@ const BrewCard = ({ brew }: Props) => {
 
 				{description && (
 					<h2 className="font-medium font-article text-neutral-900 dark:text-neutral-100">
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit nisi,
-						vero aspernatur magni veniam velit ut eum autem deleniti, error
-						neque quasi fugiat iure labore.
+						{description}
 					</h2>
 				)}
 

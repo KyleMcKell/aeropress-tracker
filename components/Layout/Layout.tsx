@@ -22,7 +22,7 @@ const Layout = ({
 	children,
 }: Props) => {
 	const [showMobileMenu, setShowMobileMenu] = useState(false);
-	const { value: isDarkMode, toggle: toggleDarkMode } = useDarkMode(true, {
+	const { value: isDarkMode, toggle: toggleDarkMode } = useDarkMode(false, {
 		classNameDark: 'dark',
 		classNameLight: 'light',
 	});
