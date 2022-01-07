@@ -51,7 +51,7 @@ const defaultValues: FormData = {
 	roastType: 'Any',
 	inverted: false,
 	favorite: false,
-	comments: '',
+	info: '',
 };
 
 const CreateBrew: NextPage = () => {
@@ -81,11 +81,13 @@ const CreateBrew: NextPage = () => {
 			body: JSON.stringify(brewToCreate),
 		});
 
-		const newBrew: CreateBrewData = await response.json();
+		const newBrew: Omit<CreateBrewData, 'brews'> = await response.json();
 
 		setNewBrew(newBrew);
 
-		router.push('/brew/[id]', `/brew/${newBrew.brew?.id}`);
+		await router.push('/brew/[id]', `/brew/${newBrew.brew?.id}`);
+
+		return newBrew;
 	});
 
 	return (

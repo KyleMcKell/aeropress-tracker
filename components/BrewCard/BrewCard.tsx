@@ -51,7 +51,7 @@ const BrewCard = ({ brew }: Props) => {
 
 	return (
 		<>
-			<article className="relative shadow-md w-full rounded-lg p-8 grid grid-cols-1 gap-4 border-4 border-neutral-900 bg-neutral-50 dark:border-neutral-200 dark:bg-neutral-900 dark:text-neutral-50">
+			<article className="relative shadow-md w-full max-w-3xl rounded-lg p-8 grid grid-cols-1 gap-4 border-4 border-neutral-900 bg-neutral-50 dark:border-neutral-200 dark:bg-neutral-900 dark:text-neutral-50">
 				{isOwner && (
 					<button
 						className="absolute top-2 right-2"
