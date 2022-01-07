@@ -29,7 +29,7 @@ const brewActions = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 				coffeeWeight,
 				waterWeight,
 				waterTemp,
-				roastType: grindSize,
+				grindSize,
 				roastType,
 				userId,
 			}: AeropressBrew = req.body;
