@@ -1,7 +1,24 @@
-import { Menu, Loader, X, Sun, Moon, Coffee } from 'react-feather';
+import {
+	Menu,
+	Loader,
+	X,
+	Sun,
+	Moon,
+	Coffee,
+	Trash2,
+	MoreHorizontal,
+} from 'react-feather';
 
 interface Props {
-	id: 'menu' | 'loader' | 'close' | 'sun' | 'moon' | 'coffee';
+	id:
+		| 'menu'
+		| 'loader'
+		| 'close'
+		| 'sun'
+		| 'moon'
+		| 'coffee'
+		| 'trash'
+		| 'more';
 	color?: string;
 	size?: string | number;
 	strokeWidth?: string | number;
@@ -15,6 +32,8 @@ const icons = {
 	sun: Sun,
 	moon: Moon,
 	coffee: Coffee,
+	trash: Trash2,
+	more: MoreHorizontal,
 };
 
 const Icon = ({

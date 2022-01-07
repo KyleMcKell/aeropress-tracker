@@ -67,7 +67,7 @@ model AeropressBrew {
   inverted      Boolean
   favorite      Boolean  @default(false)
   description   String?
-  comments      String?
+  info          String?
   userId        Int
   user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   @@index([name], name: "brewNameIndex")
