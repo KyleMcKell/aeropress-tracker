@@ -13,7 +13,7 @@ const ThemeSwitchButton = ({ toggleDarkMode, isDarkMode }: Props) => {
 			className="self-center text-neutral-700 dark:text-neutral-100"
 		>
 			<VisuallyHidden>Toggle dark mode</VisuallyHidden>
-			{isDarkMode && <Icon id="sun" strokeWidth={2.5} />}
+			{isDarkMode && <Icon id="moon" strokeWidth={2.5} />}
 			{!isDarkMode && <Icon id="sun" strokeWidth={2.5} />}
 		</button>
 	);
