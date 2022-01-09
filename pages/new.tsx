@@ -1,6 +1,5 @@
 import type { AeropressBrew } from '@prisma/client';
 import type { NextPage } from 'next';
-import type { ReactNode } from 'react';
 
 import { useSession } from 'next-auth/react';
 import { useState } from 'react';
@@ -10,34 +9,19 @@ import { useRouter } from 'next/router';
 import { Data as CreateBrewData } from './api/brew';
 
 import Button from '~/components/Button';
+import ErrorText from '~/components/ErrorText';
+import FormField from '~/components/FormField';
 import Layout from '~/components/Layout';
 import LogInButton from '~/components/LogInButton';
 import VisuallyHidden from '~/components/VisuallyHidden';
+import FormLabel from '~/components/FormLabel';
+import BrewDetail from '~/components/BrewDetail';
+import Icon from '~/components/Icon';
 
 type FormData = Omit<AeropressBrew, 'userId' | 'id' | 'brewTime'> & {
 	brewMinutes: number;
 	brewSeconds: number;
 };
-
-const ErrorText = ({ error }: { error: string }) => (
-	<span role="alert" className="text-danger-500 text-sm font-semibold">
-		{error}
-	</span>
-);
-
-interface FormFieldProps {
-	children: ReactNode;
-}
-
-const FormField = ({ children }: FormFieldProps) => {
-	return (
-		<div className="flex flex-col border-b-2 border-neutral-300 bg-none pb-1 gap-1">
-			{children}
-		</div>
-	);
-};
-
-const RequiredSpan = () => <span className="font-bold">*</span>;
 
 const defaultValues: FormData = {
 	name: '',
@@ -59,10 +43,12 @@ const CreateBrew: NextPage = () => {
 	const {
 		register,
 		handleSubmit,
+		watch,
 		formState: { errors, isSubmitting },
 	} = useForm<FormData>({ defaultValues });
 	const [newBrew, setNewBrew] = useState<Omit<CreateBrewData, 'brews'>>();
 	const router = useRouter();
+	const watchInverted = watch('inverted');
 
 	// render data
 	const onSubmit = handleSubmit(async (data: FormData) => {
@@ -110,13 +96,12 @@ const CreateBrew: NextPage = () => {
 					</h1>
 					<form
 						onSubmit={onSubmit}
-						className="grid sm:grid-cols-2 w-fit gap-8 border-4 font-medium border-neutral-600 bg-neutral-50 text-black p-8 rounded-lg dark:border-neutral-900 dark:bg-neutral-900 dark:text-neutral-200"
+						className="relative shadow-md shadow-neutral-800 w-full max-w-3xl rounded-lg p-8 grid grid-cols-1 gap-4 border-4 border-neutral-900 bg-neutral-50 dark:border-neutral-300 dark:bg-neutral-900 dark:text-neutral-50"
 					>
 						<FormField>
-							<label htmlFor="name">
-								Give your Brew a Name
-								<RequiredSpan />
-							</label>
+							<FormLabel htmlFor="name" isRequired>
+								Name Your Brew
+							</FormLabel>
 							<input
 								id="name"
 								placeholder="My Awesome Brew"
@@ -126,7 +111,7 @@ const CreateBrew: NextPage = () => {
 									maxLength: 25,
 									minLength: 3,
 								})}
-								className="bg-black bg-opacity-0"
+								className="placeholder:text-neutral-600 bg-opacity-0 rounded-full text-md font-medium w-full px-8 py-2 bg-neutral-100 text-neutral-900 dark:bg-neutral-200 dark:text-black"
 							/>
 							{errors.name && errors.name.type === 'required' && (
 								<ErrorText error="Name is Required" />
@@ -140,14 +125,12 @@ const CreateBrew: NextPage = () => {
 						</FormField>
 
 						<FormField>
-							<label htmlFor="description">
-								Short Description of your Brew{' '}
-							</label>
+							<FormLabel htmlFor="description">Tell us about it!</FormLabel>
 							<input
 								id="description"
 								placeholder="A nice brew"
 								{...register('description', { maxLength: 250 })}
-								className="bg-black bg-opacity-0"
+								className="placeholder:text-neutral-600 bg-opacity-0 rounded-full text-md font-medium w-full px-8 py-2 bg-neutral-100 text-neutral-900 dark:bg-neutral-200 dark:text-black"
 							/>
 							{errors.description &&
 								errors.description?.type === 'maxLength' && (
@@ -156,18 +139,10 @@ const CreateBrew: NextPage = () => {
 						</FormField>
 
 						<FormField>
-							<label htmlFor="inverted">Is your brew inverted?</label>
-							<input
-								type={'checkbox'}
-								id="inverted"
-								{...register('inverted')}
-								className="bg-black bg-opacity-0  checked:bg-neutral-500 indeterminate:bg-gray-300"
-							/>
-						</FormField>
-
-						<FormField>
-							<label htmlFor="brewMinutes">How long does your brew take?</label>
-							<div>
+							<FormLabel htmlFor="brewMinutes" isRequired>
+								How long does your brew take?
+							</FormLabel>
+							<div className="flex justify-start rounded-full text-xl font-semibold w-full px-8 py-2 bg-neutral-100 text-neutral-900 dark:bg-neutral-200 dark:text-black">
 								<VisuallyHidden>
 									<label htmlFor="brewMinutes">How many minutes?</label>
 								</VisuallyHidden>
@@ -184,7 +159,7 @@ const CreateBrew: NextPage = () => {
 										);
 									}}
 								/>
-								<span className="mx-1">:</span>
+								<span className="mx-1 mr-8">:</span>
 								<VisuallyHidden>
 									<label htmlFor="brewSeconds">How many seconds?</label>
 								</VisuallyHidden>
@@ -204,100 +179,106 @@ const CreateBrew: NextPage = () => {
 							</div>
 						</FormField>
 
-						<FormField>
-							<label htmlFor="coffeeWeight">
-								How much coffee would you like to use? (grams)
-								<RequiredSpan />
-							</label>
-							<input
-								id="coffeeWeight"
-								type="number"
-								{...register('coffeeWeight', { required: true })}
-								className="bg-black bg-opacity-0"
-							/>
-							{errors.coffeeWeight &&
-								errors.coffeeWeight.type === 'required' && (
-									<ErrorText error="Coffee Weight is Required" />
+						<section className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+							<FormField>
+								<FormLabel htmlFor="inverted">Inverted?</FormLabel>
+								<div className="flex items-start rounded-full px-8 py-2 bg-neutral-100 text-neutral-900 dark:bg-neutral-200 dark:text-black">
+									<label htmlFor="inverted">
+										<div className={`${watchInverted ? 'rotate-180' : ''}`}>
+											<Icon id="coffee" strokeWidth={3} size={28} />
+										</div>
+									</label>
+									<input
+										type={'checkbox'}
+										id="inverted"
+										{...register('inverted')}
+										className="hidden focus:visible"
+										tabIndex={0}
+									/>
+								</div>
+							</FormField>
+
+							<FormField>
+								<FormLabel htmlFor="waterTemp">Water Temp</FormLabel>
+								<input
+									id="waterTemp"
+									type="number"
+									{...register('waterTemp', { required: true })}
+									className="rounded-full text-xl font-semibold w-full px-8 py-2 bg-neutral-100 text-neutral-900 dark:bg-neutral-200 dark:text-black"
+								/>
+								{errors.waterTemp && errors.waterTemp.type === 'required' && (
+									<ErrorText error="Water Temperature is Required" />
 								)}
-						</FormField>
+							</FormField>
 
-						<FormField>
-							<label htmlFor="waterWeight">
-								How much water do you want to use? (ml)
-								<RequiredSpan />
-							</label>
-							<input
-								id="waterWeight"
-								type="number"
-								min={0}
-								max={999}
-								{...register('waterWeight', { required: true })}
-								className="bg-black bg-opacity-0"
-							/>
-							{errors.waterWeight && errors.waterWeight.type === 'required' && (
-								<ErrorText error="Water Weight is Required" />
-							)}
-						</FormField>
+							<FormField>
+								<FormLabel htmlFor="coffeeWeight">Coffee Weight</FormLabel>
+								<input
+									id="coffeeWeight"
+									type="number"
+									{...register('coffeeWeight', { required: true })}
+									className=" rounded-full text-xl font-semibold w-full px-8 py-2 bg-neutral-100 text-neutral-900 dark:bg-neutral-200 dark:text-black"
+								/>
+								{errors.coffeeWeight &&
+									errors.coffeeWeight.type === 'required' && (
+										<ErrorText error="Coffee Weight is Required" />
+									)}
+							</FormField>
 
-						<FormField>
-							<label htmlFor="waterTemp">
-								What is the water temperature? (celcius)
-								<RequiredSpan />
-							</label>
-							<input
-								id="waterTemp"
-								type="number"
-								{...register('waterTemp', { required: true })}
-								className="bg-black bg-opacity-0"
-							/>
-							{errors.waterTemp && errors.waterTemp.type === 'required' && (
-								<ErrorText error="Water Temperature is Required" />
-							)}
-						</FormField>
+							<FormField>
+								<FormLabel htmlFor="waterWeight">Water Volume</FormLabel>
+								<input
+									id="waterWeight"
+									type="number"
+									min={0}
+									max={999}
+									{...register('waterWeight', { required: true })}
+									className="rounded-full text-xl font-semibold w-full px-8 py-2 bg-neutral-100 text-neutral-900 dark:bg-neutral-200 dark:text-black"
+								/>
+								{errors.waterWeight &&
+									errors.waterWeight.type === 'required' && (
+										<ErrorText error="Water Weight is Required" />
+									)}
+							</FormField>
 
-						<FormField>
-							<label htmlFor="grindSize">
-								What is the grind size?
-								<RequiredSpan />
-							</label>
-							<select
-								id="grindSize"
-								{...register('grindSize')}
-								className="bg-neutral-50 dark:bg-neutral-900"
-							>
-								<option value="Any">Any</option>
-								<option value="Extra Fine">Extra Fine</option>
-								<option value="Fine">Fine</option>
-								<option value="Medium">Medium</option>
-								<option value="Medium Coarse">Medium Coarse</option>
-								<option value="Coarse">Coarse</option>
-							</select>
-							{errors.grindSize && errors.grindSize.type === 'required' && (
-								<ErrorText error="Grind Size is Required (put any if you don't have a preferance)" />
-							)}
-						</FormField>
+							<FormField>
+								<FormLabel htmlFor="grindSize">Grind Size</FormLabel>
+								<select
+									id="grindSize"
+									{...register('grindSize')}
+									className="rounded-full text-xl font-semibold w-full px-8 py-2 bg-neutral-100 text-neutral-900 dark:bg-neutral-200 dark:text-black"
+								>
+									<option value="Any">Any</option>
+									<option value="Extra Fine">Extra Fine</option>
+									<option value="Fine">Fine</option>
+									<option value="Medium">Medium</option>
+									<option value="Medium Coarse">Medium Coarse</option>
+									<option value="Coarse">Coarse</option>
+								</select>
+								{errors.grindSize && errors.grindSize.type === 'required' && (
+									<ErrorText error="Grind Size is Required (put any if you don't have a preferance)" />
+								)}
+							</FormField>
 
-						<FormField>
-							<label htmlFor="roastType">
-								What is the roast type?
-								<RequiredSpan />
-							</label>
-							<select
-								id="roastType"
-								{...register('roastType')}
-								className="bg-neutral-50 dark:bg-neutral-900"
-							>
-								<option value="Any">Any</option>
-								<option value="Light">Light</option>
-								<option value="Medium Light">Medium Light</option>
-								<option value="Medium">Medium</option>
-								<option value="Medium Dark">Medium Dark</option>
-								<option value="Dark">Dark</option>
-							</select>
-							{errors.roastType && errors.roastType.type === 'required' && (
-								<ErrorText error="Roast Type is Required (put any if you don't have a preferance)" />
-							)}
-						</FormField>
+							<FormField>
+								<FormLabel htmlFor="roastType">Roast Type</FormLabel>
+								<select
+									id="roastType"
+									{...register('roastType')}
+									className="rounded-full text-xl flex items-center justify-center font-semibold w-full px-8 py-2 bg-neutral-100 text-neutral-900 dark:bg-neutral-200 dark:text-black"
+								>
+									<option value="Any">Any</option>
+									<option value="Light">Light</option>
+									<option value="Medium Light">Medium Light</option>
+									<option value="Medium">Medium</option>
+									<option value="Medium Dark">Medium Dark</option>
+									<option value="Dark">Dark</option>
+								</select>
+								{errors.roastType && errors.roastType.type === 'required' && (
+									<ErrorText error="Roast Type is Required (put any if you don't have a preferance)" />
+								)}
+							</FormField>
+						</section>
 
 						<div className="place-self-end">
 							<Button
