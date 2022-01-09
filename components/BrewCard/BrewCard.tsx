@@ -73,7 +73,7 @@ const BrewCard = ({ brew }: Props) => {
 				</section>
 
 				{description && (
-					<h2 className="font-medium font-article text-neutral-900 dark:text-neutral-100">
+					<h2 className="font-medium font-article text-neutral-900 dark:text-neutral-100 mx-4 px-8 pb-4 border-b-4 border-neutral-300 dark:border-neutral-200">
 						{description}
 					</h2>
 				)}
