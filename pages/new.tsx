@@ -131,11 +131,12 @@ const CreateBrew: NextPage = () => {
 
 						<FormField>
 							<FormLabel htmlFor="description">Tell us about it!</FormLabel>
-							<input
+							<textarea
 								id="description"
-								placeholder="A nice brew"
+								placeholder="A nice brew..."
 								{...register('description', { maxLength: 250 })}
-								className="placeholder:text-neutral-600 rounded-full text-md font-medium w-full px-8 py-2 bg-neutral-100 text-neutral-900 dark:bg-neutral-200 dark:text-black"
+								className="resize-none placeholder:text-neutral-600 rounded-full text-md font-medium w-full px-8 py-2 bg-neutral-100 text-neutral-900 dark:bg-neutral-200 dark:text-black"
+								rows={1}
 							/>
 							<div className="pl-8">
 								{errors.description &&
