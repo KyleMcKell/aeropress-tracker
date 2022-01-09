@@ -25,7 +25,7 @@ const WarningModal = ({
 			className="fixed inset-0 h-full w-full flex justify-center items-center bg-neutral-800 bg-opacity-40 dark:bg-black dark:bg-opacity-80"
 		>
 			<DialogContent
-				className="font-ui shadow-lg shadow-neutral-800 flex justify-between gap-4 bg-neutral-100 border-4 border-neutral-800  dark:bg-neutral-900 flex-col py-4 px-8 rounded-lg"
+				className="font-ui shadow-lg shadow-neutral-800 dark:shadow-md flex justify-between gap-4 bg-neutral-100 border-4 border-neutral-800 dark:border-neutral-300 dark:bg-neutral-900 flex-col py-4 px-8 rounded-lg"
 				aria-label={ariaLabel}
 			>
 				<button
