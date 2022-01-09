@@ -19,7 +19,7 @@ const BrewGrid = ({ brews }: Props) => {
 				?.slice(0)
 				.reverse()
 				.map((brew) => (
-					<Link href={`/brew/${brew.id}`} passHref key={brew.id}>
+					<Link href={`/${brew.id}`} passHref key={brew.id}>
 						<a>
 							<BrewGridElement brew={brew} />
 						</a>

@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
 
-import { Data as CreateBrewData } from '../api/brew';
+import { Data as CreateBrewData } from './api/brew';
 
 import Button from '~/components/Button';
 import Layout from '~/components/Layout';
@@ -85,7 +85,7 @@ const CreateBrew: NextPage = () => {
 
 		setNewBrew(newBrew);
 
-		await router.push('/brew/[id]', `/brew/${newBrew.brew?.id}`);
+		await router.push('/[id]', `/${newBrew.brew?.id}`);
 
 		return newBrew;
 	});

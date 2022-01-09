@@ -19,7 +19,7 @@ const Brews: NextPage<Props> = ({ brews }: Props) => {
 					Brews
 				</h1>
 				<BrewCardGrid brews={brews} />
-				<LinkButton href="/brew/new">Create a New Brew</LinkButton>
+				<LinkButton href="/new">Create a New Brew</LinkButton>
 			</div>
 		</Layout>
 	);
