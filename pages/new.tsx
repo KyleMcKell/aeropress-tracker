@@ -15,7 +15,6 @@ import Layout from '~/components/Layout';
 import LogInButton from '~/components/LogInButton';
 import VisuallyHidden from '~/components/VisuallyHidden';
 import FormLabel from '~/components/FormLabel';
-import BrewDetail from '~/components/BrewDetail';
 import Icon from '~/components/Icon';
 
 type FormData = Omit<AeropressBrew, 'userId' | 'id' | 'brewTime'> & {
@@ -102,6 +101,7 @@ const CreateBrew: NextPage = () => {
 							<FormLabel htmlFor="name" isRequired>
 								Name Your Brew
 							</FormLabel>
+
 							<input
 								id="name"
 								placeholder="My Awesome Brew"
@@ -111,17 +111,19 @@ const CreateBrew: NextPage = () => {
 									maxLength: 25,
 									minLength: 3,
 								})}
-								className="placeholder:text-neutral-600 bg-opacity-0 rounded-full text-md font-medium w-full px-8 py-2 bg-neutral-100 text-neutral-900 dark:bg-neutral-200 dark:text-black"
+								className="placeholder:text-neutral-600 rounded-full text-md font-medium w-full px-8 py-2 bg-neutral-100 text-neutral-900 dark:bg-neutral-200 dark:text-black"
 							/>
-							{errors.name && errors.name.type === 'required' && (
-								<ErrorText error="Name is Required" />
-							)}
-							{errors.name && errors.name.type === 'maxLength' && (
-								<ErrorText error="Your name must be less than 25 characters" />
-							)}
-							{errors.name && errors.name.type === 'minLength' && (
-								<ErrorText error="Your name must be more than 3 characters" />
-							)}
+							<div className="pl-8">
+								{errors.name && errors.name.type === 'required' && (
+									<ErrorText error="Name is Required" />
+								)}
+								{errors.name && errors.name.type === 'maxLength' && (
+									<ErrorText error="Your name must be less than 25 characters" />
+								)}
+								{errors.name && errors.name.type === 'minLength' && (
+									<ErrorText error="Your name must be more than 3 characters" />
+								)}
+							</div>
 						</FormField>
 
 						<FormField>
@@ -130,12 +132,14 @@ const CreateBrew: NextPage = () => {
 								id="description"
 								placeholder="A nice brew"
 								{...register('description', { maxLength: 250 })}
-								className="placeholder:text-neutral-600 bg-opacity-0 rounded-full text-md font-medium w-full px-8 py-2 bg-neutral-100 text-neutral-900 dark:bg-neutral-200 dark:text-black"
+								className="placeholder:text-neutral-600 rounded-full text-md font-medium w-full px-8 py-2 bg-neutral-100 text-neutral-900 dark:bg-neutral-200 dark:text-black"
 							/>
-							{errors.description &&
-								errors.description?.type === 'maxLength' && (
-									<ErrorText error="Max length of 250 exceeded" />
-								)}
+							<div className="pl-8">
+								{errors.description &&
+									errors.description?.type === 'maxLength' && (
+										<ErrorText error="Max length of 250 exceeded" />
+									)}
+							</div>
 						</FormField>
 
 						<FormField>
@@ -181,20 +185,24 @@ const CreateBrew: NextPage = () => {
 
 						<section className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
 							<FormField>
-								<FormLabel htmlFor="inverted">Inverted?</FormLabel>
-								<div className="flex items-start rounded-full px-8 py-2 bg-neutral-100 text-neutral-900 dark:bg-neutral-200 dark:text-black">
-									<label htmlFor="inverted">
-										<div className={`${watchInverted ? 'rotate-180' : ''}`}>
+								<FormLabel htmlFor="inverted">Inverted? </FormLabel>
+								<div className="h-full flex items-center justify-between rounded-full px-8 py-2 bg-neutral-100 text-neutral-900 dark:bg-neutral-200 dark:text-black">
+									<div
+										className={`${
+											watchInverted ? 'rotate-180' : ''
+										} inline-block focus-within:outline rounded-sm`}
+									>
+										<label htmlFor="inverted">
 											<Icon id="coffee" strokeWidth={3} size={28} />
-										</div>
-									</label>
-									<input
-										type={'checkbox'}
-										id="inverted"
-										{...register('inverted')}
-										className="hidden focus:visible"
-										tabIndex={0}
-									/>
+										</label>
+										<VisuallyHidden>
+											<input
+												type={'checkbox'}
+												id="inverted"
+												{...register('inverted')}
+											/>
+										</VisuallyHidden>
+									</div>
 								</div>
 							</FormField>
 
@@ -206,9 +214,11 @@ const CreateBrew: NextPage = () => {
 									{...register('waterTemp', { required: true })}
 									className="rounded-full text-xl font-semibold w-full px-8 py-2 bg-neutral-100 text-neutral-900 dark:bg-neutral-200 dark:text-black"
 								/>
-								{errors.waterTemp && errors.waterTemp.type === 'required' && (
-									<ErrorText error="Water Temperature is Required" />
-								)}
+								<div className="pl-8">
+									{errors.waterTemp && errors.waterTemp.type === 'required' && (
+										<ErrorText error="Water Temperature is Required" />
+									)}
+								</div>
 							</FormField>
 
 							<FormField>
@@ -219,10 +229,12 @@ const CreateBrew: NextPage = () => {
 									{...register('coffeeWeight', { required: true })}
 									className=" rounded-full text-xl font-semibold w-full px-8 py-2 bg-neutral-100 text-neutral-900 dark:bg-neutral-200 dark:text-black"
 								/>
-								{errors.coffeeWeight &&
-									errors.coffeeWeight.type === 'required' && (
-										<ErrorText error="Coffee Weight is Required" />
-									)}
+								<div className="pl-8">
+									{errors.coffeeWeight &&
+										errors.coffeeWeight.type === 'required' && (
+											<ErrorText error="Coffee Weight is Required" />
+										)}
+								</div>
 							</FormField>
 
 							<FormField>
@@ -235,10 +247,12 @@ const CreateBrew: NextPage = () => {
 									{...register('waterWeight', { required: true })}
 									className="rounded-full text-xl font-semibold w-full px-8 py-2 bg-neutral-100 text-neutral-900 dark:bg-neutral-200 dark:text-black"
 								/>
-								{errors.waterWeight &&
-									errors.waterWeight.type === 'required' && (
-										<ErrorText error="Water Weight is Required" />
-									)}
+								<div className="pl-8">
+									{errors.waterWeight &&
+										errors.waterWeight.type === 'required' && (
+											<ErrorText error="Water Weight is Required" />
+										)}
+								</div>
 							</FormField>
 
 							<FormField>
@@ -255,9 +269,11 @@ const CreateBrew: NextPage = () => {
 									<option value="Medium Coarse">Medium Coarse</option>
 									<option value="Coarse">Coarse</option>
 								</select>
-								{errors.grindSize && errors.grindSize.type === 'required' && (
-									<ErrorText error="Grind Size is Required (put any if you don't have a preferance)" />
-								)}
+								<div className="pl-8">
+									{errors.grindSize && errors.grindSize.type === 'required' && (
+										<ErrorText error="Grind Size is Required (put any if you don't have a preferance)" />
+									)}
+								</div>
 							</FormField>
 
 							<FormField>
@@ -274,9 +290,11 @@ const CreateBrew: NextPage = () => {
 									<option value="Medium Dark">Medium Dark</option>
 									<option value="Dark">Dark</option>
 								</select>
-								{errors.roastType && errors.roastType.type === 'required' && (
-									<ErrorText error="Roast Type is Required (put any if you don't have a preferance)" />
-								)}
+								<div className="pl-8">
+									{errors.roastType && errors.roastType.type === 'required' && (
+										<ErrorText error="Roast Type is Required (put any if you don't have a preferance)" />
+									)}
+								</div>
 							</FormField>
 						</section>
 

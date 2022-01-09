@@ -3,7 +3,10 @@ interface Props {
 }
 
 const ErrorText = ({ error }: Props) => (
-	<span role="alert" className="text-danger-500 text-sm font-semibold">
+	<span
+		role="alert"
+		className="text-danger-700 dark:text-danger-200 text-sm font-semibold"
+	>
 		{error}
 	</span>
 );
