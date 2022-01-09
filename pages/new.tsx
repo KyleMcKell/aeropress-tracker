@@ -215,6 +215,8 @@ const CreateBrew: NextPage = () => {
 								<input
 									id="waterTemp"
 									type="number"
+									min={0}
+									max={999}
 									{...register('waterTemp', { required: true })}
 									className="rounded-full text-xl font-semibold w-full px-8 py-2 bg-neutral-100 text-neutral-900 dark:bg-neutral-200 dark:text-black"
 								/>
@@ -230,6 +232,8 @@ const CreateBrew: NextPage = () => {
 								<input
 									id="coffeeWeight"
 									type="number"
+									min={0}
+									max={999}
 									{...register('coffeeWeight', { required: true })}
 									className=" rounded-full text-xl font-semibold w-full px-8 py-2 bg-neutral-100 text-neutral-900 dark:bg-neutral-200 dark:text-black"
 								/>
