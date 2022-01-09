@@ -45,7 +45,7 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
 
 	return {
 		props: { brew },
-		revalidate: 30,
+		revalidate: 1,
 	};
 };
 
