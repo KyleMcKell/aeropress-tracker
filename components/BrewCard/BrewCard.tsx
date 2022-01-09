@@ -133,7 +133,7 @@ const BrewCard = ({ brew }: Props) => {
 				setShowWarning={setShowDeleteWarning}
 				showWarning={showDeleteWarning}
 			>
-				<p className="text-neutral-700 dark:text-neutral-100 font-semibold text-lg">
+				<p className="text-neutral-700 dark:text-neutral-100 font-semibold text-xl m-4">
 					Are you sure you want to delete this brew?
 				</p>
 				<div className="flex justify-end gap-4">
