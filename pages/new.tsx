@@ -150,7 +150,7 @@ const CreateBrew: NextPage = () => {
 							</FormLabel>
 							<div className="flex justify-start rounded-full text-xl font-semibold w-full px-8 py-2 bg-neutral-100 text-neutral-900 dark:bg-neutral-200 dark:text-black">
 								<VisuallyHidden>
-									<label htmlFor="brewMinutes">How many minutes?</label>
+									<p>How many minutes?</p>
 								</VisuallyHidden>
 								<input
 									id="brewMinutes"
