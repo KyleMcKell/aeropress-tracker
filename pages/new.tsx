@@ -101,9 +101,7 @@ const CreateBrew: NextPage = () => {
 						className="relative shadow-md shadow-neutral-800 w-full max-w-3xl rounded-lg p-8 grid grid-cols-1 gap-4 border-4 border-neutral-900 bg-neutral-50 dark:border-neutral-300 dark:bg-neutral-900 dark:text-neutral-50"
 					>
 						<FormField>
-							<FormLabel htmlFor="name" isRequired>
-								Name Your Brew
-							</FormLabel>
+							<FormLabel htmlFor="name">Name Your Brew</FormLabel>
 
 							<input
 								id="name"
@@ -147,7 +145,7 @@ const CreateBrew: NextPage = () => {
 						</FormField>
 
 						<FormField>
-							<FormLabel htmlFor="brewMinutes" isRequired>
+							<FormLabel htmlFor="brewMinutes">
 								How long does your brew take?
 							</FormLabel>
 							<div className="flex justify-start rounded-full text-xl font-semibold w-full px-8 py-2 bg-neutral-100 text-neutral-900 dark:bg-neutral-200 dark:text-black">
@@ -187,7 +185,7 @@ const CreateBrew: NextPage = () => {
 							</div>
 						</FormField>
 
-						<section className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+						<section className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 items-start">
 							<FormField>
 								<FormLabel htmlFor="inverted">Inverted? </FormLabel>
 								<div className="h-full flex items-center justify-between rounded-full px-8 py-2 bg-neutral-100 text-neutral-900 dark:bg-neutral-200 dark:text-black">
@@ -215,14 +213,15 @@ const CreateBrew: NextPage = () => {
 								<input
 									id="waterTemp"
 									type="number"
-									min={0}
-									max={999}
-									{...register('waterTemp', { required: true })}
+									{...register('waterTemp', { required: true, max: 999 })}
 									className="rounded-full text-xl font-semibold w-full px-8 py-2 bg-neutral-100 text-neutral-900 dark:bg-neutral-200 dark:text-black"
 								/>
 								<div className="pl-8">
 									{errors.waterTemp && errors.waterTemp.type === 'required' && (
 										<ErrorText error="Water Temperature is Required" />
+									)}
+									{errors.waterTemp && errors.waterTemp.type === 'max' && (
+										<ErrorText error="Whoa, way too hot!" />
 									)}
 								</div>
 							</FormField>
@@ -232,15 +231,17 @@ const CreateBrew: NextPage = () => {
 								<input
 									id="coffeeWeight"
 									type="number"
-									min={0}
-									max={999}
-									{...register('coffeeWeight', { required: true })}
+									{...register('coffeeWeight', { required: true, max: 99 })}
 									className=" rounded-full text-xl font-semibold w-full px-8 py-2 bg-neutral-100 text-neutral-900 dark:bg-neutral-200 dark:text-black"
 								/>
 								<div className="pl-8">
 									{errors.coffeeWeight &&
 										errors.coffeeWeight.type === 'required' && (
 											<ErrorText error="Coffee Weight is Required" />
+										)}
+									{errors.coffeeWeight &&
+										errors.coffeeWeight.type === 'max' && (
+											<ErrorText error="That's a lot of coffee...." />
 										)}
 								</div>
 							</FormField>
@@ -250,9 +251,7 @@ const CreateBrew: NextPage = () => {
 								<input
 									id="waterWeight"
 									type="number"
-									min={0}
-									max={999}
-									{...register('waterWeight', { required: true })}
+									{...register('waterWeight', { required: true, max: 999 })}
 									className="rounded-full text-xl font-semibold w-full px-8 py-2 bg-neutral-100 text-neutral-900 dark:bg-neutral-200 dark:text-black"
 								/>
 								<div className="pl-8">
@@ -260,6 +259,9 @@ const CreateBrew: NextPage = () => {
 										errors.waterWeight.type === 'required' && (
 											<ErrorText error="Water Weight is Required" />
 										)}
+									{errors.waterWeight && errors.waterWeight.type === 'max' && (
+										<ErrorText error="You must be thirsty!" />
+									)}
 								</div>
 							</FormField>
 
