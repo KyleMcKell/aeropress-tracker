@@ -12,9 +12,9 @@ const Home: NextPage = () => {
 	return (
 		<Layout title={'AeroPress Tracker'}>
 			<nav className="flex flex-col sm:flex-row gap-8 items-center pt-8">
-				<LinkButton href="/brew">All Brews</LinkButton>
+				<LinkButton href="/brews">All Brews</LinkButton>
 
-				<LinkButton href="/brew/new">Create a New Brew</LinkButton>
+				<LinkButton href="/new">Create a New Brew</LinkButton>
 
 				{(status === 'unauthenticated' || status === 'loading') && (
 					<LogInButton />

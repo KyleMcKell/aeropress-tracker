@@ -68,11 +68,11 @@ const MobileMenu = ({
 						</LinkButton>
 					)}
 
-					<LinkButton href="/brew" onClick={onDismiss}>
+					<LinkButton href="/brews" onClick={onDismiss}>
 						All Brews
 					</LinkButton>
 
-					<LinkButton href="/brew/new" onClick={onDismiss}>
+					<LinkButton href="/new" onClick={onDismiss}>
 						Create a New Brew
 					</LinkButton>
 				</nav>
