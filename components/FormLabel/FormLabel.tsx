@@ -8,7 +8,7 @@ interface Props {
 
 const FormLabel = ({ htmlFor, isRequired = false, children }: Props) => {
 	return (
-		<label htmlFor={htmlFor}>
+		<label htmlFor={htmlFor} className="font-semibold pl-4">
 			{children}
 			{isRequired && <span className="font-bold">*</span>}
 		</label>
