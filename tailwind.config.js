@@ -142,5 +142,5 @@ module.exports = {
 		},
 	},
 	darkMode: 'class',
-	plugins: [require('@tailwindcss/custom-forms')],
+	plugins: [],
 };
