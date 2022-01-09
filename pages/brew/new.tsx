@@ -206,7 +206,7 @@ const CreateBrew: NextPage = () => {
 
 						<FormField>
 							<label htmlFor="coffeeWeight">
-								How much coffee do you want to use? (grams)
+								How much coffee would you like to use? (grams)
 								<RequiredSpan />
 							</label>
 							<input
