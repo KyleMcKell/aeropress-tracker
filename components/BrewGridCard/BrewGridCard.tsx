@@ -38,7 +38,7 @@ const BrewGridCard = ({ brew }: Props) => {
 			</section>
 
 			{description && (
-				<h2 className="font-medium text-center font-article text-neutral-900 dark:text-neutral-100">
+				<h2 className="font-medium text-center font-article text-neutral-900 dark:text-neutral-100 truncate">
 					{description}
 				</h2>
 			)}
