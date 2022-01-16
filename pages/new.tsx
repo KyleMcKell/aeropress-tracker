@@ -122,7 +122,7 @@ const CreateBrew: NextPage = () => {
 									<ErrorText error="Your name must be less than 25 characters" />
 								)}
 								{errors.name && errors.name.type === 'minLength' && (
-									<ErrorText error="Your name must be more than 3 characters" />
+									<ErrorText error="Your name must be longer than 3 characters" />
 								)}
 							</div>
 						</FormField>
@@ -192,9 +192,14 @@ const CreateBrew: NextPage = () => {
 									<div
 										className={`${
 											watchInverted ? 'rotate-180' : ''
-										} inline-block focus-within:outline rounded-sm`}
+										} inline-block focus-within:outline rounded-sm w-full`}
 									>
-										<label htmlFor="inverted">
+										<label
+											htmlFor="inverted"
+											className={`w-full flex ${
+												watchInverted ? 'justify-end' : 'justify-start'
+											}`}
+										>
 											<Icon id="coffee" strokeWidth={3} size={28} />
 										</label>
 										<VisuallyHidden>
@@ -213,7 +218,11 @@ const CreateBrew: NextPage = () => {
 								<input
 									id="waterTemp"
 									type="number"
-									{...register('waterTemp', { required: true, max: 999 })}
+									{...register('waterTemp', {
+										required: true,
+										max: 212,
+										min: 0,
+									})}
 									className="rounded-full text-xl font-semibold w-full px-8 py-2 bg-neutral-100 text-neutral-900 dark:bg-neutral-200 dark:text-black"
 								/>
 								<div className="pl-8">
@@ -221,7 +230,16 @@ const CreateBrew: NextPage = () => {
 										<ErrorText error="Water Temperature is Required" />
 									)}
 									{errors.waterTemp && errors.waterTemp.type === 'max' && (
-										<ErrorText error="Whoa, way too hot!" />
+										<ErrorText
+											error="Whoa, way too hot!"
+											descriptiveHiddenError="Water Temperature must be less than 212"
+										/>
+									)}
+									{errors.waterTemp && errors.waterTemp.type === 'min' && (
+										<ErrorText
+											error="Whoa, way too cold!"
+											descriptiveHiddenError="Water Temperature cannot be less than 0"
+										/>
 									)}
 								</div>
 							</FormField>
@@ -231,7 +249,11 @@ const CreateBrew: NextPage = () => {
 								<input
 									id="coffeeWeight"
 									type="number"
-									{...register('coffeeWeight', { required: true, max: 99 })}
+									{...register('coffeeWeight', {
+										required: true,
+										max: 99,
+										min: 1,
+									})}
 									className=" rounded-full text-xl font-semibold w-full px-8 py-2 bg-neutral-100 text-neutral-900 dark:bg-neutral-200 dark:text-black"
 								/>
 								<div className="pl-8">
@@ -241,7 +263,17 @@ const CreateBrew: NextPage = () => {
 										)}
 									{errors.coffeeWeight &&
 										errors.coffeeWeight.type === 'max' && (
-											<ErrorText error="That's a lot of coffee...." />
+											<ErrorText
+												error="That's a lot of coffee...."
+												descriptiveHiddenError="Coffee Weight must be less than 99"
+											/>
+										)}
+									{errors.coffeeWeight &&
+										errors.coffeeWeight.type === 'min' && (
+											<ErrorText
+												error="Not enough coffee!"
+												descriptiveHiddenError="Coffee Weight must be greater than 0"
+											/>
 										)}
 								</div>
 							</FormField>
@@ -251,7 +283,11 @@ const CreateBrew: NextPage = () => {
 								<input
 									id="waterWeight"
 									type="number"
-									{...register('waterWeight', { required: true, max: 999 })}
+									{...register('waterWeight', {
+										required: true,
+										max: 500,
+										min: 1,
+									})}
 									className="rounded-full text-xl font-semibold w-full px-8 py-2 bg-neutral-100 text-neutral-900 dark:bg-neutral-200 dark:text-black"
 								/>
 								<div className="pl-8">
@@ -260,7 +296,16 @@ const CreateBrew: NextPage = () => {
 											<ErrorText error="Water Weight is Required" />
 										)}
 									{errors.waterWeight && errors.waterWeight.type === 'max' && (
-										<ErrorText error="You must be thirsty!" />
+										<ErrorText
+											error="You must be thirsty!"
+											descriptiveHiddenError="Water Weight cannot be higher than 500"
+										/>
+									)}
+									{errors.waterWeight && errors.waterWeight.type === 'min' && (
+										<ErrorText
+											error="You have to have some water!"
+											descriptiveHiddenError="Water Weight must be greater than 0"
+										/>
 									)}
 								</div>
 							</FormField>
