@@ -187,7 +187,12 @@ const CreateBrew: NextPage = () => {
 
 						<section className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 items-start">
 							<FormField>
-								<FormLabel htmlFor="inverted">Inverted? </FormLabel>
+								<FormLabel
+									htmlFor="inverted"
+									unitName={watchInverted ? 'inverted' : 'traditional'}
+								>
+									Inverted?
+								</FormLabel>
 								<div className="h-full flex items-center justify-between rounded-full px-8 py-2 bg-neutral-100 text-neutral-900 dark:bg-neutral-200 dark:text-black">
 									<div
 										className={`${

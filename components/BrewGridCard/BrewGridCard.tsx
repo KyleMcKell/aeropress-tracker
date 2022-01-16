@@ -55,7 +55,9 @@ const BrewGridCard = ({ brew }: Props) => {
 
 				<BrewDetail label="Water Temp">
 					{waterTemp}
-					<sup>C</sup>
+					<span className="text-base">
+						<sup>o</sup>C
+					</span>
 				</BrewDetail>
 
 				<BrewDetail label="Water Weight">
