@@ -145,7 +145,7 @@ const CreateBrew: NextPage = () => {
 						</FormField>
 
 						<FormField>
-							<FormLabel htmlFor="brewMinutes">
+							<FormLabel htmlFor="brewMinutes" unitName="min : sec">
 								How long does your brew take?
 							</FormLabel>
 							<div className="flex justify-start rounded-full text-xl font-semibold w-full px-8 py-2 bg-neutral-100 text-neutral-900 dark:bg-neutral-200 dark:text-black">
@@ -214,7 +214,9 @@ const CreateBrew: NextPage = () => {
 							</FormField>
 
 							<FormField>
-								<FormLabel htmlFor="waterTemp">Water Temp</FormLabel>
+								<FormLabel htmlFor="waterTemp" unitName="celcius">
+									Water Temp
+								</FormLabel>
 								<input
 									id="waterTemp"
 									type="number"
@@ -245,7 +247,9 @@ const CreateBrew: NextPage = () => {
 							</FormField>
 
 							<FormField>
-								<FormLabel htmlFor="coffeeWeight">Coffee Weight</FormLabel>
+								<FormLabel htmlFor="coffeeWeight" unitName="grams">
+									Coffee Weight
+								</FormLabel>
 								<input
 									id="coffeeWeight"
 									type="number"
@@ -279,7 +283,9 @@ const CreateBrew: NextPage = () => {
 							</FormField>
 
 							<FormField>
-								<FormLabel htmlFor="waterWeight">Water Volume</FormLabel>
+								<FormLabel htmlFor="waterWeight" unitName="milliliters">
+									Water Volume
+								</FormLabel>
 								<input
 									id="waterWeight"
 									type="number"
