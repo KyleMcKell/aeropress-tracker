@@ -4,7 +4,7 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
-import { useUser } from '~/lib/hooks';
+import { useCheckOwnership, useUser } from '~/lib/hooks';
 import BrewDetail from '../BrewDetail';
 
 import Button from '../Button';
@@ -31,12 +31,9 @@ const BrewCard = ({ brew }: Props) => {
 		info,
 	} = brew;
 
-	const { user } = useUser(brew.userId);
-	const { data: session } = useSession();
+	const { isOwner, ownerName } = useCheckOwnership(brew);
 	const router = useRouter();
 	const [showDeleteWarning, setShowDeleteWarning] = useState(false);
-
-	const isOwner = session?.userId === brew.userId;
 
 	const handleDelete = async () => {
 		const res = await fetch(`/api/brew/${brew.id}`, {
@@ -65,9 +62,9 @@ const BrewCard = ({ brew }: Props) => {
 					<h1 className="font-bold text-3xl text-neutral-900 dark:text-neutral-200">
 						{brewName}
 					</h1>
-					{user && (
+					{ownerName && (
 						<h2 className="mt-1 font-medium text-sm text-neutral-900 dark:text-neutral-200">
-							Brewed by {user.name}
+							Brewed by {ownerName.name}
 						</h2>
 					)}
 				</section>
@@ -90,7 +87,9 @@ const BrewCard = ({ brew }: Props) => {
 
 					<BrewDetail label="Water Temp">
 						{waterTemp}
-						<sup>C</sup>
+						<span className="text-base">
+							<sup>o</sup>C
+						</span>
 					</BrewDetail>
 
 					<BrewDetail label="Water Weight">
