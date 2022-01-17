@@ -1,10 +1,9 @@
 import type { AeropressBrew } from '@prisma/client';
 
-import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
-import { useCheckOwnership, useUser } from '~/lib/hooks';
+import { useCheckOwnership } from '~/lib/hooks';
 import BrewDetail from '../BrewDetail';
 
 import Button from '../Button';
