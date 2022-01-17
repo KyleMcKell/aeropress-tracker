@@ -72,7 +72,7 @@ const BrewGridCard = ({ brew }: Props) => {
 					<sub>g</sub>
 				</BrewDetail>
 
-				<div className="col-span-1 sm:col-span-2">
+				<div className="col-span-2">
 					<BrewDetail label="Grind Size">
 						{grindSize === 'any' || grindSize === 'Any' || !grindSize ? (
 							<>Any</>
@@ -82,7 +82,7 @@ const BrewGridCard = ({ brew }: Props) => {
 					</BrewDetail>
 				</div>
 
-				<div className="col-span-1 sm:col-span-2">
+				<div className="col-span-2">
 					<BrewDetail label="Roast Type">
 						{roastType === 'any' || roastType === 'Any' || !roastType ? (
 							<>Any</>
