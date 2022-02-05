@@ -1,5 +1,6 @@
 import type { User } from '@prisma/client';
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { getSession } from 'next-auth/react';
 
 import prisma from '~/lib/db';
 
@@ -9,20 +10,27 @@ type Data = {
 
 const userActions = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 	const { userId } = req.query;
+	const session = await getSession({ req });
 
-	switch (req.method) {
-		case 'GET': {
-			const user = await prisma.user.findUnique({
-				where: { id: parseInt(String(userId)) },
-			});
-			if (!user) {
-				return res.status(400);
+	const userIdInt = parseInt(String(userId));
+
+	if (session?.userId === userIdInt) {
+		switch (req.method) {
+			case 'GET': {
+				const user = await prisma.user.findUnique({
+					where: { id: userIdInt },
+				});
+				if (!user) {
+					return res.status(400);
+				}
+				return res.status(200).json({ user });
 			}
-			return res.status(200).json({ user });
+			default: {
+				return res.status(405).end();
+			}
 		}
-		default: {
-			return res.status(405).end();
-		}
+	} else {
+		return res.status(401).end();
 	}
 };
 
