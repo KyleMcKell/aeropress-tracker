@@ -27,20 +27,20 @@ const BrewGridCard = ({ brew }: Props) => {
 	return (
 		<article className="h-full relative shadow-md shadow-neutral-800 w-full max-w-3xl rounded-lg p-8 grid grid-cols-1 gap-4 border-4 border-neutral-900 bg-neutral-50 dark:border-neutral-300 dark:bg-neutral-900 dark:text-neutral-50">
 			<section className="overflow-auto text-center">
-				<h1 className="font-bold text-3xl text-neutral-900 dark:text-neutral-200">
+				<h2 className="font-bold text-3xl text-neutral-900 dark:text-neutral-200">
 					{brewName}
-				</h1>
+				</h2>
 				{user && (
-					<h2 className="mt-1 font-medium text-sm text-neutral-900 dark:text-neutral-200">
+					<p className="mt-1 font-medium text-sm text-neutral-900 dark:text-neutral-200">
 						Brewed by {user.name}
-					</h2>
+					</p>
 				)}
 			</section>
 
 			{description ? (
-				<h2 className="font-medium text-center font-article text-neutral-900 dark:text-neutral-100 truncate h-6">
+				<p className="font-medium text-center font-article text-neutral-900 dark:text-neutral-100 truncate h-6">
 					{description}
-				</h2>
+				</p>
 			) : (
 				<br className="h-6" />
 			)}
