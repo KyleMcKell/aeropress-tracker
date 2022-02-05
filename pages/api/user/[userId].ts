@@ -14,27 +14,24 @@ const userActions = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 
 	const userIdInt = Number(userId);
 
-	switch (req.method) {
-		case 'GET': {
-			const user = await prisma.user.findUnique({
-				where: { id: userIdInt },
-			});
-			if (!user) {
-				return res.status(400);
-			} else if (session?.userId === userIdInt) {
-				return res.status(200).json({ user });
-			} else {
-				user.email = 'coffeelover@aeropresstracker.com';
-				user.image = "you sneakster, you aren't supposed to be here";
-				user.emailVerified = null;
-				user.name =
-					user.name === null ? 'Stealth Barista' : user.name.split(' ')[0];
-				return res.status(200).json({ user });
-			}
-		}
-		default: {
-			return res.status(405).end();
-		}
-	}
+	if (req.method !== 'GET') return res.status(405).end();
+
+	const user = await prisma.user.findUnique({
+		where: { id: userIdInt },
+	});
+
+	if (!user) return res.status(400);
+
+	if (session?.userId === userIdInt) return res.status(200).json({ user });
+
+	return res.status(200).json({
+		user: {
+			...user,
+			email: 'coffeelover@aeropresstracker.com',
+			image: "you sneakster, you aren't supposed to be here",
+			name: user.name === null ? 'Stealth Barista' : user.name.split(' ')[0],
+		},
+	});
 };
+
 export default userActions;
