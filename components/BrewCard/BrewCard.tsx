@@ -81,10 +81,10 @@ const BrewCard = ({ brew }: Props) => {
 					<BrewDetail label="Inverted?">
 						<div className={`${inverted ? '-scale-y-100' : ''}`}>
 							<Icon id="coffee" strokeWidth={3} size={28} />
-							<VisuallyHidden>
-								{inverted ? 'Inverted Brew' : 'Non inverted Brew'}
-							</VisuallyHidden>
 						</div>
+						<VisuallyHidden>
+							{inverted ? 'Inverted Brew' : 'Non inverted Brew'}
+						</VisuallyHidden>
 					</BrewDetail>
 
 					<BrewDetail label="Water Temp">
