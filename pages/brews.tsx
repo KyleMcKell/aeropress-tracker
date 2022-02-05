@@ -3,7 +3,7 @@ import type { AeropressBrew } from '@prisma/client';
 
 import prisma from '~/lib/db';
 
-import BrewCardGrid from '~/components/BrewGrid';
+import BrewGrid from '~/components/BrewGrid';
 import Layout from '~/components/Layout';
 import LinkButton from '~/components/LinkButton';
 
@@ -18,7 +18,7 @@ const Brews: NextPage<Props> = ({ brews }: Props) => {
 				<h1 className="text-4xl font-semibold text-neutral-900 dark:text-neutral-200">
 					Brews
 				</h1>
-				<BrewCardGrid brews={brews} />
+				<BrewGrid brews={brews} />
 				<LinkButton href="/new">Create a New Brew</LinkButton>
 			</div>
 		</Layout>

@@ -12,15 +12,14 @@ export type Data = {
 
 const brewActions = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 	switch (req.method) {
-		case 'GET': {
-			const brews = await prisma.aeropressBrew.findMany();
-			if (!brews) {
-				return res.status(400);
-			}
+		case 'GET':
+			const brews = await prisma.aeropressBrew.findMany({
+				orderBy: { id: 'desc' },
+			});
+			if (!brews) return res.status(400);
 			return res.status(200).json({ brews });
-		}
 
-		case 'POST': {
+		case 'POST':
 			const {
 				name,
 				description,
@@ -34,9 +33,7 @@ const brewActions = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 				userId,
 			}: AeropressBrew = req.body;
 			try {
-				if (!userId) {
-					throw new Error("You aren't logged in!");
-				}
+				if (!userId) throw new Error("You aren't logged in!");
 				const brew = await prisma.aeropressBrew.create({
 					data: {
 						name,
@@ -51,19 +48,17 @@ const brewActions = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 						userId,
 					},
 				});
-				if (!brew) {
-					throw new Error('Could not create brew');
-				}
+				if (!brew) throw new Error('Could not create brew');
+
 				return res.status(200).json({ brew });
 			} catch (error) {
 				let message = getErrorMessage(error);
 				console.log(message);
 				return res.status(400).json({ error: message });
 			}
-		}
-		default: {
+
+		default:
 			return res.status(405).end();
-		}
 	}
 };
 
