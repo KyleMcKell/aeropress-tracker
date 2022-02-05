@@ -53,6 +53,7 @@ const BrewCard = ({ brew }: Props) => {
 						className="absolute top-2 right-2"
 						onClick={() => setShowDeleteWarning(true)}
 					>
+						<VisuallyHidden>Delete Brew</VisuallyHidden>
 						<Icon id="trash" strokeWidth={2} size={20} />
 					</button>
 				)}
