@@ -51,7 +51,7 @@ const BrewGridCard = ({ brew }: Props) => {
 						<Icon id="coffee" strokeWidth={3} size={28} />
 					</div>
 					<VisuallyHidden>
-						{inverted ? 'Inverted Brew' : 'Non inverted Brew'}
+						{inverted ? 'Inverted Brew' : 'Traditional Brew'}
 					</VisuallyHidden>
 				</BrewDetail>
 
