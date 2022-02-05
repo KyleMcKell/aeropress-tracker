@@ -53,6 +53,7 @@ const BrewCard = ({ brew }: Props) => {
 						className="absolute top-2 right-2"
 						onClick={() => setShowDeleteWarning(true)}
 					>
+						<VisuallyHidden>Delete Brew</VisuallyHidden>
 						<Icon id="trash" strokeWidth={2} size={20} />
 					</button>
 				)}
@@ -68,20 +69,22 @@ const BrewCard = ({ brew }: Props) => {
 					)}
 				</section>
 
-				{description && (
-					<h2 className="font-medium font-article text-neutral-900 dark:text-neutral-100 md:mx-4 md:px-8 pb-4 border-b-4 border-neutral-300 dark:border-neutral-200">
+				{description ? (
+					<p className="font-medium font-article text-neutral-900 dark:text-neutral-100 md:mx-4 md:px-8 pb-4 border-b-4 border-neutral-300 dark:border-neutral-200">
 						{description}
-					</h2>
+					</p>
+				) : (
+					<></>
 				)}
 
 				<section className="grid grid-cols-2 justify-center gap-4">
 					<BrewDetail label="Inverted?">
 						<div className={`${inverted ? '-scale-y-100' : ''}`}>
 							<Icon id="coffee" strokeWidth={3} size={28} />
-							<VisuallyHidden>
-								{inverted ? 'Inverted Brew' : 'Non inverted Brew'}
-							</VisuallyHidden>
 						</div>
+						<VisuallyHidden>
+							{inverted ? 'Inverted Brew' : 'Non inverted Brew'}
+						</VisuallyHidden>
 					</BrewDetail>
 
 					<BrewDetail label="Water Temp">
