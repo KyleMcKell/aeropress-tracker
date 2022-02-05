@@ -26,7 +26,9 @@ const Brews: NextPage<Props> = ({ brews }: Props) => {
 };
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-	const brews = await prisma.aeropressBrew.findMany();
+	const brews = await prisma.aeropressBrew.findMany({
+		orderBy: { id: 'desc' },
+	});
 
 	return {
 		props: {

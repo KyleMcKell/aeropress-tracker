@@ -14,7 +14,7 @@ const brewActions = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 	switch (req.method) {
 		case 'GET':
 			const brews = await prisma.aeropressBrew.findMany({
-				orderBy: { id: 'desc' },
+				orderBy: [{ id: 'asc' }],
 			});
 			if (!brews) return res.status(400);
 			return res.status(200).json({ brews });

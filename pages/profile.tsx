@@ -42,6 +42,9 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
 		where: {
 			userId,
 		},
+		orderBy: {
+			id: 'desc',
+		},
 		take: 10,
 	});
 
