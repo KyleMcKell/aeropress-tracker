@@ -9,7 +9,8 @@
 		"cypress": "cypress open",
 		"cypress:headless": "cypress run",
 		"e2e": "start-server-and-test start http://localhost:3000 cypress",
-		"e2e:headless": "start-server-and-test start http://localhost:3000 cypress:headless"
+		"e2e:headless": "start-server-and-test start http://localhost:3000 cypress:headless",
+		"prepare": "husky install"
 	},
 	"dependencies": {
 		"@next-auth/prisma-adapter": "^0.5.2-next.19",
@@ -35,10 +36,16 @@
 		"cypress": "^9.4.1",
 		"eslint": "8.4.1",
 		"eslint-config-next": "12.0.7",
+		"husky": "^7.0.4",
 		"jest": "^27.5.0",
+		"lint-staged": "^12.3.3",
 		"postcss": "^8.4.5",
+		"prettier": "2.5.1",
 		"prisma": "^3.7.0",
 		"tailwindcss": "^3.0.7",
 		"typescript": "4.5.4"
+	},
+	"lint-staged": {
+		"**/*": "prettier --write --ignore-unknown"
 	}
 }
