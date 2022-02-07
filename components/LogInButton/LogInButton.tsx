@@ -15,7 +15,7 @@ const LogInButton = ({ variant = 'boring' }: Props) => {
 				return signOut();
 			}
 			case 'unauthenticated': {
-				return signIn();
+				return signIn('google');
 			}
 			case 'loading': {
 				return;
