@@ -5,7 +5,7 @@ import { getSession } from 'next-auth/react';
 import prisma from '~/lib/db';
 
 type Data = {
-	user: User;
+	user: User | { name: string };
 };
 
 const userActions = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
@@ -26,9 +26,6 @@ const userActions = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 
 	return res.status(200).json({
 		user: {
-			...user,
-			email: 'coffeelover@aeropresstracker.com',
-			image: "you sneakster, you aren't supposed to be here",
 			name: user.name === null ? 'Stealth Barista' : user.name.split(' ')[0],
 		},
 	});
