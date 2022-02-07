@@ -1,6 +1,7 @@
 import type { NextPage, GetServerSideProps } from 'next';
 import type { AeropressBrew } from '@prisma/client';
 
+import { useEffect } from 'react';
 import { getSession, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 
@@ -9,7 +10,6 @@ import prisma from '~/lib/db';
 import BrewCardGrid from '~/components/BrewGrid';
 import Layout from '~/components/Layout';
 import LinkButton from '~/components/LinkButton';
-import { useEffect } from 'react';
 
 interface Props {
 	brews: AeropressBrew[];
