@@ -8,13 +8,17 @@ type Data = {
 	user: User | { name: string };
 };
 
+const methods = {
+	GET: 'GET',
+};
+
 const userActions = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 	const { userId } = req.query;
 	const session = await getSession({ req });
 
 	const userIdInt = Number(userId);
 
-	if (req.method !== 'GET') return res.status(405).end();
+	if (req.method !== methods.GET) return res.status(405).end();
 
 	const user = await prisma.user.findUnique({
 		where: { id: userIdInt },
