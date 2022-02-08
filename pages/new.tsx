@@ -53,9 +53,9 @@ const CreateBrew: NextPage = () => {
 	const onSubmit = handleSubmit(async (data: FormData) => {
 		let brewToCreate: Omit<AeropressBrew, 'id'> = {
 			...data,
-			waterTemp: Number(String(data.waterTemp)),
-			coffeeWeight: Number(String(data.coffeeWeight)),
-			waterWeight: Number(String(data.waterWeight)),
+			waterTemp: Number(data.waterTemp),
+			coffeeWeight: Number(data.coffeeWeight),
+			waterWeight: Number(data.waterWeight),
 			userId: session!.userId,
 			brewTime: Number(data.brewMinutes) * 60 + Number(data.brewSeconds),
 		};
