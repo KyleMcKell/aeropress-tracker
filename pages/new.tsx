@@ -74,8 +74,6 @@ const CreateBrew: NextPage = () => {
 		setNewBrew(newBrew);
 
 		await router.push('/[brewId]', `/${newBrew.brew?.id}`);
-
-		return newBrew;
 	});
 
 	return (
