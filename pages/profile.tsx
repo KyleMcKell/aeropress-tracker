@@ -1,11 +1,10 @@
 import type { NextPage, GetServerSideProps } from 'next';
 import type { AeropressBrew } from '@prisma/client';
-
-import { useEffect } from 'react';
-import { getSession, useSession } from 'next-auth/react';
-import { useRouter } from 'next/router';
+import { getSession } from 'next-auth/react';
 
 import prisma from '~/lib/db';
+
+import { useAuthReroute } from '~/lib/hooks';
 
 import BrewCardGrid from '~/components/BrewGrid';
 import Layout from '~/components/Layout';
@@ -16,12 +15,7 @@ interface Props {
 }
 
 const Profile: NextPage<Props> = ({ brews }: Props) => {
-	const router = useRouter();
-	const { status } = useSession();
-
-	useEffect(() => {
-		if (status === 'unauthenticated') router.push('/');
-	}, [status, router]);
+	useAuthReroute();
 
 	return (
 		<Layout title={'Brews'}>
