@@ -14,7 +14,10 @@ interface Props {
 
 const Brew: NextPage<Props> = ({ brew }: Props) => {
 	return (
-		<Layout title={`${brew.name} - AeroPress Tracker`} description="">
+		<Layout
+			title={`${brew.name} - AeroPress Tracker`}
+			description={`Brew instructions to make ${brew.name}`}
+		>
 			<BrewCard brew={brew} />
 		</Layout>
 	);

@@ -13,7 +13,10 @@ interface Props {
 
 const Brews: NextPage<Props> = ({ brews }: Props) => {
 	return (
-		<Layout title={'Brews'}>
+		<Layout
+			title={'Brews'}
+			description={`List of all created brews to choose from for your AeroPress`}
+		>
 			<div className="w-full lg:w-11/12 flex flex-col justify-center items-center gap-8">
 				<h1 className="text-4xl font-semibold text-neutral-900 dark:text-neutral-200">
 					Brews

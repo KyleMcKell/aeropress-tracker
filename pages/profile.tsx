@@ -18,7 +18,10 @@ const Profile: NextPage<Props> = ({ brews }: Props) => {
 	useAuthReroute();
 
 	return (
-		<Layout title={'Brews'}>
+		<Layout
+			title={'Brews'}
+			description="Your profile of created AeroPress brews"
+		>
 			<div className="w-full lg:w-11/12 flex flex-col justify-center items-center gap-8">
 				<h1 className="text-4xl font-semibold text-neutral-900 dark:text-neutral-200">
 					Your Brews
