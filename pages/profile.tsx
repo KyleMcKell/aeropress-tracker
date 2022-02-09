@@ -1,11 +1,10 @@
 import type { NextPage, GetServerSideProps } from 'next';
 import type { AeropressBrew } from '@prisma/client';
-
-import { useEffect } from 'react';
-import { getSession, useSession } from 'next-auth/react';
-import { useRouter } from 'next/router';
+import { getSession } from 'next-auth/react';
 
 import prisma from '~/lib/db';
+
+import { useAuthReroute } from '~/lib/hooks';
 
 import BrewCardGrid from '~/components/BrewGrid';
 import Layout from '~/components/Layout';
@@ -16,15 +15,13 @@ interface Props {
 }
 
 const Profile: NextPage<Props> = ({ brews }: Props) => {
-	const router = useRouter();
-	const { status } = useSession();
-
-	useEffect(() => {
-		if (status === 'unauthenticated') router.push('/');
-	}, [status, router]);
+	useAuthReroute();
 
 	return (
-		<Layout title={'Brews'}>
+		<Layout
+			title={'Brews'}
+			description="Your profile of created AeroPress brews"
+		>
 			<div className="w-full lg:w-11/12 flex flex-col justify-center items-center gap-8">
 				<h1 className="text-4xl font-semibold text-neutral-900 dark:text-neutral-200">
 					Your Brews
@@ -54,7 +51,8 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
 		orderBy: {
 			id: 'desc',
 		},
-		take: 10,
+		// an even number and a multiple of 3 is the best for the grid
+		take: 12,
 	});
 
 	return {

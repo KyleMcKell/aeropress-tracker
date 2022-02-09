@@ -12,6 +12,7 @@ const BackgroundImage = ({ isDarkMode }: Props) => {
 				src={`/svg/footer-waves-${isDarkMode ? 'dark' : 'light'}.svg`}
 				objectFit={'cover'}
 				layout="fill"
+				// I don't believe this needs an alt text as it is purely decoration
 				alt=""
 			/>
 		</div>
