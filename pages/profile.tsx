@@ -51,7 +51,8 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
 		orderBy: {
 			id: 'desc',
 		},
-		take: 10,
+		// an even number and a multiple of 3 is the best for the grid
+		take: 12,
 	});
 
 	return {
