@@ -51,15 +51,14 @@ const Icon = ({
 	}
 
 	return (
-		<div {...delegated}>
-			<Component
-				className="block"
-				color={color}
-				size={size}
-				strokeWidth={strokeWidth}
-				fill={fill}
-			/>
-		</div>
+		<Component
+			className="block"
+			color={color}
+			size={size}
+			strokeWidth={strokeWidth}
+			fill={fill}
+			{...delegated}
+		/>
 	);
 };
 

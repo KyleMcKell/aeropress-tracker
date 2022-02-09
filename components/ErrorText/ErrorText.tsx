@@ -7,12 +7,12 @@ interface Props {
 
 const ErrorText = ({ error, descriptiveHiddenError }: Props) => (
 	<>
-		<span
+		<p
 			role="alert"
 			className="text-danger-700 dark:text-danger-300 text-sm font-semibold"
 		>
 			{error}
-		</span>
+		</p>
 		<VisuallyHidden>{descriptiveHiddenError}</VisuallyHidden>
 	</>
 );

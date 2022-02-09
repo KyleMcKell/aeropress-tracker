@@ -7,47 +7,51 @@ type Data = {
 	brew: AeropressBrew;
 };
 
+const methods = {
+	GET: 'GET',
+	DELETE: 'DELETE',
+	PATCH: 'PATCH',
+};
+
 const brewIdActions = async (
 	req: NextApiRequest,
 	res: NextApiResponse<Data>
 ) => {
-	const { brewId } = req.query;
+	const { brewId: queriedId } = req.query;
+	const brewId = Number(queriedId);
 
 	switch (req.method) {
-		case 'GET': {
-			const brew = await prisma.aeropressBrew.findUnique({
-				where: { id: parseInt(String(brewId)) },
+		case methods.GET:
+			const uniqueBrew = await prisma.aeropressBrew.findUnique({
+				where: { id: brewId },
 			});
-			if (!brew) {
-				return res.status(400);
-			}
-			return res.status(200).json({ brew });
-		}
-		case 'DELETE': {
-			const brew = await prisma.aeropressBrew.delete({
-				where: { id: parseInt(String(brewId)) },
+
+			if (!uniqueBrew) return res.status(400);
+			return res.status(200).json({ brew: uniqueBrew });
+
+		case methods.DELETE:
+			const deletedBrew = await prisma.aeropressBrew.delete({
+				where: { id: brewId },
 			});
-			if (!brew) {
-				return res.status(400);
-			}
-			return res.status(200).json({ brew });
-		}
-		case 'PATCH': {
+
+			if (!deletedBrew) return res.status(400);
+			return res.status(200).json({ brew: deletedBrew });
+
+		case methods.PATCH:
 			const brewPayload: AeropressBrew = req.body;
-			const brew = await prisma.aeropressBrew.update({
-				where: { id: parseInt(String(brewId)) },
+
+			const updatedBrew = await prisma.aeropressBrew.update({
+				where: { id: brewId },
 				data: {
 					...brewPayload,
 				},
 			});
-			if (!brew) {
-				return res.status(400);
-			}
-			return res.status(200).json({ brew });
-		}
-		default: {
+
+			if (!updatedBrew) return res.status(400);
+			return res.status(200).json({ brew: updatedBrew });
+
+		default:
 			return res.status(405).end();
-		}
 	}
 };
 
