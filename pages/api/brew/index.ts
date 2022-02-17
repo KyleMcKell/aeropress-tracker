@@ -1,5 +1,6 @@
 import type { AeropressBrew } from '@prisma/client';
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { getSession } from 'next-auth/react';
 
 import prisma from '~/lib/db';
 import { getErrorMessage } from '~/lib/utils';
@@ -39,7 +40,11 @@ const brewActions = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 				userId,
 			}: AeropressBrew = req.body;
 			try {
-				if (!userId) throw new Error("You aren't logged in!");
+				const session = await getSession({ req });
+				if (!session) throw new Error("You aren't logged in!");
+				if (session?.userId !== userId) {
+					throw new Error("You aren't logged in to the correct user!");
+				}
 				const createdBrew = await prisma.aeropressBrew.create({
 					data: {
 						name,
